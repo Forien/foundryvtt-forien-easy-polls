@@ -1,0 +1,40 @@
+{
+  "name": "forien-easy-polls",
+  "title": "Forien's Easy Polls",
+  "description": "Create polls through the chat and let your players vote.",
+  "author": "Forien — Forien#2130",
+  "authors": [
+    {
+      "name": "Forien",
+      "url": "https://www.patreon.com/forien"
+    }
+  ],
+  "version": "0.0.9",
+  "minimumCoreVersion": "0.6.0",
+  "compatibleCoreVersion": "0.6.4",
+  "url": "https://github.com/Forien/foundryvtt-forien-easy-polls",
+  "manifest": "https://raw.githubusercontent.com/Forien/foundryvtt-forien-easy-polls/master/module.json",
+  "download": "https://github.com/Forien/foundryvtt-forien-easy-polls/releases/download/v0.0.9/v0.0.9.zip",
+  "readme": "https://github.com/Forien/foundryvtt-forien-easy-polls/blob/v0.0.9/README.md",
+  "changelog": "https://github.com/Forien/foundryvtt-forien-easy-polls/blob/v0.0.9/changelog.md",
+  "bugs": "https://github.com/Forien/foundryvtt-forien-easy-polls/issues",
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "pl",
+      "name": "Polski",
+      "path": "lang/pl.json"
+    }
+  ],
+  "esmodules": [
+    "./modules/init.js"
+  ],
+  "styles": [
+    "./styles/style.css"
+  ],
+  "socket": true
+}
