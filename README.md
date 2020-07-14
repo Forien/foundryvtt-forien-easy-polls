@@ -15,12 +15,29 @@ This module aims to provide solution to create, manage, vote and see results of 
 
 ## Usage
 
+To create a poll, use `/poll` chat command. First line becomes the question.
+
+Each of next lines becomes an answer. Use Shift+Enter to go to new line when writing a message
+
+Example: 
+```
+/p Ultimate Question of Life, the Universe, and Everything
+Stupid answer
+Dumb answer
+Just answer
+Barely answer
+42
+¯\_(ツ)_/¯
+```
+
 ## Screenshots 
 
+![](https://i.gyazo.com/d7b662c2e90a366c14171c8d6e0a3f3b.gif)
 
 ## Future plans
 
-* _none currently_
+* More poll types
+* Poll configuration
 
 You can **always** check current and up-to-date [planned and requested features here](https://github.com/Forien/foundryvtt-forien-easy-polls/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement)
 

@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+#chat-log {
+  h2, div, span, label, button, .count-answered {
+    font-family: 'Open Sans', Signika, sans-serif;
+    font-weight: 100;
+  }
+
+  .forien-poll {
+    label {
+      display: flex;
+      place-items: center;
+    }
+
+    .answers {
+      width: 100%;
+      margin: 0 auto;
+
+      .answer {
+        position: relative;
+        width: 100%;
+        margin: 2px 0;
+
+        .answer-data {
+          top: 0;
+          position: absolute;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 22px;
+
+          * {
+            mix-blend-mode: difference;
+            color: #fff;
+          }
+        }
+
+        .bar-container {
+          width: 100%;
+          position: relative;
+
+          .bar {
+            background: #222;
+            height: 22px;
+            overflow: visible;
+          }
+        }
+      }
+    }
+
+    .stats {
+      margin-top:8px;
+      padding-top: 2px;
+      font-size: 11px;
+      font-style: italic;
+      border-top: 1px dashed #00000066;
+    }
+  }
+}
