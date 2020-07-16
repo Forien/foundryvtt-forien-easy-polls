@@ -5,7 +5,7 @@ import ForienError from "./utility/Error.js";
 export default class Poll extends ChatMessage {
   static async create(data, options = {}) {
     data = {
-      count: 0,
+      total: 0,
       question: data.question,
       parts: data.parts.map(p => {
         return {label: p, percent: 0, count: 0}
@@ -17,7 +17,6 @@ export default class Poll extends ChatMessage {
     let messageData = {
       content: message
     };
-    options.cssClass = 'forien-poll';
 
     let messageEntity = await super.create(messageData, options);
     await messageEntity.setFlag(constants.moduleName, "isPoll", true);
@@ -94,10 +93,10 @@ export default class Poll extends ChatMessage {
     // remove reference;
     data = duplicate(data);
 
-    data.count = data.answers.filter(a => a.status).length;
+    data.total = data.answers.filter(a => a.status).length;
     data.parts.forEach(p => {
       p.count = data.answers.filter(a => (p.label === a.label && a.status === true)).length;
-      p.percent = Math.round(p.count / data.count * 100);
+      p.percent = Math.round(p.count / data.total * 100);
     });
 
     return data;
@@ -111,17 +110,3 @@ export default class Poll extends ChatMessage {
     }
   }
 }
-
-
-/**
-
-
- /p Ultimate Question of Life, the Universe, and Everything
- Stupid answer
- Dumb answer
- Just answer
- Barely answer
- 42
- ¯\_(ツ)_/¯
-
- **/
