@@ -25,7 +25,7 @@ export default class Socket {
       poll: poll,
       answer: answer,
       status: status,
-      user: game.user._id
+      user: game.user.id
     })
   }
 

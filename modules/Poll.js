@@ -33,10 +33,10 @@ export default class Poll extends ChatMessage {
     let isDisplayingResults = game.user.getFlag(constants.moduleName, "pollResults") || [];
     data = duplicate(data);
     data.isGM = game.user.isGM;
-    data.results = (game.user.isGM || isDisplayingResults.includes(chatMessage._id));
-    data.poll = chatMessage._id;
+    data.results = (game.user.isGM || isDisplayingResults.includes(chatMessage.id));
+    data.poll = chatMessage.id;
     data.parts.forEach(p => {
-      let answer = data.answers.find(a => a.user === game.user._id && a.label === p.label)
+      let answer = data.answers.find(a => a.user === game.user.id && a.label === p.label)
       p.checked = answer ? answer.status : false;
     });
 
@@ -102,7 +102,7 @@ export default class Poll extends ChatMessage {
     return data;
   }
 
-  static makeAnswer(answer, status, user = game.user._id) {
+  static makeAnswer(answer, status, user = game.user.id) {
     return {
       label: answer,
       status: status,
