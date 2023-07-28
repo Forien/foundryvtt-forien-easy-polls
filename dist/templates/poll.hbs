@@ -7,7 +7,7 @@
             <div class="bar" style="width: {{this.percent}}%"></div>
             <div class="answer-data">
                 <span class="label">{{this.label}}</span>
-                <span class="count">{{this.count}}</span>
+                <span class="count" {{#unless ../settings.secret}}data-tooltip="{{this.voters}}"{{/unless}}>{{this.count}}</span>
             </div>
         </div>
     </div>

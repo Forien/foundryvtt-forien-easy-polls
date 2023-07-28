@@ -50,6 +50,8 @@ export default class Poll extends ChatMessage {
     data.parts.forEach(p => {
       let answer = data.answers.find(a => a.user === game.user._id && a.label === p.label)
       p.checked = answer ? answer.status : false;
+      p.voters = [];
+      data.answers.filter(a => a.label === p.label).forEach(a => p.voters.push(game.users.get(a.user)?.name));
     });
 
     let newHtml = await renderTemplate(Utility.getTemplate(this.#template), data);

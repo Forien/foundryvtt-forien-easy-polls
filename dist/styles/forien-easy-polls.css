@@ -31,7 +31,12 @@
 }
 #chat-log .forien-poll .answers {
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto 5px;
+}
+#chat-log .forien-poll .answers input {
+  width: 20px;
+  height: 20px;
+  margin: 3px 5px;
 }
 #chat-log .forien-poll .answers .answer {
   position: relative;
@@ -46,6 +51,7 @@
   justify-content: space-between;
   align-items: center;
   height: 22px;
+  padding: 0 4px;
 }
 #chat-log .forien-poll .answers .answer .answer-data * {
   mix-blend-mode: difference;
