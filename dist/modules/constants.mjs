@@ -8,8 +8,15 @@ const defaults = {
 
 }
 
+const flags = {
+  isPoll: "isPoll",
+  pollData: "pollData",
+  pollSettings: "pollSettings",
+  pollResults: "pollResults"
+}
+
 const settings = {
 
 }
 
-export {constants, defaults, settings};
+export {constants, defaults, flags, settings};

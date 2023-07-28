@@ -1,37 +1,48 @@
-import {constants} from "./constants.mjs";
+import {constants, flags} from "./constants.mjs";
 import Socket from "./Socket.js";
 import WorkshopError from "./utility/Error.js";
 import Utility from "./utility/Utility.mjs";
 
 export default class Poll extends ChatMessage {
+  static #template = 'poll.hbs';
+
   static async create(data, options = {}) {
+    const pollSettings = {
+      mode: options.mode,
+      display: options.display,
+      secret: options.secret
+    }
+
     data = {
       total: 0,
       question: data.question,
       parts: data.parts.map(p => {
         return {label: p, percent: 0, count: 0}
       }),
-      answers: []
+      answers: [],
+      settings: pollSettings
     };
-    let message = await renderTemplate(Utility.getTemplate('poll.hbs'), data);
+
+    let message = await renderTemplate(Utility.getTemplate(this.#template), data);
 
     let messageData = {
       content: message
     };
 
     let messageEntity = await super.create(messageData, options);
-    await messageEntity.setFlag(constants.moduleId, "isPoll", true);
-    await messageEntity.setFlag(constants.moduleId, "pollData", data);
+    await messageEntity.setFlag(constants.moduleId, flags.isPoll, true);
+    await messageEntity.setFlag(constants.moduleId, flags.pollData, data);
+    await messageEntity.setFlag(constants.moduleId, flags.pollSettings, pollSettings);
 
     return messageEntity;
   }
 
   static async renderPoll(chatMessage, html, listeners = true) {
     $(html).addClass('forien-poll');
-    let data = chatMessage.getFlag(constants.moduleId, "pollData");
+    let data = chatMessage.getFlag(constants.moduleId, flags.pollData);
     if (!data) return;
 
-    let isDisplayingResults = game.user.getFlag(constants.moduleId, "pollResults") || [];
+    let isDisplayingResults = game.user.getFlag(constants.moduleId, flags.pollResults) || [];
     data = duplicate(data);
     data.isGM = game.user.isGM;
     data.results = (game.user.isGM || isDisplayingResults.includes(chatMessage._id));
@@ -41,7 +52,7 @@ export default class Poll extends ChatMessage {
       p.checked = answer ? answer.status : false;
     });
 
-    let newHtml = await renderTemplate(Utility.getTemplate('poll.hbs'), data);
+    let newHtml = await renderTemplate(Utility.getTemplate(this.#template), data);
     $(html).find('.message-content').html(newHtml);
 
     if (!listeners) return;
@@ -55,7 +66,7 @@ export default class Poll extends ChatMessage {
 
     html.on("click", "button.toggle", async (event) => {
       let poll = event.currentTarget.dataset.poll;
-      let isDisplayingResults = game.user.getFlag(constants.moduleId, "pollResults") || [];
+      let isDisplayingResults = game.user.getFlag(constants.moduleId, flags.pollResults) || [];
       isDisplayingResults = duplicate(isDisplayingResults);
 
       if (isDisplayingResults.includes(poll)) {
@@ -64,7 +75,7 @@ export default class Poll extends ChatMessage {
         isDisplayingResults.push(poll);
       }
 
-      await game.user.setFlag(constants.moduleId, "pollResults", isDisplayingResults)
+      await game.user.setFlag(constants.moduleId, flags.pollResults, isDisplayingResults)
       this.renderPoll(chatMessage, html, false);
     });
   }
@@ -72,7 +83,7 @@ export default class Poll extends ChatMessage {
   static async answer(id, answer, status, user) {
     let poll = game.messages.get(id);
     if (poll) {
-      let data = poll.getFlag(constants.moduleId, "pollData");
+      let data = poll.getFlag(constants.moduleId, flags.pollData);
       if (data) {
         let answers = data.answers;
 
@@ -81,7 +92,7 @@ export default class Poll extends ChatMessage {
         data.answers = answers;
         data = await this.recalculate(data);
 
-        await poll.setFlag(constants.moduleId, "pollData", data);
+        await poll.setFlag(constants.moduleId, flags.pollData, data);
         return;
       }
     }
