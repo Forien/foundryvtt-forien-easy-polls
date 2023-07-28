@@ -1,5 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
+.forien-easy-polls {
+  &.poll-dialog {
+    .window-content {
+      table {
+        background: none;
+        border: none;
+
+        thead {
+          background: none;
+          border: none;
+        }
+      }
+    }
+  }
+
+  // Dedicated Styles for WFRP4e
+  &.wfrp4e {
+    .window-content {
+      background: url(/ui/parchment.jpg);
+      color: #222222;
+
+      table {
+        color: #222222;
+
+        input {
+          color: #222222;
+
+          &::placeholder {
+            color: #444444;
+          }
+        }
+      }
+    }
+  }
+}
+
 #chat-log {
   .forien-poll {
     h2, div, span, label, button, .count-answered {

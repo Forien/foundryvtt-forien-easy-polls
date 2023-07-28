@@ -1,4 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+.forien-easy-polls.poll-dialog .window-content table {
+  background: none;
+  border: none;
+}
+.forien-easy-polls.poll-dialog .window-content table thead {
+  background: none;
+  border: none;
+}
+.forien-easy-polls.wfrp4e .window-content {
+  background: url(/ui/parchment.jpg);
+  color: #222222;
+}
+.forien-easy-polls.wfrp4e .window-content table {
+  color: #222222;
+}
+.forien-easy-polls.wfrp4e .window-content table input {
+  color: #222222;
+}
+.forien-easy-polls.wfrp4e .window-content table input::placeholder {
+  color: #444444;
+}
+
 #chat-log .forien-poll h2, #chat-log .forien-poll div, #chat-log .forien-poll span, #chat-log .forien-poll label, #chat-log .forien-poll button, #chat-log .forien-poll .count-answered {
   font-family: "Open Sans", Signika, sans-serif;
   font-weight: 100;
