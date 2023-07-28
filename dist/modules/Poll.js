@@ -77,15 +77,15 @@ export default class Poll extends ChatMessage {
     if (!game.user.isGM)
       return;
 
-    html.on("click", "button.toggle-setting-mode", (event) => {
+    html.on("click", "button.toggle-setting-mode", () => {
       Poll.#onToggleSetting('mode', chatMessage, html)
     });
 
-    html.on("click", "button.toggle-setting-results", (event) => {
+    html.on("click", "button.toggle-setting-results", () => {
       Poll.#onToggleSetting('results', chatMessage, html)
     });
 
-    html.on("click", "button.toggle-setting-secret", (event) => {
+    html.on("click", "button.toggle-setting-secret", () => {
       Poll.#onToggleSetting('secret', chatMessage, html)
     });
   }

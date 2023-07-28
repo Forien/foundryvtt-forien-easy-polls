@@ -14,7 +14,7 @@
     {{/each}}
     {{else}}
     {{#each parts}}
-        <label><input type={{#if (eq ../settings.mode 'multiple')}}checkbox{{else}}radio{{/if}} name="poll-{{../poll}}-answer" class="poll-answer" data-answer="{{this.label}}" data-poll="{{../poll}}" {{checked checked}}/> {{this.label}}</label>
+        <label><input type={{#if (eq ../settings.mode 'multiple')}}"checkbox"{{else}}"radio"{{/if}} name="poll-{{../poll}}-answer" class="poll-answer" data-answer="{{this.label}}" data-poll="{{../poll}}" {{checked checked}}/> {{this.label}}</label>
     {{/each}}
     {{/if}}
 </div>
