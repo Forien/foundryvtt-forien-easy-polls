@@ -1,6 +1,7 @@
 import {constants} from "./constants.mjs";
 import WorkshopError from "./utility/Error.js";
 import Poll from "./Poll.js";
+import Utility from "./utility/Utility.mjs";
 
 const capitalize = (s) => {
   if (typeof s !== 'string') return undefined;
@@ -13,12 +14,14 @@ export default class Socket {
   static needsGM() {
     let GMs = game.users.filter(u => u.isGM && u.active);
     if (GMs.length === 0) {
-      ui.notifications.error(game.i18n.localize("Forien.EasyPolls.Notifications.NoGM"), {});
-      throw new WorkshopError(game.i18n.localize("Forien.EasyPolls.console.errors.noGM"));
+      throw new WorkshopError(game.i18n.localize("Forien.EasyPolls.Notifications.NoGM"));
     }
   }
 
   static sendAnswer(poll, answer, status = true, multiple = false) {
+    if (game.user.isGM)
+      return Poll.answer(poll, answer, status, game.user._id, multiple);
+
     this.needsGM();
     game.socket.emit(this.socket, {
       event: "sendAnswer",
@@ -28,6 +31,7 @@ export default class Socket {
       multiple: multiple,
       user: game.user._id
     })
+    Utility.notify(`Answer sent`);
   }
 
   static listen() {

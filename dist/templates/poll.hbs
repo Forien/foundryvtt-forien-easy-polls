@@ -18,9 +18,9 @@
     {{/each}}
     {{/if}}
 </div>
-{{#unless isGM}}
+{{#if (or settings.display isGM)}}
 <button class="toggle" data-poll="{{poll}}">{{localize "Forien.EasyPolls.ToggleResults"}}</button>
-{{/unless}}
+{{/if}}
 <div class="stats">
     <span>{{localize "Forien.EasyPolls.CountAnswered"}}: <i class="count-answered">{{total}}</i></span>
 </div>

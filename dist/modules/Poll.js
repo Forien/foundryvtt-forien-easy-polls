@@ -45,7 +45,7 @@ export default class Poll extends ChatMessage {
     let isDisplayingResults = game.user.getFlag(constants.moduleId, flags.pollResults) || [];
     data = duplicate(data);
     data.isGM = game.user.isGM;
-    data.results = (game.user.isGM || isDisplayingResults.includes(chatMessage._id));
+    data.results = (isDisplayingResults.includes(chatMessage._id) && (data.isGM || data.settings.display === true));
     data.poll = chatMessage._id;
     data.parts.forEach(p => {
       let answer = data.answers.find(a => a.user === game.user._id && a.label === p.label)
@@ -90,10 +90,11 @@ export default class Poll extends ChatMessage {
       if (data) {
         let answers = data.answers;
 
-        answers = answers.filter(a => !(a.user === user && a.label === answer));
-        if (!multiple) {
-          answers = [];
-        }
+        if (!multiple)
+          answers = answers.filter(a => a.user !== user);
+        else
+          answers = answers.filter(a => !(a.user === user && a.label === answer));
+
         answers.push(this.makeAnswer(answer, status, user));
         data.answers = answers;
         data = await this.recalculate(data);
@@ -106,7 +107,6 @@ export default class Poll extends ChatMessage {
   }
 
   static async recalculate(data) {
-    console.log(data);
     // remove reference;
     data = duplicate(data);
 
