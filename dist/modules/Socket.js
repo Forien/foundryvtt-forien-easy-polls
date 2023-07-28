@@ -1,5 +1,5 @@
-import constants from "./constants.mjs";
-import ForienError from "./utility/Error.js";
+import {constants} from "./constants.mjs";
+import WorkshopError from "./utility/Error.js";
 import Poll from "./Poll.js";
 
 const capitalize = (s) => {
@@ -8,13 +8,13 @@ const capitalize = (s) => {
 };
 
 export default class Socket {
-  static socket = `module.${constants.moduleName}`;
+  static socket = `module.${constants.moduleId}`;
 
   static needsGM() {
     let GMs = game.users.filter(u => u.isGM && u.active);
     if (GMs.length === 0) {
       ui.notifications.error(game.i18n.localize("Forien.EasyPolls.Notifications.NoGM"), {});
-      throw new ForienError(game.i18n.localize("Forien.EasyPolls.console.errors.noGM"));
+      throw new WorkshopError(game.i18n.localize("Forien.EasyPolls.console.errors.noGM"));
     }
   }
 
@@ -46,9 +46,6 @@ export default class Socket {
 
   static onundefined(data) {
     let msg = game.i18n.format("Forien.EasyPolls.console.errors.undefined-event", {event: data.event});
-    ui.notifications.error(msg, {});
-    console.log(msg);
-    console.log(JSON.stringify(data));
-    throw new ForienError(msg);
+    throw new WorkshopError(msg);
   }
 }

@@ -1,10 +1,10 @@
 import Poll from "./Poll.js";
-import constants from "./constants.mjs";
+import {constants} from "./constants.mjs";
 
 export default class PollCommand {
 
   static registerCommand() {
-    Hooks.on("chatMessage", (chatLog, messageText, chatData) => {
+    Hooks.on("chatMessage", (chatLog, messageText, _chatData) => {
       let match = this.checkCommand(messageText);
 
       if (match) {
@@ -15,8 +15,8 @@ export default class PollCommand {
       }
     });
 
-    Hooks.on("renderChatMessage", (chatMessage, html, messageData) => {
-      let isPoll = chatMessage.getFlag(constants.moduleName, "isPoll");
+    Hooks.on("renderChatMessage", (chatMessage, html, _messageData) => {
+      let isPoll = chatMessage.getFlag(constants.moduleId, "isPoll");
 
       if (isPoll) {
         Poll.renderPoll(chatMessage, html);

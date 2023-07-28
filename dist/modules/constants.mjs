@@ -1,6 +1,15 @@
-let constants = {
+const constants = {
   modulePath: "modules/forien-easy-polls",
-  moduleName: "forien-easy-polls",
+  moduleId: "forien-easy-polls",
   moduleLabel: "Forien's Easy Polls"
 };
-export default constants;
+
+const defaults = {
+
+}
+
+const settings = {
+
+}
+
+export {constants, defaults, settings};
