@@ -92,12 +92,33 @@
       }
     }
 
+    .poll-control-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px;
+
+      button {
+        flex: 1 2 min-content;
+        margin: 0;
+
+        &.toggle-results {
+          flex: 1 0 100%;        }
+      }
+    }
+
     .stats {
       margin-top: 8px;
       padding-top: 2px;
       font-size: 11px;
       font-style: italic;
       border-top: 1px dashed #00000066;
+    }
+
+    &.wfrp4e {
+      button {
+        margin: 0 !important;
+        font-size: var(--font-size-14);
+      }
     }
   }
 }

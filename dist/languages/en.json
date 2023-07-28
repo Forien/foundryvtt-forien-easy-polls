@@ -3,6 +3,14 @@
     "EasyPolls": {
       "CountAnswered": "Total Answers",
       "ToggleResults": "Toggle Display Results",
+      "ToggleSettingResults": {
+        "Enable": "Show Results",
+        "Disable": "Hide Results"
+      },
+      "ToggleSettingSecret": {
+        "Enable": "Make Secret",
+        "Disable": "Make Public"
+      },
 
       "Notifications":{
         "NoGM": "There is no active Gamer Master online. Game Master's presence is required to vote."

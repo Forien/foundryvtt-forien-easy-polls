@@ -6,6 +6,7 @@
 * Added the Poll Dialog (inspired by macro made by flamewave000)
 * Added the options to make voting secret, disallow players from seeing results and to make poll single vote
 * Allowed GM to vote
+* Added control buttons to Poll Chat Messages that allow GM to control Poll's settings
 
 ## v0.1.2
 * Fixed CSS accidentally changing font in all chat cards into Open Sans

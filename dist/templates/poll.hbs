@@ -5,9 +5,9 @@
     <div class="answer">
         <div class="bar-container">
             <div class="bar" style="width: {{this.percent}}%"></div>
-            <div class="answer-data">
+            <div class="answer-data" {{#if (or (not ../settings.secret) ../isGM)}}data-tooltip="{{this.voters}}"{{/if}}>
                 <span class="label">{{this.label}}</span>
-                <span class="count" {{#unless ../settings.secret}}data-tooltip="{{this.voters}}"{{/unless}}>{{this.count}}</span>
+                <span class="count">{{this.count}}</span>
             </div>
         </div>
     </div>
@@ -18,9 +18,23 @@
     {{/each}}
     {{/if}}
 </div>
-{{#if (or settings.results isGM)}}
-<button class="toggle" data-poll="{{poll}}">{{localize "Forien.EasyPolls.ToggleResults"}}</button>
-{{/if}}
+<div class="poll-control-buttons">
+    {{#if (or settings.results isGM)}}
+        <button class="toggle-results" data-poll="{{poll}}"><i class="fas fa-chart-simple"></i> {{localize "Forien.EasyPolls.ToggleResults"}}</button>
+    {{/if}}
+    {{#if isGM}}
+        {{#if settings.results}}
+            <button class="toggle-setting-results" data-poll="{{poll}}"><i class="fas fa-eye-slash"></i> {{localize "Forien.EasyPolls.ToggleSettingResults.Disable"}}</button>
+        {{else}}
+            <button class="toggle-setting-results" data-poll="{{poll}}"><i class="fas fa-eye"></i> {{localize "Forien.EasyPolls.ToggleSettingResults.Enable"}}</button>
+        {{/if}}
+        {{#if settings.secret}}
+            <button class="toggle-setting-secret" data-poll="{{poll}}"><i class="fas fa-users"></i> {{localize "Forien.EasyPolls.ToggleSettingSecret.Disable"}}</button>
+        {{else}}
+            <button class="toggle-setting-secret" data-poll="{{poll}}"><i class="fas fa-user-secret"></i> {{localize "Forien.EasyPolls.ToggleSettingSecret.Enable"}}</button>
+        {{/if}}
+    {{/if}}
+</div>
 <div class="stats">
     <span>{{localize "Forien.EasyPolls.CountAnswered"}}: <i class="count-answered">{{total}}</i></span>
 </div>

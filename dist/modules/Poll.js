@@ -39,7 +39,8 @@ export default class Poll extends ChatMessage {
 
   static async renderPoll(chatMessage, html, listeners = true) {
     $(html).addClass('forien-poll');
-    let data = chatMessage.getFlag(constants.moduleId, flags.pollData);
+    $(html).addClass(game.system.name);
+    let data = await chatMessage.getFlag(constants.moduleId, flags.pollData);
     if (!data) return;
 
     let isDisplayingResults = game.user.getFlag(constants.moduleId, flags.pollResults) || [];
@@ -53,6 +54,7 @@ export default class Poll extends ChatMessage {
       p.voters = [];
       data.answers.filter(a => a.label === p.label).forEach(a => p.voters.push(game.users.get(a.user)?.name));
     });
+    data.settings = await chatMessage.getFlag(constants.moduleId, flags.pollSettings);
 
     let newHtml = await renderTemplate(Utility.getTemplate(this.#template), data);
     $(html).find('.message-content').html(newHtml);
@@ -68,20 +70,49 @@ export default class Poll extends ChatMessage {
       Socket.sendAnswer(poll, answer, checked, type === 'checkbox');
     });
 
-    html.on("click", "button.toggle", async (event) => {
-      let poll = event.currentTarget.dataset.poll;
-      let isDisplayingResults = game.user.getFlag(constants.moduleId, flags.pollResults) || [];
-      isDisplayingResults = duplicate(isDisplayingResults);
-
-      if (isDisplayingResults.includes(poll)) {
-        isDisplayingResults = isDisplayingResults.filter(p => p !== poll)
-      } else {
-        isDisplayingResults.push(poll);
-      }
-
-      await game.user.setFlag(constants.moduleId, flags.pollResults, isDisplayingResults)
-      this.renderPoll(chatMessage, html, false);
+    html.on("click", "button.toggle-results", (event) => {
+      Poll.#onToggleResults(event, chatMessage, html)
     });
+
+    if (!game.user.isGM)
+      return;
+
+    html.on("click", "button.toggle-setting-mode", (event) => {
+      Poll.#onToggleSetting('mode', chatMessage, html)
+    });
+
+    html.on("click", "button.toggle-setting-results", (event) => {
+      Poll.#onToggleSetting('results', chatMessage, html)
+    });
+
+    html.on("click", "button.toggle-setting-secret", (event) => {
+      Poll.#onToggleSetting('secret', chatMessage, html)
+    });
+  }
+
+  static async #onToggleSetting(setting, chatMessage, html) {
+    let settings = await chatMessage.getFlag(constants.moduleId, flags.pollSettings);
+
+    settings[setting] = !settings[setting];
+
+    console.log(settings);
+    await chatMessage.setFlag(constants.moduleId, flags.pollSettings, settings);
+    await this.renderPoll(chatMessage, html, false);
+  }
+
+  static async #onToggleResults(event, chatMessage, html) {
+    let poll = event.currentTarget.dataset.poll;
+    let isDisplayingResults = game.user.getFlag(constants.moduleId, flags.pollResults) || [];
+    isDisplayingResults = duplicate(isDisplayingResults);
+
+    if (isDisplayingResults.includes(poll)) {
+      isDisplayingResults = isDisplayingResults.filter(p => p !== poll)
+    } else {
+      isDisplayingResults.push(poll);
+    }
+
+    await game.user.setFlag(constants.moduleId, flags.pollResults, isDisplayingResults)
+    await this.renderPoll(chatMessage, html, false);
   }
 
   static async answer(id, answer, status, user, multiple = false) {
