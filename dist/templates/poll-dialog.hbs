@@ -1,0 +1,24 @@
+<table id="poll-dialog-table">
+    <thead>
+    <tr>
+        <th>
+            <input type="text" class="poll-title" placeholder="Poll Title"><br>
+            <button class="add-option">
+                <i class="fas fa-add"></i> {{localize "Forien.EasyPolls.PollDialog.AddOption"}}
+            </button>
+        </th>
+    </tr>
+    </thead>
+    <tbody class="poll-options">
+    <tr class="option-template hidden">
+        <td class="ordering-number"></td>
+        <td>
+            <input class="poll-option" type="text"
+                   placeholder="{{localize "Forien.EasyPolls.PollDialog.Option"}} {PON}"/></td>
+        <td>
+            <button class="delete-option"><i class="fas fa-times"></i></button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+

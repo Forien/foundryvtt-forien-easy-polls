@@ -1,4 +1,4 @@
-import constants from "../constants.mjs";
+import {constants} from "../constants.mjs";
 
 export default class Utility {
   static notify(notification, {type = "info", permanent = false, consoleOnly = false} = {}) {

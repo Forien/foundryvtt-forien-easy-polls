@@ -8,11 +8,13 @@
         "NoGM": "There is no active Gamer Master online. Game Master's presence is required to vote."
       },
 
+      "PollDialog": {
+        "Title": "Set Up Easy Poll",
+        "AddOption": "Add Option",
+        "Option": "Option"
+      },
+
       "Settings": {
-        "playersWelcomeScreen": {
-          "Enable": "Display Welcome Screen to Players",
-          "EnableHint": "Uncheck to prevent players from seeing Welcome Screen on log in after an update."
-        }
       },
 
       "console": {

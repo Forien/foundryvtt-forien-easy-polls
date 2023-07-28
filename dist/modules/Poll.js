@@ -41,7 +41,7 @@ export default class Poll extends ChatMessage {
       p.checked = answer ? answer.status : false;
     });
 
-    let newHtml = await renderTemplate(`${constants.modulePath}/templates/poll.html`, data);
+    let newHtml = await renderTemplate(Utility.getTemplate('poll.hbs'), data);
     $(html).find('.message-content').html(newHtml);
 
     if (!listeners) return;

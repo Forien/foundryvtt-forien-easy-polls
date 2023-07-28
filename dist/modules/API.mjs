@@ -1,5 +1,6 @@
 import Poll from "./Poll.js";
 import PollCommand from "./PollCommand.js";
+import PollDialog from "./PollDialog.mjs";
 
 export default class API {
   constructor() {
@@ -14,15 +15,37 @@ export default class API {
   }
 
   /**
+   * Returns a PollDialog class
+   * @return {PollDialog}
+   */
+  get pollDialog() {
+    return PollDialog;
+  }
+
+  /**
+   * Renders a Poll Dialog that allows to set up a Poll in a visuall manner with inputs.
+   *
+   * @param force
+   * @param options
+   * @return {Promise<void>}
+   */
+  async renderPollDialog(force = true, options = {}) {
+    (new this.pollDialog()).render(force, options);
+  }
+
+  /**
+   * Creates a Poll from a Multiline Text data.
+   * First line becomes the Question/Title, other lines become the options
    *
    * @param {String[]} content
    * @return {Promise<void>}
    */
-  async createPollFromArray(content) {
+  async createPollFromMultiline(content) {
     return await this.#pollCommandClass.createPoll(content)
   }
 
   /**
+   * Creates a Poll with the given Question and Options (Parts)
    *
    * @param {String} question
    * @param {String[]} parts
@@ -33,6 +56,7 @@ export default class API {
   }
 
   /**
+   * Answers a specified Poll, by setting a Boolean value on an Answer with provided UserId
    *
    * @param {String} pollId
    * @param {String} answer

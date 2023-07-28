@@ -46,5 +46,20 @@
   "styles": [
     "./styles/forien-easy-polls.css"
   ],
+  "flags": {
+    "hotReload": {
+      "extensions": [
+        "css",
+        "html",
+        "hbs",
+        "json"
+      ],
+      "paths": [
+        "templates/",
+        "styles/",
+        "languages/"
+      ]
+    }
+  },
   "socket": true
 }
