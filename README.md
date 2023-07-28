@@ -2,16 +2,11 @@
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/forien/foundryvtt-forien-easy-polls?style=for-the-badge) 
 ![GitHub Releases](https://img.shields.io/github/downloads/Forien/foundryvtt-forien-easy-polls/latest/total?style=for-the-badge) 
 ![GitHub All Releases](https://img.shields.io/github/downloads/Forien/foundryvtt-forien-easy-polls/total?style=for-the-badge&label=Downloads+total)  
-**[Compatibility]**: *FoundryVTT* 0.6.0+  
+**[Compatibility]**: *FoundryVTT* 0.6.0+ (verified working on v11)
 **[Systems]**: *any*  
 **[Languages]**: *English, Polish*  
 
 This module aims to provide solution to create, manage, vote and see results of Polls in Chat Log during games played via Foundry Virtual Tabletop.
-
-## Installation
-
-1. Install Forien's Easy Polls using manifest URL: https://raw.githubusercontent.com/Forien/foundryvtt-forien-easy-polls/master/module.json
-2. While loaded in World, enable **_Forien's Easy Polls_** module.
 
 ## Usage
 
@@ -64,4 +59,4 @@ If you wish to support module development, please consider [becoming Patron](htt
 
 Forien's Easy Polls is a module for Foundry VTT by Forien and is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
 
-This work is licensed under Foundry Virtual Tabletop [EULA - Limited License Agreement for module development from May 29, 2020](https://foundryvtt.com/article/license/).
+This work is licensed under Foundry Virtual Tabletop [EULA - Limited License for Package Development from March 2, 2023](https://foundryvtt.com/article/license/).

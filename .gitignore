@@ -1,8 +1,8 @@
 .idea/
 devtool/
 node_modules/
-styles/.sass-cache/
-lang/untranslated.json
+src/styles/.sass-cache/
+dist/languages/untranslated.json
 changelog.html
 foundry.js
 package.json

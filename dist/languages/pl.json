@@ -1,0 +1,19 @@
+{
+  "Forien": {
+    "EasyPolls": {
+      "CountAnswered": "Łącznie odpowiedzi",
+      "ToggleResults": "Przełącz wyniki",
+
+      "Notifications":{
+        "NoGM": "Nie ma żadnego MG online. Obecność MG jest wymagana, aby móc zagłosować."
+      },
+
+      "Settings": {
+        "playersWelcomeScreen": {
+          "Enable": "Pokazuj graczom Ekran Powitalny",
+          "EnableHint": "Odznacz, aby graczom nie wyświetlać po zalogowaniu Ekranu Powitalnego z każdą nową wersją."
+        }
+      }
+    }
+  }
+}

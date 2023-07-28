@@ -1,41 +1,43 @@
 {
-  "name": "forien-easy-polls",
+  "id": "forien-easy-polls",
   "title": "Forien's Easy Polls",
   "description": "Create polls through the chat and let your players vote.",
-  "author": "Forien — Forien#2130",
+  "version": "0.1.3",
+  "compatibility": {
+    "minimum": "0.6.0",
+    "verified": "11"
+  },
   "authors": [
     {
       "name": "Forien",
+      "discord": "forien",
       "url": "https://www.patreon.com/forien"
     }
   ],
-  "version": "0.1.2",
-  "minimumCoreVersion": "0.6.0",
-  "compatibleCoreVersion": "0.7.9",
   "url": "https://github.com/Forien/foundryvtt-forien-easy-polls",
   "manifest": "https://raw.githubusercontent.com/Forien/foundryvtt-forien-easy-polls/master/module.json",
-  "download": "https://github.com/Forien/foundryvtt-forien-easy-polls/releases/download/v0.1.2/v0.1.2.zip",
-  "readme": "https://github.com/Forien/foundryvtt-forien-easy-polls/blob/v0.1.2/README.md",
-  "changelog": "https://github.com/Forien/foundryvtt-forien-easy-polls/blob/v0.1.2/changelog.md",
+  "download": "https://github.com/Forien/foundryvtt-forien-easy-polls/releases/download/v0.1.3/module.zip",
+  "readme": "https://github.com/Forien/foundryvtt-forien-easy-polls/blob/v0.1.3/README.md",
+  "changelog": "https://github.com/Forien/foundryvtt-forien-easy-polls/blob/v0.1.3/changelog.md",
   "bugs": "https://github.com/Forien/foundryvtt-forien-easy-polls/issues",
   "languages": [
     {
       "lang": "en",
       "name": "English",
-      "path": "lang/en.json"
+      "path": "languages/en.json"
     },
     {
       "lang": "pl",
       "name": "Polski",
-      "path": "lang/pl.json"
+      "path": "languages/pl.json"
     }
   ],
   "packs": [
     {
       "name": "forien-easy-polls-macros",
-      "label": "Easy Polls Macros",
+      "label": "Macros (Forien's Easy Polls)",
       "path": "./packs/forien-easy-polls-macros.db",
-      "entity": "Macro"
+      "type": "Macro"
     }
   ],
   "esmodules": [

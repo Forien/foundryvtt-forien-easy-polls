@@ -80,12 +80,11 @@ export default class Poll extends ChatMessage {
         data.answers = answers;
         data = await this.recalculate(data);
 
-        // await poll.unsetFlag(constants.moduleName, "pollData");
         await poll.setFlag(constants.moduleName, "pollData", data);
         return;
       }
     }
-    throw new ForienError(game.i18n.format('ForienEasyPolls.console.errors.noPoll'));
+    throw new ForienError(game.i18n.format('Forien.EasyPolls.console.errors.noPoll'));
   }
 
   static async recalculate(data) {

@@ -13,8 +13,8 @@ export default class Socket {
   static needsGM() {
     let GMs = game.users.filter(u => u.isGM && u.active);
     if (GMs.length === 0) {
-      ui.notifications.error(game.i18n.localize("ForienEasyPolls.Notifications.NoGM"), {});
-      throw new ForienError(game.i18n.localize("ForienEasyPolls.console.errors.noGM"));
+      ui.notifications.error(game.i18n.localize("Forien.EasyPolls.Notifications.NoGM"), {});
+      throw new ForienError(game.i18n.localize("Forien.EasyPolls.console.errors.noGM"));
     }
   }
 
@@ -45,7 +45,7 @@ export default class Socket {
   }
 
   static onundefined(data) {
-    let msg = game.i18n.format("ForienEasyPolls.console.errors.undefined-event", {event: data.event});
+    let msg = game.i18n.format("Forien.EasyPolls.console.errors.undefined-event", {event: data.event});
     ui.notifications.error(msg, {});
     console.log(msg);
     console.log(JSON.stringify(data));
