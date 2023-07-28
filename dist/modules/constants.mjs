@@ -16,7 +16,10 @@ const flags = {
 }
 
 const settings = {
-
+  playersCreate: 'playersCreate',
+  defaultMode: 'defaultMode',
+  defaultDisplay: 'defaultDisplay',
+  defaultSecret: 'defaultSecret'
 }
 
 export {constants, defaults, flags, settings};

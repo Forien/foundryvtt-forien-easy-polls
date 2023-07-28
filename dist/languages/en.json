@@ -15,6 +15,24 @@
       },
 
       "Settings": {
+        "PlayersCreate": {
+          "Enable": "Allow Players to create Polls",
+          "EnableHint": "When checked, players will be able to create polls utilizing the /poll Chat command"
+        },
+        "DefaultMode": {
+          "Enable": "Default Poll Mode",
+          "EnableHint": "Select which mode should be default when creating new Polls. Can be overriden with --mode flag",
+          "Multiple": "Multiple Vote",
+          "Single": "Single Vote"
+        },
+        "DefaultDisplay": {
+          "Enable": "Allow Showing Results",
+          "EnableHint": "When checked, players will be allowed to check the Poll results by default. Can be overriden with --results flag"
+        },
+        "DefaultSecret": {
+          "Enable": "Secret Voting",
+          "EnableHint": "When checked, players will not be allowed to see who voted on specific answers. Note that players will not be able to see who voted if they can't display the results. Can be overriden with --secret flag"
+        }
       },
 
       "console": {

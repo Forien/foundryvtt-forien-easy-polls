@@ -9,7 +9,7 @@ export default class Poll extends ChatMessage {
   static async create(data, options = {}) {
     const pollSettings = {
       mode: options.mode,
-      display: options.display,
+      results: options.results,
       secret: options.secret
     }
 
@@ -45,7 +45,7 @@ export default class Poll extends ChatMessage {
     let isDisplayingResults = game.user.getFlag(constants.moduleId, flags.pollResults) || [];
     data = duplicate(data);
     data.isGM = game.user.isGM;
-    data.results = (isDisplayingResults.includes(chatMessage._id) && (data.isGM || data.settings.display === true));
+    data.results = (isDisplayingResults.includes(chatMessage._id) && (data.isGM || data.settings.results === true));
     data.poll = chatMessage._id;
     data.parts.forEach(p => {
       let answer = data.answers.find(a => a.user === game.user._id && a.label === p.label)
@@ -58,6 +58,7 @@ export default class Poll extends ChatMessage {
     $(html).find('.message-content').html(newHtml);
 
     if (!listeners) return;
+
 
     html.on("click", "input.poll-answer", (event) => {
       let answer = event.currentTarget.dataset.answer;

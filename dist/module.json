@@ -2,7 +2,7 @@
   "id": "forien-easy-polls",
   "title": "Forien's Easy Polls",
   "description": "Create polls through the chat and let your players vote.",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "compatibility": {
     "minimum": "11",
     "verified": "11"
@@ -30,14 +30,6 @@
       "lang": "pl",
       "name": "Polski",
       "path": "languages/pl.json"
-    }
-  ],
-  "packs": [
-    {
-      "name": "forien-easy-polls-macros",
-      "label": "Macros (Forien's Easy Polls)",
-      "path": "./packs/forien-easy-polls-macros.db",
-      "type": "Macro"
     }
   ],
   "esmodules": [

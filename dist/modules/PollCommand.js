@@ -1,10 +1,10 @@
 import Poll from "./Poll.js";
-import {constants, flags} from "./constants.mjs";
+import {constants, flags, settings} from "./constants.mjs";
 
 export default class PollCommand {
   static #flags = {
     mode: ['--mode', '--m'],
-    display: ['--display', '--d'],
+    results: ['--results', '--r'],
     secret: ['--secret', '--s']
   }
 
@@ -13,7 +13,7 @@ export default class PollCommand {
       multiple: ['m', 'multi', 'multiple'],
       single: ['s', 'single']
     },
-    display: {
+    results: {
       true: ['t', 'true'],
       false: ['f', 'false']
     },
@@ -25,10 +25,17 @@ export default class PollCommand {
 
   static registerCommand() {
     Hooks.on("chatMessage", (chatLog, messageText, _chatData) => {
+      if (!game.settings.get(constants.moduleId, settings.playersCreate))
+        return true;
+
       let match = this.checkCommand(messageText);
 
       if (match) {
-        let options = {};
+        let options = {
+          mode: game.settings.get(constants.moduleId, settings.defaultMode),
+          results: game.settings.get(constants.moduleId, settings.defaultDisplay),
+          secret: game.settings.get(constants.moduleId, settings.defaultSecret),
+        };
         let flags = this.checkFlags(messageText);
         let content = messageText.replace(match[1], '');
 
@@ -104,15 +111,15 @@ export default class PollCommand {
    *
    * @param {String} content
    * @param {String} mode
-   * @param {boolean} display
+   * @param {boolean} results
    * @param {boolean} secret
    * @return {Promise<abstract.Document>}
    */
-  static async createPoll(content, {mode = 'multiple', display = true, secret = false} = {}) {
+  static async createPoll(content, {mode = 'multiple', results = true, secret = false} = {}) {
     let parts = content.split(/\n/);
     parts = parts.map(s => s.trim()).filter(s => s.length);
     let question = parts.shift();
 
-    return await Poll.create({question, parts}, {mode, display, secret});
+    return await Poll.create({question, parts}, {mode, results, secret});
   }
 }
