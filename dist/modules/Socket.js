@@ -18,13 +18,14 @@ export default class Socket {
     }
   }
 
-  static sendAnswer(poll, answer, status = true) {
+  static sendAnswer(poll, answer, status = true, multiple = false) {
     this.needsGM();
     game.socket.emit(this.socket, {
       event: "sendAnswer",
       poll: poll,
       answer: answer,
       status: status,
+      multiple: multiple,
       user: game.user._id
     })
   }
@@ -41,7 +42,7 @@ export default class Socket {
 
   static onSendAnswer(data) {
     if (!game.user.isGM) return;
-    Poll.answer(data.poll, data.answer, data.status, data.user);
+    Poll.answer(data.poll, data.answer, data.status, data.user, data.multiple);
   }
 
   static onundefined(data) {

@@ -59,11 +59,12 @@ export default class Poll extends ChatMessage {
 
     if (!listeners) return;
 
-    html.on("click", "input[type=checkbox]", (event) => {
+    html.on("click", "input.poll-answer", (event) => {
       let answer = event.currentTarget.dataset.answer;
       let poll = event.currentTarget.dataset.poll;
       let checked = event.currentTarget.checked;
-      Socket.sendAnswer(poll, answer, checked)
+      let type = event.currentTarget.type;
+      Socket.sendAnswer(poll, answer, checked, type === 'checkbox');
     });
 
     html.on("click", "button.toggle", async (event) => {
@@ -82,7 +83,7 @@ export default class Poll extends ChatMessage {
     });
   }
 
-  static async answer(id, answer, status, user) {
+  static async answer(id, answer, status, user, multiple = false) {
     let poll = game.messages.get(id);
     if (poll) {
       let data = poll.getFlag(constants.moduleId, flags.pollData);
@@ -90,6 +91,9 @@ export default class Poll extends ChatMessage {
         let answers = data.answers;
 
         answers = answers.filter(a => !(a.user === user && a.label === answer));
+        if (!multiple) {
+          answers = [];
+        }
         answers.push(this.makeAnswer(answer, status, user));
         data.answers = answers;
         data = await this.recalculate(data);
