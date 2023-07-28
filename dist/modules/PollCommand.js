@@ -113,6 +113,6 @@ export default class PollCommand {
     parts = parts.map(s => s.trim()).filter(s => s.length);
     let question = parts.shift();
 
-    return Poll.create({question, parts}, {mode, display, secret});
+    return await Poll.create({question, parts}, {mode, display, secret});
   }
 }

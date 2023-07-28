@@ -2,7 +2,7 @@ import {constants} from "./constants.mjs";
 import registerSettings from "./settings.js";
 import PollCommand from "./PollCommand.js";
 import Socket from "./Socket.js";
-import API from "./API.mjs";
+import ForienEasyPollsAPI from "./ForienEasyPollsAPI.mjs";
 import Utility from "./utility/Utility.mjs";
 
 Hooks.once('init', () => {
@@ -10,7 +10,7 @@ Hooks.once('init', () => {
 
   PollCommand.registerCommand();
 
-  game.modules.get(constants.moduleId).api = new API();
+  game.modules.get(constants.moduleId).api = new ForienEasyPollsAPI();
 
   Hooks.callAll(`${constants.moduleId}:afterInit`);
   Utility.notify(`${constants.moduleLabel} initialized`, {consoleOnly: true});

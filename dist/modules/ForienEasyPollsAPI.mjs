@@ -2,7 +2,7 @@ import Poll from "./Poll.js";
 import PollCommand from "./PollCommand.js";
 import PollDialog from "./PollDialog.mjs";
 
-export default class API {
+export default class ForienEasyPollsAPI {
   constructor() {
   }
 
@@ -27,10 +27,10 @@ export default class API {
    *
    * @param force
    * @param options
-   * @return {Promise<void>}
+   * @return {Promise<*>}
    */
   async renderPollDialog(force = true, options = {}) {
-    (new this.pollDialog()).render(force, options);
+    return await (new this.pollDialog()).render(force, options);
   }
 
   /**
@@ -38,7 +38,7 @@ export default class API {
    * First line becomes the Question/Title, other lines become the options
    *
    * @param {String[]} content
-   * @return {Promise<void>}
+   * @return {Promise<abstract.Document>}
    */
   async createPollFromMultiline(content) {
     return await this.#pollCommandClass.createPoll(content)
@@ -49,7 +49,7 @@ export default class API {
    *
    * @param {String} question
    * @param {String[]} parts
-   * @return {Promise<void>}
+   * @return {Promise<abstract.Document>}
    */
   async createPoll(question, parts){
     return await this.#pollClass.create({question, parts})
