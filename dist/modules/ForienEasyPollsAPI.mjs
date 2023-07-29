@@ -1,5 +1,5 @@
-import Poll from './Poll.js';
-import PollCommand from './PollCommand.js';
+import Poll from './Poll.mjs';
+import PollCommand from './PollCommand.mjs';
 import PollDialog from './PollDialog.mjs';
 
 export default class ForienEasyPollsAPI {

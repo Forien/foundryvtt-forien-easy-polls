@@ -1,6 +1,7 @@
 {
   "Forien": {
     "EasyPolls": {
+      "CreateAndSave": "Create and Save",
       "AnswerSent":  "Answer sent!",
       "CountAnswered": "Total Answers",
       "ToggleResults": "Toggle Display Results",

@@ -33,7 +33,7 @@
     }
   ],
   "esmodules": [
-    "./modules/forien-easy-polls.js"
+    "./modules/forien-easy-polls.mjs"
   ],
   "styles": [
     "./styles/forien-easy-polls.css"

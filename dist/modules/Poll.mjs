@@ -1,10 +1,14 @@
 import {constants, flags} from './constants.mjs';
-import Socket from './Socket.js';
-import WorkshopError from './utility/Error.js';
+import Socket from './Socket.mjs';
+import WorkshopError from './utility/Error.mjs';
 import Utility from './utility/Utility.mjs';
 
 export default class Poll extends ChatMessage {
   static #template = 'poll.hbs';
+
+  static get templates() {
+    return [this.#template];
+  }
 
   static async create(data, options = {}) {
     const pollSettings = {

@@ -7,10 +7,22 @@
         background: none;
         border: none;
 
-        thead {
+        thead,tfoot {
           background: none;
           border: none;
         }
+      }
+    }
+
+    button.delete-option {
+      display: grid;
+      align-items: center;
+      height: 30px;
+      width: 30px;
+      border-radius: 10px;
+
+      i {
+        margin: 0 0 0 1px;
       }
     }
   }
@@ -31,6 +43,71 @@
             color: #444444;
           }
         }
+
+        td.option {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .poll-controls {
+    display: flex;
+    gap: 4px;
+    margin: 0 0 4px;
+  }
+
+  .forien-switch {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 2px auto;
+
+    .forien-switch-actual-label {
+      color: #222222;
+    }
+
+    .forien-switch-checkbox {
+      height: 0;
+      width: 0;
+      visibility: hidden;
+      //display: inline;
+      position: absolute;
+
+      &:checked + .forien-switch-label {
+        background: #468129;
+
+        &::after {
+          left: calc(100% - 5px);
+          transform: translateX(-100%);
+        }
+      }
+    }
+
+    .forien-switch-label {
+      cursor: pointer;
+      width: 40px;
+      height: 20px;
+      background: #3e1395;
+      display: block;
+      border-radius: 10px;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 14px;
+        height: 14px;
+        background: #fff;
+        border-radius: 7px;
+        transition: 0.3s;
+      }
+
+      &:active::after {
+        width: 24px;
       }
     }
   }
@@ -102,7 +179,8 @@
         margin: 0;
 
         &.toggle-results {
-          flex: 1 0 100%;        }
+          flex: 1 0 100%;
+        }
       }
     }
 

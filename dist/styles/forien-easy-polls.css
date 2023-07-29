@@ -3,9 +3,19 @@
   background: none;
   border: none;
 }
-.forien-easy-polls.poll-dialog .window-content table thead {
+.forien-easy-polls.poll-dialog .window-content table thead, .forien-easy-polls.poll-dialog .window-content table tfoot {
   background: none;
   border: none;
+}
+.forien-easy-polls.poll-dialog button.delete-option {
+  display: grid;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 10px;
+}
+.forien-easy-polls.poll-dialog button.delete-option i {
+  margin: 0 0 0 1px;
 }
 .forien-easy-polls.wfrp4e .window-content {
   background: url(/ui/parchment.jpg);
@@ -19,6 +29,60 @@
 }
 .forien-easy-polls.wfrp4e .window-content table input::placeholder {
   color: #444444;
+}
+.forien-easy-polls.wfrp4e .window-content table td.option {
+  width: 100%;
+}
+.forien-easy-polls .poll-controls {
+  display: flex;
+  gap: 4px;
+  margin: 0 0 4px;
+}
+.forien-easy-polls .forien-switch {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 2px auto;
+}
+.forien-easy-polls .forien-switch .forien-switch-actual-label {
+  color: #222222;
+}
+.forien-easy-polls .forien-switch .forien-switch-checkbox {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+  position: absolute;
+}
+.forien-easy-polls .forien-switch .forien-switch-checkbox:checked + .forien-switch-label {
+  background: #468129;
+}
+.forien-easy-polls .forien-switch .forien-switch-checkbox:checked + .forien-switch-label::after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+.forien-easy-polls .forien-switch .forien-switch-label {
+  cursor: pointer;
+  width: 40px;
+  height: 20px;
+  background: #3e1395;
+  display: block;
+  border-radius: 10px;
+  position: relative;
+}
+.forien-easy-polls .forien-switch .forien-switch-label::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-radius: 7px;
+  transition: 0.3s;
+}
+.forien-easy-polls .forien-switch .forien-switch-label:active::after {
+  width: 24px;
 }
 
 #chat-log .forien-poll h2, #chat-log .forien-poll div, #chat-log .forien-poll span, #chat-log .forien-poll label, #chat-log .forien-poll button, #chat-log .forien-poll .count-answered {

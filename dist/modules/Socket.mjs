@@ -1,6 +1,6 @@
 import {constants} from './constants.mjs';
-import WorkshopError from './utility/Error.js';
-import Poll from './Poll.js';
+import WorkshopError from './utility/Error.mjs';
+import Poll from './Poll.mjs';
 import Utility from './utility/Utility.mjs';
 
 const capitalize = (s) => {

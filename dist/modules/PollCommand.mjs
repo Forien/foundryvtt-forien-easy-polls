@@ -1,4 +1,4 @@
-import Poll from './Poll.js';
+import Poll from './Poll.mjs';
 import {constants, flags, settings} from './constants.mjs';
 
 export default class PollCommand {

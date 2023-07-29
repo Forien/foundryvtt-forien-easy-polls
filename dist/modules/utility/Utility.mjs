@@ -27,4 +27,13 @@ export default class Utility {
   static getTemplate(template) {
     return `modules/${constants.moduleId}/templates/${template}`;
   }
+
+  static async preloadTemplates(templates = []) {
+    Utility.notify("Preloading Templates.", {consoleOnly: true})
+
+    templates = templates.map(Utility.getTemplate);
+    loadTemplates(templates).then(() => {
+      Utility.notify("Templates preloaded.", {consoleOnly: true})
+    });
+  }
 }
