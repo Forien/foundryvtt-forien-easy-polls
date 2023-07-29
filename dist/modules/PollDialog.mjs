@@ -109,7 +109,15 @@ export default class PollDialog extends Dialog {
       secret: html.find('.poll-controls input[type=checkbox][name=toggle-secret]').is(':checked')
     }
 
+    if (save)
+      this.#savePollData(question, parts, options);
+
     return Poll.create({question, parts}, options)
+  }
+
+  #savePollData(question, parts, options, id = null) {
+    console.log({question, parts, options, id});
+    game.modules.get(constants.moduleId).api.savedPolls.savePoll(question, parts, options, id);
   }
 
   /**
@@ -118,7 +126,7 @@ export default class PollDialog extends Dialog {
    * @return {string}
    */
   #getModeFromCheckbox(value) {
-    return value ? 'mutliple' : 'single';
+    return value ? 'multiple' : 'single';
   }
 
   /**

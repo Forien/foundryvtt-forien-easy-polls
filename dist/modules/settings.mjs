@@ -16,7 +16,7 @@ export default function registerSettings() {
     name: 'EasyPolls.Settings.Keybindings.OpenSavedPollsDialog.Name',
     hint: 'EasyPolls.Settings.Keybindings.OpenSavedPollsDialog.Hint',
     onDown: () => {
-      // game.modules.get(constants.moduleId).api.renderPollDialog();
+      game.modules.get(constants.moduleId).api.renderSavedPollsApp();
     },
     editable: [{key: 'KeyP', modifiers: ['Control']}],
     restricted: false,

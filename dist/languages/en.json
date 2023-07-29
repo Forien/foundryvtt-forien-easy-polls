@@ -21,9 +21,32 @@
       },
 
       "PollDialog": {
-        "Title": "Set Up Easy Poll",
+        "Title": "Set up a Poll!",
         "AddOption": "Add Option",
         "Option": "Option"
+      },
+
+      "SavedPollsApp": {
+        "Title": "Saved Polls",
+        "OrderingNumber": "No.",
+        "PollQuestion": "Question",
+        "CreateNew": "Create new Poll",
+        "Controls": "Controls",
+
+        "Tooltips": {
+          "PollMode": "Poll Mode (multiple vs single)",
+          "PollResults": "Can players see results",
+          "PollSecret": "Can players see who voted which option",
+          "Multiple": "Multiple vote",
+          "Single": "Single vote",
+          "Results": "Players can see results",
+          "NoResults": "Players cannot see results",
+          "Secret": "Voting is secret",
+          "Public": "Voting is public",
+          "Post": "Post Poll to Chat",
+          "Edit": "Edit Poll before Posting",
+          "Delete": "Delete Poll"
+        }
       },
 
       "Settings": {

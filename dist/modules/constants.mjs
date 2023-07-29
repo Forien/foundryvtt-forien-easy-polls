@@ -4,15 +4,14 @@ const constants = {
   moduleLabel: `Forien's Easy Polls`
 };
 
-const defaults = {
-
-}
+const defaults = {}
 
 const flags = {
   isPoll: 'isPoll',
   pollData: 'pollData',
   pollSettings: 'pollSettings',
-  pollResults: 'pollResults'
+  pollResults: 'pollResults',
+  savedPolls: 'savedPolls'
 }
 
 const settings = {

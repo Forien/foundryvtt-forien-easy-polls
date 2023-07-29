@@ -1,17 +1,39 @@
 import Poll from './Poll.mjs';
 import PollCommand from './PollCommand.mjs';
 import PollDialog from './PollDialog.mjs';
+import SavedPolls from "./SavedPolls.mjs";
+import SavedPollsApp from "./SavedPollsApp.mjs";
 
 export default class ForienEasyPollsAPI {
+  //#region private
+
   constructor() {
   }
 
+  /**
+   * Returns a Poll Class
+   * @return {Poll}
+   */
   get #pollClass() {
     return Poll;
   }
 
+  /**
+   * Returns a PollCommand Class
+   * @return {PollCommand}
+   */
   get #pollCommandClass() {
     return PollCommand;
+  }
+
+  //#endregion
+
+  /**
+   * Returns a SavedPollsApp Class
+   * @return {SavedPollsApp}
+   */
+  get savedPollsApp() {
+    return SavedPollsApp;
   }
 
   /**
@@ -20,6 +42,10 @@ export default class ForienEasyPollsAPI {
    */
   get pollDialog() {
     return PollDialog;
+  }
+
+  get savedPolls() {
+    return SavedPolls.instance;
   }
 
   /**
@@ -31,6 +57,17 @@ export default class ForienEasyPollsAPI {
    */
   async renderPollDialog(force = true, options = {}) {
     return await (new this.pollDialog()).render(force, options);
+  }
+
+  /**
+   * Renders a Poll Dialog that allows to set up a Poll in a visuall manner with inputs.
+   *
+   * @param force
+   * @param options
+   * @return {Promise<*>}
+   */
+  async renderSavedPollsApp(force = true, options = {}) {
+    return (new this.savedPollsApp()).render(force, options);
   }
 
   /**
