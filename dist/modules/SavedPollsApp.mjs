@@ -1,6 +1,7 @@
 import Utility from './utility/Utility.mjs';
 import Poll from './Poll.mjs';
 import {constants, settings} from "./constants.mjs";
+import WorkshopError from "./utility/Error.mjs";
 
 /**
  * @author Forien
@@ -14,11 +15,13 @@ export default class SavedPollsApp extends Application {
     return this.#templates;
   }
 
-  //#region Setup
+  #api;
 
+  //#region Setup
 
   constructor(options = {}) {
     super(options);
+    this.#api = game.modules.get(constants.moduleId).api;
   }
 
   /**
@@ -52,4 +55,41 @@ export default class SavedPollsApp extends Application {
   }
 
   //#endregion
+
+  //#region Listeners
+
+  activateListeners(html) {
+    super.activateListeners(html);
+
+    html.find('.post-poll').click((ev) => this.#onClickPollControl(ev, 'post'));
+    html.find('.edit-poll').click((ev) => this.#onClickPollControl(ev, 'edit'));
+    html.find('.delete-poll').click((ev) => this.#onClickPollControl(ev, 'delete'));
+    html.find('.create-poll').click(this.#onClickCreateNewPoll.bind(this));
+  }
+
+  #onClickPollControl(event, action) {
+    const pollId = event.currentTarget.closest('.poll-entry').dataset.poll;
+    let poll = this.#api.savedPolls.get(pollId);
+
+    switch (action) {
+      case 'delete':
+        this.#api.savedPolls.delete(pollId).then(() => this.render());
+        break;
+      case 'post':
+        this.#api.createPoll(poll.question, poll.parts, poll.options);
+        break;
+      case 'edit':
+        this.#api.renderPollDialog(true, {poll: poll});
+        break;
+      default:
+        throw new WorkshopError('Unknown Action provided for SavedPollsApp.#onClickPollControl method');
+    }
+  }
+
+  #onClickCreateNewPoll() {
+    this.close();
+    return this.#api.renderPollDialog();
+  }
+
+//#endregion
 }

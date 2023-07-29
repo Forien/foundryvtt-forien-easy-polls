@@ -86,10 +86,11 @@ export default class ForienEasyPollsAPI {
    *
    * @param {String} question
    * @param {String[]} parts
+   * @param {{}} options
    * @return {Promise<abstract.Document>}
    */
-  async createPoll(question, parts){
-    return await this.#pollClass.create({question, parts})
+  async createPoll(question, parts, options){
+    return await this.#pollClass.create({question, parts}, options)
   }
 
   /**

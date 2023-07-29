@@ -32,11 +32,7 @@ export default class PollDialog extends Dialog {
    * @param data
    */
   #defaultSetup(data) {
-    data.settings = {
-      mode: this.#getBooleanForMode(game.settings.get(constants.moduleId, settings.defaultMode)),
-      results: game.settings.get(constants.moduleId, settings.defaultDisplay),
-      secret: game.settings.get(constants.moduleId, settings.defaultSecret),
-    }
+    data.pollOptions = 0;
     data.buttons = {
       cancel: {
         label: game.i18n.localize('Cancel'),
@@ -55,8 +51,40 @@ export default class PollDialog extends Dialog {
       }
     }
     data.default = 'create';
-    data.content = renderTemplate(Utility.getTemplate('poll-dialog.hbs'), data)
-    this.data.pollOptions = 2;
+
+    return data;
+  }
+
+  getData(options = {}) {
+    this.data.pollOptions = 0;
+    if (options.poll) {
+      this.data.poll = options.poll;
+      this.data.settings = {
+        mode: this.#getBooleanForMode(this.data.poll.options.mode),
+        results: this.data.poll.options.results,
+        secret: this.data.poll.options.secret
+      }
+    }
+
+    if (!this.data.poll) {
+      this.data.poll = {
+        parts: ['', ''],
+      };
+
+      this.data.settings = {
+        mode: game.settings.get(constants.moduleId, settings.defaultMode),
+        results: game.settings.get(constants.moduleId, settings.defaultDisplay),
+        secret: game.settings.get(constants.moduleId, settings.defaultSecret),
+      }
+    }
+
+    this.data.poll.indexedParts = this.data.poll.parts.map(part => {
+      return {index: ++this.data.pollOptions, part: part}
+    })
+
+
+    console.log(this.data);
+    return this.data;
   }
 
   /**
@@ -82,7 +110,7 @@ export default class PollDialog extends Dialog {
    * @inheritDoc
    */
   render(force = true, options = {}) {
-    return this.data.content.then((content) => {
+    return renderTemplate(Utility.getTemplate('poll-dialog.hbs'), this.getData(options)).then((content) => {
       this.data.content = content;
       return super.render(force, options);
     })
@@ -109,8 +137,10 @@ export default class PollDialog extends Dialog {
       secret: html.find('.poll-controls input[type=checkbox][name=toggle-secret]').is(':checked')
     }
 
-    if (save)
-      this.#savePollData(question, parts, options);
+    if (save) {
+      let id = this.data.poll.id || null;
+      this.#savePollData(question, parts, options, id);
+    }
 
     return Poll.create({question, parts}, options)
   }

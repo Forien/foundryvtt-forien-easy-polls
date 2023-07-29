@@ -1,4 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+.forien-easy-polls {
+  /*
+          Poll Dialog
+   */
+  /*
+          Forien-Switch
+   */
+  /*
+          Saved Polls App
+   */
+}
 .forien-easy-polls.poll-dialog .window-content table {
   background: none;
   border: none;
@@ -6,6 +17,12 @@
 .forien-easy-polls.poll-dialog .window-content table thead, .forien-easy-polls.poll-dialog .window-content table tfoot {
   background: none;
   border: none;
+}
+.forien-easy-polls.poll-dialog .window-content table td.option {
+  width: 88%;
+}
+.forien-easy-polls.poll-dialog .window-content table td.ordering-number {
+  width: 40px;
 }
 .forien-easy-polls.poll-dialog button.delete-option {
   display: grid;
@@ -16,6 +33,11 @@
 }
 .forien-easy-polls.poll-dialog button.delete-option i {
   margin: 0 0 0 1px;
+}
+.forien-easy-polls .poll-controls {
+  display: flex;
+  gap: 4px;
+  margin: 0 0 4px;
 }
 .forien-easy-polls.wfrp4e .window-content {
   background: url(/ui/parchment.jpg);
@@ -29,14 +51,6 @@
 }
 .forien-easy-polls.wfrp4e .window-content table input::placeholder {
   color: #444444;
-}
-.forien-easy-polls.wfrp4e .window-content table td.option {
-  width: 100%;
-}
-.forien-easy-polls .poll-controls {
-  display: flex;
-  gap: 4px;
-  margin: 0 0 4px;
 }
 .forien-easy-polls .forien-switch {
   position: relative;
@@ -101,7 +115,8 @@
   min-width: 30px;
 }
 .forien-easy-polls.app.saved-polls-app table.forien-saved-polls td.controls {
-  min-width: 150px;
+  min-width: 130px;
+  text-align: right;
 }
 .forien-easy-polls.app.saved-polls-app table.forien-saved-polls td.controls button {
   width: 40px;
@@ -113,13 +128,21 @@
   margin: 0;
   padding: 0;
 }
+.forien-easy-polls.app.saved-polls-app table.forien-saved-polls td.controls button.delete-poll {
+  background-color: #811;
+  color: white;
+}
 .forien-easy-polls.app.saved-polls-app .buttons {
   margin: 0 2px 10px 10px;
   display: flex;
   flex-direction: row-reverse;
 }
 .forien-easy-polls.app.saved-polls-app .buttons button {
+  border-radius: 5px;
+  padding: 2px 8px;
   flex: 0 1 fit-content;
+  background-color: #272;
+  color: white;
 }
 
 #chat-log .forien-poll h2, #chat-log .forien-poll div, #chat-log .forien-poll span, #chat-log .forien-poll label, #chat-log .forien-poll button, #chat-log .forien-poll .count-answered {

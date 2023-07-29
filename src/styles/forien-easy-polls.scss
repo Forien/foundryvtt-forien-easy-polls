@@ -1,15 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 .forien-easy-polls {
+  /*
+          Poll Dialog
+   */
   &.poll-dialog {
     .window-content {
       table {
         background: none;
         border: none;
 
-        thead,tfoot {
+        thead, tfoot {
           background: none;
           border: none;
+        }
+
+        td {
+          &.option {
+            width: 88%;
+          }
+          &.ordering-number {
+            width: 40px;
+          }
         }
       }
     }
@@ -25,6 +37,12 @@
         margin: 0 0 0 1px;
       }
     }
+  }
+
+  .poll-controls {
+    display: flex;
+    gap: 4px;
+    margin: 0 0 4px;
   }
 
   // Dedicated Styles for WFRP4e
@@ -43,20 +61,14 @@
             color: #444444;
           }
         }
-
-        td.option {
-          width: 100%;
-        }
       }
     }
   }
 
-  .poll-controls {
-    display: flex;
-    gap: 4px;
-    margin: 0 0 4px;
-  }
 
+  /*
+          Forien-Switch
+   */
   .forien-switch {
     position: relative;
     display: flex;
@@ -111,8 +123,13 @@
     }
   }
 
+
+  /*
+          Saved Polls App
+   */
   &.app.saved-polls-app {
     width: 650px;
+
     table.forien-saved-polls {
       td {
         text-align: center;
@@ -121,14 +138,18 @@
           width: 90%;
           text-align: left;
         }
+
         &.ordering-number {
           min-width: 30px;
         }
+
         &.mode, &.results, &.secret {
           min-width: 30px;
         }
+
         &.controls {
-          min-width: 150px;
+          min-width: 130px;
+          text-align: right;
 
           button {
             width: 40px;
@@ -139,6 +160,11 @@
             i {
               margin: 0;
               padding: 0;
+            }
+
+            &.delete-poll {
+              background-color: #811;
+              color: white;
             }
           }
         }
@@ -151,7 +177,11 @@
       flex-direction: row-reverse;
 
       button {
+        border-radius: 5px;
+        padding: 2px 8px;
         flex: 0 1 fit-content;
+        background-color: #272;
+        color: white;
       }
     }
   }

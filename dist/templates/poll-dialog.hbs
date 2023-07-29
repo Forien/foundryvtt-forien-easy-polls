@@ -2,7 +2,7 @@
     <thead>
     <tr>
         <th colspan="3">
-            <input type="text" class="poll-title" placeholder="Poll Title"><br>
+            <input type="text" class="poll-title" placeholder="Poll Title" {{#if poll.question}}value="{{poll.question}}"{{/if}}><br>
         </th>
     </tr>
     </thead>
@@ -16,24 +16,17 @@
             <button class="delete-option"><i class="fas fa-times"></i></button>
         </td>
     </tr>
-    <tr>
-        <td class="ordering-number">1.</td>
-        <td class="option">
-            <input class="poll-option" type="text"
-                   placeholder="{{localize "Forien.EasyPolls.PollDialog.Option"}} 1"/></td>
-        <td class="button">
-            <button class="delete-option"><i class="fas fa-times"></i></button>
-        </td>
-    </tr>
-    <tr>
-        <td class="ordering-number">2.</td>
-        <td class="option">
-            <input class="poll-option" type="text"
-                   placeholder="{{localize "Forien.EasyPolls.PollDialog.Option"}} 2"/></td>
-        <td class="button">
-            <button class="delete-option"><i class="fas fa-times"></i></button>
-        </td>
-    </tr>
+    {{#each poll.indexedParts}}
+        <tr>
+            <td class="ordering-number">{{this.index}}.</td>
+            <td class="option">
+                <input class="poll-option" type="text"
+                       placeholder="{{localize "Forien.EasyPolls.PollDialog.Option"}} {{this.index}}" value="{{this.part}}"/></td>
+            <td class="button">
+                <button class="delete-option"><i class="fas fa-times"></i></button>
+            </td>
+        </tr>
+    {{/each}}
     </tbody>
     <tfoot>
 <tr>

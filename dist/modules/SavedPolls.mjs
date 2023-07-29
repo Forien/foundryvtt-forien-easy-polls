@@ -28,9 +28,10 @@ export default class SavedPolls {
     const polls = game.user.getFlag(constants.moduleId, flags.savedPolls);
     const loaded = [];
 
-    polls.forEach(p => {
-      loaded.push([p.id, p]);
-    })
+    if (polls)
+      polls.forEach(p => {
+        loaded.push([p.id, p]);
+      })
 
     return loaded;
   }
@@ -40,7 +41,7 @@ export default class SavedPolls {
    * @param {string} key
    */
   get(key) {
-    this.polls.get(key)
+    return this.polls.get(key)
   }
 
   delete(key) {
