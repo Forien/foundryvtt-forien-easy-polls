@@ -95,7 +95,6 @@ export default class Poll extends ChatMessage {
 
     settings[setting] = !settings[setting];
 
-    console.log(settings);
     await chatMessage.setFlag(constants.moduleId, flags.pollSettings, settings);
     await this.renderPoll(chatMessage, html, false);
   }

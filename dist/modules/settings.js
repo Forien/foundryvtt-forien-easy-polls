@@ -1,9 +1,9 @@
 import {constants, settings} from './constants.mjs';
 
 export default function registerSettings() {
-  game.keybindings.register(constants.moduleId, settings.keybinds.pollDialog, {
-    name: 'EasyPolls.Keybindings.CreatePoll.name',
-    hint: 'EasyPolls.Keybindings.CreatePoll.hint',
+  game.keybindings.register(constants.moduleId, settings.keybindings.pollDialog, {
+    name: 'EasyPolls.Settings.Keybindings.OpenPollDialog.Name',
+    hint: 'EasyPolls.Settings.Keybindings.OpenPollDialog.Hint',
     onDown: () => {
       game.modules.get(constants.moduleId).api.renderPollDialog();
     },
@@ -11,11 +11,12 @@ export default function registerSettings() {
     restricted: false,
     precedence: CONST.KEYBINDING_PRECEDENCE.NORMAL,
   });
-  game.keybindings.register(constants.moduleId, settings.keybinds.pollDialog, {
-    name: 'EasyPolls.Keybindings.CreatePoll.name',
-    hint: 'EasyPolls.Keybindings.CreatePoll.hint',
+
+  game.keybindings.register(constants.moduleId, settings.keybindings.savedPollsDialog, {
+    name: 'EasyPolls.Settings.Keybindings.OpenSavedPollsDialog.Name',
+    hint: 'EasyPolls.Settings.Keybindings.OpenSavedPollsDialog.Hint',
     onDown: () => {
-      game.modules.get(constants.moduleId).api.renderPollDialog();
+      // game.modules.get(constants.moduleId).api.renderPollDialog();
     },
     editable: [{key: 'KeyP', modifiers: ['Control']}],
     restricted: false,

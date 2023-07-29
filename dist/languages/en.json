@@ -4,10 +4,12 @@
       "AnswerSent":  "Answer sent!",
       "CountAnswered": "Total Answers",
       "ToggleResults": "Toggle Display Results",
+
       "ToggleSettingResults": {
         "Enable": "Show Results",
         "Disable": "Hide Results"
       },
+
       "ToggleSettingSecret": {
         "Enable": "Make Secret",
         "Disable": "Make Public"
@@ -41,6 +43,17 @@
         "DefaultSecret": {
           "Enable": "Secret Voting",
           "EnableHint": "When checked, players will not be allowed to see who voted on specific answers. Note that players will not be able to see who voted if they can't display the results. Can be overriden with --secret flag"
+        },
+
+        "Keybindings": {
+          "OpenPollDialog": {
+            "Name": "Open Poll Dialog",
+            "Hint": "Opens a Poll Dialog where Poll can be created in visual fashion"
+          },
+          "OpenSavedPollsDialog": {
+            "Name": "Open Saved Polls",
+            "Hint": "Opens a Saved Polls Dialog, where user can pick from previously saved Polls"
+          }
         }
       },
 
