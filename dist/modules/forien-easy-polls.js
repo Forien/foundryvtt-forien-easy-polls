@@ -1,9 +1,9 @@
-import {constants} from "./constants.mjs";
-import registerSettings from "./settings.js";
-import PollCommand from "./PollCommand.js";
-import Socket from "./Socket.js";
-import ForienEasyPollsAPI from "./ForienEasyPollsAPI.mjs";
-import Utility from "./utility/Utility.mjs";
+import {constants} from './constants.mjs';
+import registerSettings from './settings.js';
+import PollCommand from './PollCommand.js';
+import Socket from './Socket.js';
+import ForienEasyPollsAPI from './ForienEasyPollsAPI.mjs';
+import Utility from './utility/Utility.mjs';
 
 Hooks.once('init', () => {
   registerSettings();
@@ -21,7 +21,7 @@ Hooks.once('setup', () => {
   Hooks.callAll(`${constants.moduleId}:afterSetup`);
 });
 
-Hooks.once("ready", () => {
+Hooks.once('ready', () => {
   Socket.listen();
 
   Hooks.callAll(`${constants.moduleId}:afterReady`);

@@ -1,6 +1,27 @@
-import {constants, settings} from "./constants.mjs";
+import {constants, settings} from './constants.mjs';
 
 export default function registerSettings() {
+  game.keybindings.register(constants.moduleId, settings.keybinds.pollDialog, {
+    name: 'EasyPolls.Keybindings.CreatePoll.name',
+    hint: 'EasyPolls.Keybindings.CreatePoll.hint',
+    onDown: () => {
+      game.modules.get(constants.moduleId).api.renderPollDialog();
+    },
+    editable: [{key: 'KeyP'}],
+    restricted: false,
+    precedence: CONST.KEYBINDING_PRECEDENCE.NORMAL,
+  });
+  game.keybindings.register(constants.moduleId, settings.keybinds.pollDialog, {
+    name: 'EasyPolls.Keybindings.CreatePoll.name',
+    hint: 'EasyPolls.Keybindings.CreatePoll.hint',
+    onDown: () => {
+      game.modules.get(constants.moduleId).api.renderPollDialog();
+    },
+    editable: [{key: 'KeyP', modifiers: ['Control']}],
+    restricted: false,
+    precedence: CONST.KEYBINDING_PRECEDENCE.NORMAL,
+  });
+
   game.settings.register(constants.moduleId, settings.playersCreate, {
     name: 'Forien.EasyPolls.Settings.PlayersCreate.Enable',
     hint: 'Forien.EasyPolls.Settings.PlayersCreate.EnableHint',

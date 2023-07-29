@@ -19,7 +19,10 @@ const settings = {
   playersCreate: 'playersCreate',
   defaultMode: 'defaultMode',
   defaultDisplay: 'defaultDisplay',
-  defaultSecret: 'defaultSecret'
+  defaultSecret: 'defaultSecret',
+  keybinds: {
+    pollDialog: "keybinds.pollDialog"
+  }
 }
 
 export {constants, defaults, flags, settings};

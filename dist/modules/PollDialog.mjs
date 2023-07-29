@@ -1,5 +1,5 @@
-import Utility from "./utility/Utility.mjs";
-import Poll from "./Poll.js";
+import Utility from './utility/Utility.mjs';
+import Poll from './Poll.js';
 
 /**
  * Poll Dialog inspired by macro made by flamewave000 that they provided in Pull Request #3 <https://github.com/Forien/foundryvtt-forien-easy-polls/pull/3>
@@ -23,12 +23,12 @@ export default class PollDialog extends Dialog {
   #defaultSetup(data) {
     data.buttons = {
       cancel: {
-        label: game.i18n.localize("Cancel"),
+        label: game.i18n.localize('Cancel'),
         icon: '<i class="fas fa-times"></i>',
         callback: this.close
       },
       create: {
-        label: game.i18n.localize("Create"),
+        label: game.i18n.localize('Create'),
         icon: '<i class="fas fa-check"></i>',
         callback: this.#createPollFromDialog
       }
@@ -87,8 +87,8 @@ export default class PollDialog extends Dialog {
   activateListeners(html) {
     super.activateListeners(html);
 
-    html.find(".add-option").click(this.#onAddOptionClick.bind(this));
-    html.find(".delete-option").click(this.#onDeleteOptionClick.bind(this));
+    html.find('.add-option').click(this.#onAddOptionClick.bind(this));
+    html.find('.delete-option').click(this.#onDeleteOptionClick.bind(this));
   }
 
   /**

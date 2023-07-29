@@ -1,7 +1,7 @@
-import {constants, flags} from "./constants.mjs";
-import Socket from "./Socket.js";
-import WorkshopError from "./utility/Error.js";
-import Utility from "./utility/Utility.mjs";
+import {constants, flags} from './constants.mjs';
+import Socket from './Socket.js';
+import WorkshopError from './utility/Error.js';
+import Utility from './utility/Utility.mjs';
 
 export default class Poll extends ChatMessage {
   static #template = 'poll.hbs';
@@ -62,7 +62,7 @@ export default class Poll extends ChatMessage {
     if (!listeners) return;
 
 
-    html.on("click", "input.poll-answer", (event) => {
+    html.on('click', 'input.poll-answer', (event) => {
       let answer = event.currentTarget.dataset.answer;
       let poll = event.currentTarget.dataset.poll;
       let checked = event.currentTarget.checked;
@@ -70,22 +70,22 @@ export default class Poll extends ChatMessage {
       Socket.sendAnswer(poll, answer, checked, type === 'checkbox');
     });
 
-    html.on("click", "button.toggle-results", (event) => {
+    html.on('click', 'button.toggle-results', (event) => {
       Poll.#onToggleResults(event, chatMessage, html)
     });
 
     if (!game.user.isGM)
       return;
 
-    html.on("click", "button.toggle-setting-mode", () => {
+    html.on('click', 'button.toggle-setting-mode', () => {
       Poll.#onToggleSetting('mode', chatMessage, html)
     });
 
-    html.on("click", "button.toggle-setting-results", () => {
+    html.on('click', 'button.toggle-setting-results', () => {
       Poll.#onToggleSetting('results', chatMessage, html)
     });
 
-    html.on("click", "button.toggle-setting-secret", () => {
+    html.on('click', 'button.toggle-setting-secret', () => {
       Poll.#onToggleSetting('secret', chatMessage, html)
     });
   }

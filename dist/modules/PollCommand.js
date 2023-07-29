@@ -1,5 +1,5 @@
-import Poll from "./Poll.js";
-import {constants, flags, settings} from "./constants.mjs";
+import Poll from './Poll.js';
+import {constants, flags, settings} from './constants.mjs';
 
 export default class PollCommand {
   static #flags = {
@@ -24,7 +24,7 @@ export default class PollCommand {
   }
 
   static registerCommand() {
-    Hooks.on("chatMessage", (chatLog, messageText, _chatData) => {
+    Hooks.on('chatMessage', (chatLog, messageText, _chatData) => {
       if (!game.settings.get(constants.moduleId, settings.playersCreate))
         return true;
 
@@ -53,7 +53,7 @@ export default class PollCommand {
       }
     });
 
-    Hooks.on("renderChatMessage", (chatMessage, html, _messageData) => {
+    Hooks.on('renderChatMessage', (chatMessage, html, _messageData) => {
       let isPoll = chatMessage.getFlag(constants.moduleId, flags.isPoll);
 
       if (isPoll) {
