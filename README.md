@@ -26,17 +26,17 @@ _Tip_: Use `Shift+Enter` to go to new line when writing a message
 Chat Command supports the following optional flags. Flags allow overriding the default [Configuration Settings](#configuration)
 
 ##### Mode
-Use this flag by typing `--mode` or `-m` directly followed by one of allowed modes:
+Use this flag by typing `--mode` or `--m` directly followed by one of allowed modes:
 * `multiple` (also `multi`, `m`) — set Poll to multiple vote poll, allowing players to vote on multiple options
 * `single` (also `s`) — set Poll to single vote poll, allowing players to only pick one option
 
 ##### Results
-Use this flag by typing `--results` or `-r` directly followed by one of allowed settings:
+Use this flag by typing `--results` or `--r` directly followed by one of allowed settings:
 * `true` (also `t`) — set Poll to allow players checking the Poll's results
 * `false` (also `f`) — set Poll to hide results from players
 
 ##### Secret
-Use this flag by typing `--secret` or `-s` directly followed by one of allowed settings:
+Use this flag by typing `--secret` or `--s` directly followed by one of allowed settings:
 * `true` (also `t`) — set Poll to allow players seeing who voted for what options (requires players to also see results)
 * `false` (also `f`) — set Poll to hide voters
 
