@@ -5,7 +5,8 @@ export default function registerSettings() {
     name: 'EasyPolls.Settings.Keybindings.OpenPollDialog.Name',
     hint: 'EasyPolls.Settings.Keybindings.OpenPollDialog.Hint',
     onDown: () => {
-      game.modules.get(constants.moduleId).api.renderPollDialog();
+      if (game.settings.get(constants.moduleId, settings.playersCreate) || game.user.isGM)
+        game.modules.get(constants.moduleId).api.renderPollDialog();
     },
     editable: [{key: 'KeyP'}],
     restricted: false,
@@ -16,7 +17,8 @@ export default function registerSettings() {
     name: 'EasyPolls.Settings.Keybindings.OpenSavedPollsDialog.Name',
     hint: 'EasyPolls.Settings.Keybindings.OpenSavedPollsDialog.Hint',
     onDown: () => {
-      game.modules.get(constants.moduleId).api.renderSavedPollsApp();
+      if (game.settings.get(constants.moduleId, settings.playersCreate) || game.user.isGM)
+        game.modules.get(constants.moduleId).api.renderSavedPollsApp();
     },
     editable: [{key: 'KeyP', modifiers: ['Control']}],
     restricted: false,

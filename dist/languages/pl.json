@@ -1,17 +1,83 @@
 {
   "Forien": {
     "EasyPolls": {
+      "CreateAndSave": "Zapisz i stwórz",
+      "AnswerSent":  "Answer sent!",
       "CountAnswered": "Łącznie odpowiedzi",
       "ToggleResults": "Przełącz wyniki",
+
+      "ToggleSettingResults": {
+        "Enable": "Pokaż wyniki",
+        "Disable": "Ukryj wyniki"
+      },
+
+      "ToggleSettingSecret": {
+        "Enable": "Zrób tajną",
+        "Disable": "Zrób publiczną"
+      },
 
       "Notifications":{
         "NoGM": "Nie ma żadnego MG online. Obecność MG jest wymagana, aby móc zagłosować."
       },
 
+      "PollDialog": {
+        "Title": "Stwórz swoją ankietę!",
+        "AddOption": "Dodaj opcję",
+        "Option": "Opcja"
+      },
+
+      "SavedPollsApp": {
+        "Title": "Zapisane ankiety",
+        "OrderingNumber": "lp.",
+        "PollQuestion": "Pytanie",
+        "CreateNew": "Stwórz nową ankietę",
+        "Controls": "Zarządzanie",
+
+        "Tooltips": {
+          "PollMode": "Tryb ankiety (wielokrotnego, pojedynczego wyboru)",
+          "PollResults": "Czy gracze widzą wyniki",
+          "PollSecret": "Czy gracze widzą kto głosował",
+          "Multiple": "Wielokrotnego wyboru",
+          "Single": "Pojedynczego wyboru",
+          "Results": "Gracze mogą zobaczyć wyniki",
+          "NoResults": "Gracze nie mogą zobaczyć wyników",
+          "Secret": "Ankieta jest tajna",
+          "Public": "Ankieta jest publiczna",
+          "Post": "Wyślij ankietę na czat",
+          "Edit": "Edytuj ankietę przed wysłaniem",
+          "Delete": "Usuń ankietę"
+        }
+      },
+
       "Settings": {
-        "playersWelcomeScreen": {
-          "Enable": "Pokazuj graczom Ekran Powitalny",
-          "EnableHint": "Odznacz, aby graczom nie wyświetlać po zalogowaniu Ekranu Powitalnego z każdą nową wersją."
+        "PlayersCreate": {
+          "Enable": "Zezwól graczom na tworzenie ankiet",
+          "EnableHint": "Kiedy ta opcja jest zaznaczona, gracze mogą tworzyć swoje własne ankiety"
+        },
+        "DefaultMode": {
+          "Enable": "Domyślny tryb",
+          "EnableHint": "Wybierz który tryb ankiety jest domyślnie stosowany w nowych ankietach. Ustawienie można nadpisać przykładowo używają flagi --mode",
+          "Multiple": "Wielokrotnego wyboru",
+          "Single": "Pojedynczego wyboru"
+        },
+        "DefaultDisplay": {
+          "Enable": "Zezwól na oglądanie wyników",
+          "EnableHint": "Kiedy ta opcja jest zaznaczona, nowo utworzone ankiety będą pozwalać graczom na wyświetlenie wyników ankiety. Ustawienie można nadpisać przykładowo używają flagi --results"
+        },
+        "DefaultSecret": {
+          "Enable": "Tajne głosowania",
+          "EnableHint": "Kiedy ta opcja jest zaznaczona, gracze nie będą widzieć kto głosował na jaką opcję. Zauważ, że jeśli gracze nie mogą zobaczyć wyników, również nie dowiedzą się kto na co głosował. stawienie można nadpisać przykładowo używają flagi --secret"
+        },
+
+        "Keybindings": {
+          "OpenPollDialog": {
+            "Name": "Otwórz Tworzenie Ankiety",
+            "Hint": "Otwiera okno dialogowe, w którym można w wizualny sposób stworzyć ankietę z wykorzystaniem formularza"
+          },
+          "OpenSavedPollsDialog": {
+            "Name": "Otwórz Zapisane Ankiety",
+            "Hint": "Otwiera okno aplikacji, w którym można przejrzeć swoje zapisane ankiety i je szybko opublikować, usunąć lub edytować"
+          }
         }
       }
     }
