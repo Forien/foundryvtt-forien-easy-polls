@@ -25,7 +25,7 @@ export default class PollCommand {
 
   static registerCommand() {
     Hooks.on('chatMessage', (chatLog, messageText, _chatData) => {
-      if (!game.settings.get(constants.moduleId, settings.playersCreate))
+      if (!game.settings.get(constants.moduleId, settings.playersCreate) && !game.user.isGM)
         return true;
 
       let match = this.checkCommand(messageText);
@@ -91,7 +91,7 @@ export default class PollCommand {
    * @return {*}
    */
   static checkCommand(messageText) {
-    const poll = new RegExp('^(\\/p(?:oll)? )', 'i');
+    const poll = new RegExp('^(\\/p(?:oll)?[ \s\n])', 'i');
 
     return messageText.match(poll);
   }
@@ -102,7 +102,7 @@ export default class PollCommand {
    * @return {*}
    */
   static checkFlags(messageText) {
-    const options = /(-{2}[^ ]+) ([^ ]+)/gi;
+    const options = /(-{2}[^ ]+) ([^ \s\n]+)/gi;
 
     return messageText.matchAll(options);
   }
