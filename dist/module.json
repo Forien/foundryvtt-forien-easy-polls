@@ -4,7 +4,7 @@
   "description": "Create polls through the chat and let your players vote.",
   "version": "1.0.0",
   "compatibility": {
-    "minimum": "11",
+    "minimum": "9",
     "verified": "11"
   },
   "authors": [
