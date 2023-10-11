@@ -72,7 +72,7 @@ export default class PollDialog extends Dialog {
       };
 
       this.data.settings = {
-        mode: game.settings.get(constants.moduleId, settings.defaultMode),
+        mode: this.#getBooleanForMode(game.settings.get(constants.moduleId, settings.defaultMode)),
         results: game.settings.get(constants.moduleId, settings.defaultDisplay),
         secret: game.settings.get(constants.moduleId, settings.defaultSecret),
       }
@@ -112,6 +112,7 @@ export default class PollDialog extends Dialog {
   render(force = true, options = {}) {
     return renderTemplate(Utility.getTemplate('poll-dialog.hbs'), this.getData(options)).then((content) => {
       this.data.content = content;
+      console.log(this.data);
       return super.render(force, options);
     })
   }
