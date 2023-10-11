@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.0.1
+## v1.0.2
 * Fixed Poll Dialog not respecting the set default poll mode and always reverting to Multiple (thanks weepingminotaur for reporting)
 
 ## v1.0.0
