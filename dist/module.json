@@ -30,6 +30,11 @@
       "lang": "pl",
       "name": "Polski",
       "path": "languages/pl.json"
+    },
+    {
+      "lang": "ja",
+      "name": "日本語",
+      "path": "languages/ja.json"
     }
   ],
   "esmodules": [

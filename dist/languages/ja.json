@@ -1,0 +1,94 @@
+{
+  "Forien": {
+    "EasyPolls": {
+      "CreateAndSave": "作成と保存",
+      "AnswerSent":  "回答を送りました!",
+      "CountAnswered": "総回答数",
+      "ToggleResults": "結果表示をトグル",
+
+      "ToggleSettingResults": {
+        "Enable": "結果を表示",
+        "Disable": "結果を非表示"
+      },
+
+      "ToggleSettingSecret": {
+        "Enable": "秘匿版を作成",
+        "Disable": "公開版を作成"
+      },
+
+      "Notifications":{
+        "NoGM": "アクティブなGMがオフラインです。投票にはGMが居る必要があります。"
+      },
+
+      "PollDialog": {
+        "Title": "アンケート作成!",
+        "AddOption": "選択肢を追加",
+        "Option": "選択肢"
+      },
+
+      "SavedPollsApp": {
+        "Title": "保存されたアンケート",
+        "OrderingNumber": "No.",
+        "PollQuestion": "質問",
+        "CreateNew": "新しいアンケートを作成",
+        "Controls": "コントロール",
+
+        "Tooltips": {
+          "PollMode": "アンケートモード (複数 vs 単一)",
+          "PollResults": "プレイヤーは結果を閲覧できる",
+          "PollSecret": "プレイヤーは選択肢に投票した人を見れる",
+          "Multiple": "複数回答可",
+          "Single": "単独回答のみ",
+          "Results": "プレイヤーは結果を閲覧できる",
+          "NoResults": "プレイヤーは結果を閲覧できない",
+          "Secret": "投票は秘匿で行う",
+          "Public": "投票は公開される",
+          "Post": "アンケートをチャットに投稿",
+          "Edit": "登校前にアンケートを編集",
+          "Delete": "アンケート削除"
+        }
+      },
+
+      "Settings": {
+        "PlayersCreate": {
+          "Enable": "プレイヤーにアンケート作成を許可",
+          "EnableHint": "チェックすると、プレイヤーは ”/poll”チャットコマンドでアンケートを作成することができます。"
+        },
+        "DefaultMode": {
+          "Enable": "デフォルトのアンケートモード",
+          "EnableHint": "アンケートを新規作成する時のデフォルトモードを選んでください。”--mode flag”で上書きできます。",
+          "Multiple": "複数回答",
+          "Single": "単独回答"
+        },
+        "DefaultDisplay": {
+          "Enable": "結果表示を許可",
+          "EnableHint": "チェックすると、デフォルトでプレイヤーがアンケート結果を閲覧できます。”--results flag”で上書きできます。"
+        },
+        "DefaultSecret": {
+          "Enable": "秘密投票",
+          "EnableHint": "チェックすると、プレイヤーは誰がどの選択肢に投票したか見れなくなります。結果を表示できなければ、プレイヤーは誰が投票したか確認できません。”--secret flag”で上書きできます。"
+        },
+
+        "Keybindings": {
+          "OpenPollDialog": {
+            "Name": "アンケート・ダイアログを開く",
+            "Hint": "表示される形式でアンケートを作成できる、アンケート・ダイアログを開きます。"
+          },
+          "OpenSavedPollsDialog": {
+            "Name": "保存済みアンケートを開く",
+            "Hint": "ユーザが保存したアンケートを選択できる、保存済みアンケート・ダイアログを開きます。"
+          }
+        }
+      },
+
+      "console": {
+        "__COMMENT__": "Messages below are not typically expected to be seen by playes",
+        "errors": {
+          "undefined-event": "API Error: Wrong Socket Event Received: {event}",
+          "noGM": "No active GMs, stopping execution!",
+          "noPoll": "Poll with ID {id} does not exist, or message is not a poll."
+        }
+      }
+    }
+  }
+}
