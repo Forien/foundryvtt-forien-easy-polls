@@ -101,6 +101,7 @@ If you wish to contact me for any reason, reach me out on Discord using my tag: 
 
 * Thanks to Discord member Vathraq for the idea for this module!
 * Thanks to flamewave000 for providing Dialog Macro that became part of the module (Set up a Poll! Dialog)
+* Thanks to doumoku for providing Japanese translations
 
 ## Support
 

@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.0.3 
+* Added Japanese localization (thanks to user doumoku for providing translation)
+
 ## v1.0.2
 * Fixed Poll Dialog not respecting the set default poll mode and always reverting to Multiple (thanks weepingminotaur for reporting)
 
