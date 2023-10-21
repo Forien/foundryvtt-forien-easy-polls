@@ -1,0 +1,85 @@
+{
+  "Forien": {
+    "EasyPolls": {
+      "CreateAndSave": "Criar e Salvar",
+      "AnswerSent":  "Resposta enviada!",
+      "CountAnswered": "Total de Respostas",
+      "ToggleResults": "Resultados",
+
+      "ToggleSettingResults": {
+        "Enable": "Mostrar Resultados",
+        "Disable": "Esconder Resultados"
+      },
+
+      "ToggleSettingSecret": {
+        "Enable": "Tornar Secreto",
+        "Disable": "Tornar Público"
+      },
+
+      "Notifications":{
+        "NoGM": "Não há Mestres ativos online. A presença de um Mestre é necessária para votar."
+      },
+
+      "PollDialog": {
+        "Title": "Crie uma Votação!",
+        "AddOption": "Adicionar Opção",
+        "Option": "Opção"
+      },
+
+      "SavedPollsApp": {
+        "Title": "Votações Salvas",
+        "OrderingNumber": "Núm.",
+        "PollQuestion": "Pergunta",
+        "CreateNew": "Criar nova Votação",
+        "Controls": "Controles",
+
+        "Tooltips": {
+          "PollMode": "Modo de Votação",
+          "PollResults": "Jogadores podem ver os resultados?",
+          "PollSecret": "Jogadores podem ver quem votou em que?",
+          "Multiple": "Votos Múltiplos",
+          "Single": "Voto Único",
+          "Results": "Podem ver os resultados",
+          "NoResults": "Não podem ver os resultados",
+          "Secret": "Voto Secreto",
+          "Public": "Voto Público",
+          "Post": "Postar Votação no Chat",
+          "Edit": "Editar Votação antes de postar",
+          "Delete": "Deletar Votação"
+        }
+      },
+
+      "Settings": {
+        "PlayersCreate": {
+          "Enable": "Permitir que Jogadores criem Votação",
+          "EnableHint": "Jogadores poderão criar votações utilizando o comando de chat /poll"
+        },
+        "DefaultMode": {
+          "Enable": "Moto de Votação Padrão",
+          "EnableHint": "Selecione qual modo será o padrão ao criar novas votações. Pode ser sobrescrito usando --mode flag",
+          "Multiple": "Votos Múltiplos",
+          "Single": "Voto Único"
+        },
+        "DefaultDisplay": {
+          "Enable": "Permitir Mostrar Resultados",
+          "EnableHint": "Jogadores poderão ver o resultado de votações por padrão. Pode ser sobrescrito usando --results flag"
+        },
+        "DefaultSecret": {
+          "Enable": "Votação Secreta",
+          "EnableHint": "Jogadores não poderão ver quem votou em que. Lembre-se que os jogadores não conseguirão ver se os resultados não podem ser mostrados. Pode ser sobrescrito usando --secret flag"
+        },
+
+        "Keybindings": {
+          "OpenPollDialog": {
+            "Name": "Abrir Diálogo de Votação",
+            "Hint": "Abre o Diálogo de Votação onde Votações podem ser criadas visualmente"
+          },
+          "OpenSavedPollsDialog": {
+            "Name": "Abrir Votações Salvas",
+            "Hint": "Abre o Diálogo de Votações Salvas, where user can pick from previously saved Polls"
+          }
+        }
+      }
+    }
+  }
+}
