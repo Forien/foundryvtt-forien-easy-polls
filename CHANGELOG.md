@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.0.4
+* Added Brazilian Portuguese localization (thanks to user clemente for providing translation)
+
 ## v1.0.3 
 * Added Japanese localization (thanks to user doumoku for providing translation)
 
