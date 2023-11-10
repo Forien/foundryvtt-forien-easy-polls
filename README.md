@@ -10,7 +10,9 @@ This module aims to provide solution to create, manage, vote and see results of 
 
 ## Usage
 
-This module lets you create and manage Polls using [Chat Command](#through-chat-command), [Create Poll Dialog](#through-create-dialog-ui) and [Saved Polls App](#saved-polls)
+This module lets you create and manage Polls using [Chat Command](#through-chat-command), [Create Poll Dialog](#through-create-dialog-ui) and [Saved Polls App](#saved-polls).
+
+Module also supports [Chat Commander's](https://foundryvtt.com/packages/_chatcommands) autocompletion and tooltips.
 
 ### Through Chat Command
 To create a poll, use `/poll` chat command. 
