@@ -17,7 +17,7 @@ export default class ChatCommands {
       name: "/poll",
       module: "forien-easy-polls",
       icon: "<i class='fas fa-square-poll-horizontal'></i>",
-      description: "Creates a poll. First line becomes question, other lines become answers. Use Shift+Enter to make a new line.",
+      description: game.i18n.format('Forien.EasyPolls.ChatCommander.CommandDescription', {keybind: '<span class="parameter">Shift + Enter</span>'}),
       closeOnComplete: false,
       autocompleteCallback: (menu, alias, parameters) => {
         const entries = [];

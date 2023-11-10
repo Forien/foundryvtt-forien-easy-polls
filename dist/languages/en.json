@@ -82,6 +82,8 @@
       },
 
       "ChatCommander": {
+        "CommandDescription": "Creates a poll. First line becomes question, other lines become answers. Use {keybind} to make a new line.",
+
         "SimpleYesNo": "Suggestion: <strong>Quick Yes/No poll</strong>",
         "QuickPCPoll": "Suggestion: <strong>Quick Online PC poll</strong>",
 

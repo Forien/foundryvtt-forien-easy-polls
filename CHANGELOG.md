@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.0.7
+* Added missing localization for Chat Commander
+
 ## v1.0.6
 * Added icons and more context hints to Chat Commander's listings
 * Added localization for Chat Commander

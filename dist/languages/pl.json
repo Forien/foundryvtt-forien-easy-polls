@@ -82,6 +82,8 @@
       },
 
       "ChatCommander": {
+        "CommandDescription": "Stwórz ankietę. Pierwsza linia będzie pytaniem, a pozostałe linie zostaną odpowiedziami. Użyj {keybind} aby przejść do nowej linii.",
+
         "SimpleYesNo": "Sugerowane: <strong>Szybka ankieta Tak/Nie</strong>",
         "QuickPCPoll": "Sugerowane: <strong>Głosowanie na Postaci online</strong>",
 
