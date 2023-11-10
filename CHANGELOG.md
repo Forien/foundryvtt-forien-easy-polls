@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.6
+* Added icons and more context hints to Chat Commander's listings
+* Added localization for Chat Commander
+* Fixed localization for Keybinding Settings
+* Updated Polish translation
+
 ## v1.0.5
 * Added support and compatibility for Chat Commander module. (thanks to user elespike for suggesting) #10
 

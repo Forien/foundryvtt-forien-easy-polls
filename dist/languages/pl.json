@@ -79,6 +79,26 @@
             "Hint": "Otwiera okno aplikacji, w którym można przejrzeć swoje zapisane ankiety i je szybko opublikować, usunąć lub edytować"
           }
         }
+      },
+
+      "ChatCommander": {
+        "SimpleYesNo": "Sugerowane: <strong>Szybka ankieta Tak/Nie</strong>",
+        "QuickPCPoll": "Sugerowane: <strong>Głosowanie na Postaci online</strong>",
+
+        "ParameterMode": "Parametr: <strong>Tryb</strong> - tryb ankiety",
+        "ParameterResults": "Parametr: <strong>Wyniki</strong> - czy gracze mogą widzieć?",
+        "ParameterSecret": "Parametr: <strong>Tajność</strong> - czy gracze wiedzą kto głosował na jaką opcję?",
+
+        "ModeSingle": "Tryb: <strong>pojedynczego wyboru</strong>",
+        "ModeMultiple": "Tryb: <strong>wielokrotnego wyboru</strong>",
+
+        "ResultsTrue": "Wyniki <strong>tak</strong> - gracze mogą zobaczyć wyniki ankiety",
+        "ResultsFalse": "Wyniki <strong>nie</strong> - tylko MG widzi wyniki",
+
+        "SecretTrue": "Tajność: <strong>tak</strong> - gracze nie zobaczą kto głosował",
+        "SecretFalse": "Tajność: <strong>nie</strong> - gracze zobaczą kto głosował",
+
+        "DialogHint": "Możesz również użyć {quickPollKey} aby otworzyć menu tworzenia ankiet; lub {savedPollsKey} aby otworzyć listę twoich zapisanych ankiet"
       }
     }
   }
