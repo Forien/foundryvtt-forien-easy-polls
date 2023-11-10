@@ -2,8 +2,8 @@ import {constants, settings} from './constants.mjs';
 
 export default function registerSettings() {
   game.keybindings.register(constants.moduleId, settings.keybindings.pollDialog, {
-    name: 'EasyPolls.Settings.Keybindings.OpenPollDialog.Name',
-    hint: 'EasyPolls.Settings.Keybindings.OpenPollDialog.Hint',
+    name: 'Forien.EasyPolls.Settings.Keybindings.OpenPollDialog.Name',
+    hint: 'Forien.EasyPolls.Settings.Keybindings.OpenPollDialog.Hint',
     onDown: () => {
       if (game.settings.get(constants.moduleId, settings.playersCreate) || game.user.isGM)
         game.modules.get(constants.moduleId).api.renderPollDialog();
@@ -14,8 +14,8 @@ export default function registerSettings() {
   });
 
   game.keybindings.register(constants.moduleId, settings.keybindings.savedPollsDialog, {
-    name: 'EasyPolls.Settings.Keybindings.OpenSavedPollsDialog.Name',
-    hint: 'EasyPolls.Settings.Keybindings.OpenSavedPollsDialog.Hint',
+    name: 'Forien.EasyPolls.Settings.Keybindings.OpenSavedPollsDialog.Name',
+    hint: 'Forien.EasyPolls.Settings.Keybindings.OpenSavedPollsDialog.Hint',
     onDown: () => {
       if (game.settings.get(constants.moduleId, settings.playersCreate) || game.user.isGM)
         game.modules.get(constants.moduleId).api.renderSavedPollsApp();
