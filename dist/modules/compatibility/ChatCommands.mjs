@@ -16,6 +16,7 @@ export default class ChatCommands {
     game.chatCommands.register({
       name: "/poll",
       module: "forien-easy-polls",
+      icon: "<i class='fas fa-square-poll-horizontal'></i>",
       description: "Creates a poll. First line becomes question, other lines become answers. Use Shift+Enter to make a new line.",
       closeOnComplete: false,
       autocompleteCallback: (menu, alias, parameters) => {
@@ -25,8 +26,9 @@ export default class ChatCommands {
         if (parameters === '') {
           const characterNames = ChatCommands.getPCNamesAsOptions();
           entries.push(...[
-            game.chatCommands.createCommandElement(`/poll --mode single Question\nYes\nNo`, "Suggestion: <strong>Quick Yes/No poll</strong>"),
-            game.chatCommands.createCommandElement(`/poll --mode single --secret true Question\n${characterNames}`, "Suggestion: <strong>Quick Online PC poll</strong>"),
+            game.chatCommands.createCommandElement(`/poll --mode single Question\nYes\nNo`, game.i18n.localize('Forien.EasyPolls.ChatCommander.SimpleYesNo')),
+            game.chatCommands.createCommandElement(`/poll --mode single --secret true Question\n${characterNames}`, game.i18n.localize('Forien.EasyPolls.ChatCommander.QuickPCPoll')),
+            game.chatCommands.createSeparatorElement(),
           ]);
         } else {
           parameters += ' ';
@@ -37,22 +39,30 @@ export default class ChatCommands {
         if (!partial) {
           if (!ChatCommands.containsMode(parameters)) {
             entries.push(...[
-              game.chatCommands.createCommandElement(`${alias} ${parameters}--mode `, "Parameter: <strong>Mode</strong> - Poll's voting mode")
+              game.chatCommands.createCommandElement(`${alias} ${parameters}--mode `, game.i18n.localize('Forien.EasyPolls.ChatCommander.ParameterMode'))
             ])
           }
 
           if (!ChatCommands.containsResults(parameters)) {
             entries.push(...[
-              game.chatCommands.createCommandElement(`${alias} ${parameters}--results `, "Parameter: <strong>Results</strong> - can players see them?")
+              game.chatCommands.createCommandElement(`${alias} ${parameters}--results `, game.i18n.localize('Forien.EasyPolls.ChatCommander.ParameterResults'))
             ])
           }
 
           if (!ChatCommands.containsSecret(parameters)) {
             entries.push(...[
-              game.chatCommands.createCommandElement(`${alias} ${parameters}--secret `, "Parameter: <strong>Secret</strong> - can players see who voted on what option?")
+              game.chatCommands.createCommandElement(`${alias} ${parameters}--secret `, game.i18n.localize('Forien.EasyPolls.ChatCommander.ParameterSecret'))
             ])
           }
         }
+
+        const pollBinding = ChatCommands.humanizeBinding(game.keybindings.get('forien-easy-polls', 'pollDialog')[0]);
+        const savedPollsBinding = ChatCommands.humanizeBinding(game.keybindings.get('forien-easy-polls', 'savedPollsDialog')[0]);
+
+        entries.push(...[
+          game.chatCommands.createSeparatorElement(),
+          game.chatCommands.createInfoElement(game.i18n.format('Forien.EasyPolls.ChatCommander.DialogHint', {quickPollKey: `<span class="parameter">${pollBinding}</span>`, savedPollsKey: `<span class="parameter">${savedPollsBinding}</span>`})),
+        ]);
 
         entries.length = Math.min(entries.length, menu.maxEntries);
 
@@ -62,11 +72,21 @@ export default class ChatCommands {
   }
 
 
+  static humanizeBinding(binding) {
+    const stringParts = binding.modifiers.reduce((parts, part) => {
+      if ( KeyboardManager.MODIFIER_CODES[part]?.includes(binding.key) ) return parts;
+      parts.unshift(KeyboardManager.getKeycodeDisplayString(part));
+      return parts;
+    }, [KeyboardManager.getKeycodeDisplayString(binding.key)]);
+
+    return stringParts.join(" + ");
+  }
+
   static checkPartialParameters(parameters, entries, alias) {
     if (ChatCommands.containsPartialMode(parameters)) {
       entries.push(...[
-        game.chatCommands.createCommandElement(`${alias} ${parameters}single `, "Mode: <strong>single choice</strong>"),
-        game.chatCommands.createCommandElement(`${alias} ${parameters}multi `, "Mode: <strong>multiple choice</strong>")
+        game.chatCommands.createCommandElement(`${alias} ${parameters}single `, game.i18n.localize('Forien.EasyPolls.ChatCommander.ModeSingle')),
+        game.chatCommands.createCommandElement(`${alias} ${parameters}multi `, game.i18n.localize('Forien.EasyPolls.ChatCommander.ModeMultiple'))
       ])
 
       return true;
@@ -74,8 +94,8 @@ export default class ChatCommands {
 
     if (ChatCommands.containsPartialResults(parameters)) {
       entries.push(...[
-        game.chatCommands.createCommandElement(`${alias} ${parameters}true `, "Results: <strong>yes</strong> - players can check Poll's results"),
-        game.chatCommands.createCommandElement(`${alias} ${parameters}false `, "Results: <strong>no</strong> - only GM can see Poll's results")
+        game.chatCommands.createCommandElement(`${alias} ${parameters}true `, game.i18n.localize('Forien.EasyPolls.ChatCommander.ResultsTrue')),
+        game.chatCommands.createCommandElement(`${alias} ${parameters}false `, game.i18n.localize('Forien.EasyPolls.ChatCommander.ResultsFalse'))
       ])
 
       return true;
@@ -83,8 +103,8 @@ export default class ChatCommands {
 
     if (ChatCommands.containsPartialSecret(parameters)) {
       entries.push(...[
-        game.chatCommands.createCommandElement(`${alias} ${parameters}true `, "Secret: <strong>yes</strong> - players can't see who voted"),
-        game.chatCommands.createCommandElement(`${alias} ${parameters}false `, "Secret: <strong>no</strong> - players can see who voted")
+        game.chatCommands.createCommandElement(`${alias} ${parameters}true `, game.i18n.localize('Forien.EasyPolls.ChatCommander.SecretTrue')),
+        game.chatCommands.createCommandElement(`${alias} ${parameters}false `, game.i18n.localize('Forien.EasyPolls.ChatCommander.SecretFalse'))
       ])
 
       return true;

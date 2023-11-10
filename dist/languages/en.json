@@ -81,6 +81,26 @@
         }
       },
 
+      "ChatCommander": {
+        "SimpleYesNo": "Suggestion: <strong>Quick Yes/No poll</strong>",
+        "QuickPCPoll": "Suggestion: <strong>Quick Online PC poll</strong>",
+
+        "ParameterMode": "Parameter: <strong>Mode</strong> - Poll's voting mode",
+        "ParameterResults": "Parameter: <strong>Results</strong> - can players see them?",
+        "ParameterSecret": "Parameter: <strong>Secret</strong> - can players see who voted on what option?",
+
+        "ModeSingle": "Mode: <strong>single choice</strong>",
+        "ModeMultiple": "Mode: <strong>multiple choice</strong>",
+
+        "ResultsTrue": "Results: <strong>yes</strong> - players can check Poll's results",
+        "ResultsFalse": "Results: <strong>no</strong> - only GM can see Poll's results",
+
+        "SecretTrue": "Secret: <strong>yes</strong> - players can't see who voted",
+        "SecretFalse": "Secret: <strong>no</strong> - players can see who voted",
+
+        "DialogHint": "You can also use {quickPollKey} to open Quick Poll Dialog, or {savedPollsKey} to open your Saved Polls list"
+      },
+
       "console": {
         "__COMMENT__": "Messages below are not typically expected to be seen by playes",
         "errors": {
