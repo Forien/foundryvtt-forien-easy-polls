@@ -37,8 +37,8 @@ Use this flag by typing `--results` or `--r` directly followed by one of allowed
 
 ##### Secret
 Use this flag by typing `--secret` or `--s` directly followed by one of allowed settings:
-* `true` (also `t`) — set Poll to allow players seeing who voted for what options (requires players to also see results)
-* `false` (also `f`) — set Poll to hide voters
+* `true` (also `t`) — set Poll to hide voters
+* `false` (also `f`) — set Poll to allow players seeing who voted for what options (requires players to also see results)
 
 #### Example:
 ```
