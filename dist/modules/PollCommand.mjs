@@ -1,5 +1,6 @@
 import Poll from './Poll.mjs';
 import {constants, flags, settings} from './constants.mjs';
+import Utility from "./utility/Utility.mjs";
 
 export default class PollCommand {
   static #flags = {
@@ -25,7 +26,7 @@ export default class PollCommand {
 
   static registerCommand() {
     Hooks.on('chatMessage', (chatLog, messageText, _chatData) => {
-      if (!game.settings.get(constants.moduleId, settings.playersCreate) && !game.user.isGM)
+      if (!Utility.getPlayersCreateSetting() && !game.user.isGM)
         return true;
 
       let match = this.checkCommand(messageText);

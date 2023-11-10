@@ -6,6 +6,7 @@ import ForienEasyPollsAPI from './ForienEasyPollsAPI.mjs';
 import Utility from './utility/Utility.mjs';
 import Poll from "./Poll.mjs";
 import PollDialog from "./PollDialog.mjs";
+import ChatCommands from "./compatibility/ChatCommands.mjs";
 
 Hooks.once('init', () => {
   registerSettings();
@@ -27,6 +28,7 @@ Hooks.once('setup', () => {
 
 Hooks.once('ready', () => {
   Socket.listen();
+  ChatCommands.register();
 
   Hooks.callAll(`${constants.moduleId}:afterReady`);
   Utility.notify(`${constants.moduleLabel} ready`, {consoleOnly: true});

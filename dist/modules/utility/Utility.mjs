@@ -1,4 +1,4 @@
-import {constants} from '../constants.mjs';
+import {constants, settings} from '../constants.mjs';
 
 export default class Utility {
   static notify(notification, {type = 'info', permanent = false, consoleOnly = false} = {}) {
@@ -35,5 +35,9 @@ export default class Utility {
     loadTemplates(templates).then(() => {
       Utility.notify("Templates preloaded.", {consoleOnly: true})
     });
+  }
+
+  static getPlayersCreateSetting() {
+    return game.settings.get(constants.moduleId, settings.playersCreate);
   }
 }

@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.0.5
+* Added support and compatibility for Chat Commander module. (thanks to user elespike for suggesting) #10
+
 ## v1.0.4
 * Added Brazilian Portuguese localization (thanks to user clemente for providing translation)
 
