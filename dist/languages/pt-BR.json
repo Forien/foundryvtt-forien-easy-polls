@@ -4,11 +4,11 @@
       "CreateAndSave": "Criar e Salvar",
       "AnswerSent":  "Resposta enviada!",
       "CountAnswered": "Total de Respostas",
-      "ToggleResults": "Resultados",
+      "ToggleResults": "Resultado",
 
       "ToggleSettingResults": {
-        "Enable": "Mostrar Resultados",
-        "Disable": "Esconder Resultados"
+        "Enable": "Mostrar Resultado",
+        "Disable": "Esconder Resultado"
       },
 
       "ToggleSettingSecret": {
@@ -21,7 +21,7 @@
       },
 
       "PollDialog": {
-        "Title": "Crie uma Votação!",
+        "Title": "Crie uma Enquete!",
         "AddOption": "Adicionar Opção",
         "Option": "Opção"
       },
@@ -30,22 +30,22 @@
         "Title": "Votações Salvas",
         "OrderingNumber": "Núm.",
         "PollQuestion": "Pergunta",
-        "CreateNew": "Criar nova Votação",
+        "CreateNew": "Criar nova Enquete",
         "Controls": "Controles",
 
         "Tooltips": {
           "PollMode": "Modo de Votação",
-          "PollResults": "Jogadores podem ver os resultados?",
+          "PollResults": "Jogadores podem ver o resultado?",
           "PollSecret": "Jogadores podem ver quem votou em que?",
           "Multiple": "Votos Múltiplos",
           "Single": "Voto Único",
-          "Results": "Podem ver os resultados",
-          "NoResults": "Não podem ver os resultados",
+          "Results": "Podem ver o resultado",
+          "NoResults": "Não podem ver o resultado",
           "Secret": "Voto Secreto",
           "Public": "Voto Público",
-          "Post": "Postar Votação no Chat",
-          "Edit": "Editar Votação antes de postar",
-          "Delete": "Deletar Votação"
+          "Post": "Postar Enquete no Chat",
+          "Edit": "Editar Enquete antes de postar",
+          "Delete": "Deletar Enquete"
         }
       },
 
@@ -61,7 +61,7 @@
           "Single": "Voto Único"
         },
         "DefaultDisplay": {
-          "Enable": "Permitir Mostrar Resultados",
+          "Enable": "Permitir Mostrar Resultado",
           "EnableHint": "Jogadores poderão ver o resultado de votações por padrão. Pode ser sobrescrito usando --results flag"
         },
         "DefaultSecret": {
@@ -79,6 +79,28 @@
             "Hint": "Abre o Diálogo de Votações Salvas, where user can pick from previously saved Polls"
           }
         }
+      },
+
+      "ChatCommander": {
+        "CommandDescription": "Cria uma enquete. A primeira linha se torna a pergunta, outras linhas viram respostas. Use {keybind} para criar uma nova linha.",
+
+        "SimpleYesNo": "Sugestão: <strong>Enquete rápida de Sim/Não</strong>",
+        "QuickPCPoll": "Sugestão: <strong>Enquete rápida de jogadores online</strong>",
+
+        "ParameterMode": "Parâmetro: <strong>Modo</strong> - Modo de votação da enquete",
+        "ParameterResults": "Parâmetro: <strong>Resultado</strong> - jogadores podem vê-lo?",
+        "ParameterSecret": "Parâmetro: <strong>Secreta</strong> - jogadores podem ver quem votou em quê?",
+
+        "ModeSingle": "Modo: <strong>voto único</strong>",
+        "ModeMultiple": "Modo: <strong>votos múltiplos</strong>",
+
+        "ResultsTrue": "Resultado: <strong>sim</strong> - jogadores podem ver o resultado da enquete",
+        "ResultsFalse": "Resultado: <strong>não</strong> - apenas o Mestre pode ver o resultado",
+
+        "SecretTrue": "Secreta: <strong>sim</strong> - jogadores não podem ver quem votou",
+        "SecretFalse": "Secreta: <strong>não</strong> - jogadores podem ver quem votou",
+
+        "DialogHint": "Você também pode usar {quickPollKey} para abrir um diálogo de Enquete Rápida ou {savedPollsKey} para abrir a lista de enquetes salvas"
       }
     }
   }
