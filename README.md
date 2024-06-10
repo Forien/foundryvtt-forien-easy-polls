@@ -65,7 +65,7 @@ In this Dialog you can also set all flags as you wish.
 
 When using "Creat Poll" Dialog, you have an option to "Create and Save". Using this button will save the Poll for your later use.
 
-Press `Ctrl+P` (keybinding is editable through Foundry's `Configure Options`) to open a "Saved Polls" App, where you can see all your Saved Polls and quickly post them to Chat, delete them, or edit them.
+Press `Shift+P` (keybinding is editable through Foundry's `Configure Options`) to open a "Saved Polls" App, where you can see all your Saved Polls and quickly post them to Chat, delete them, or edit them.
 
 ![](https://i.imgur.com/qs1eD1a.png)
 
