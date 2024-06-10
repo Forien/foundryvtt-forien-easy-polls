@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.0
+* Verified v12
+* Fixed wrongly showing who voted on an answer even when they unselected that answer
+* Changed default hotkey to open saved polls to `Shift+P` to avoid opening print menu in browsers
+* Updated Brazilian Portuguese translation (thanks mclemente!)
+
 ## v1.0.7
 * Added missing localization for Chat Commander
 

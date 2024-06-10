@@ -20,7 +20,7 @@ export default function registerSettings() {
       if (game.settings.get(constants.moduleId, settings.playersCreate) || game.user.isGM)
         game.modules.get(constants.moduleId).api.renderSavedPollsApp();
     },
-    editable: [{key: 'KeyP', modifiers: ['Control']}],
+    editable: [{key: 'KeyP', modifiers: ['Shift']}],
     restricted: false,
     precedence: CONST.KEYBINDING_PRECEDENCE.NORMAL,
   });

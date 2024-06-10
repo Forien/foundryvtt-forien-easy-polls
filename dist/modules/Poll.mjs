@@ -56,7 +56,7 @@ export default class Poll extends ChatMessage {
       let answer = data.answers.find(a => a.user === game.user._id && a.label === p.label)
       p.checked = answer ? answer.status : false;
       p.voters = [];
-      data.answers.filter(a => a.label === p.label).forEach(a => p.voters.push(game.users.get(a.user)?.name));
+      data.answers.filter(a => a.label === p.label && a.status).forEach(a => p.voters.push(game.users.get(a.user)?.name));
     });
     data.settings = await chatMessage.getFlag(constants.moduleId, flags.pollSettings);
 
