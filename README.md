@@ -1,10 +1,12 @@
 # FoundryVTT - Forien's Easy Polls
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/forien/foundryvtt-forien-easy-polls?style=for-the-badge) 
-![GitHub Releases](https://img.shields.io/github/downloads/Forien/foundryvtt-forien-easy-polls/latest/module.zip?style=for-the-badge) 
-![GitHub All Releases](https://img.shields.io/github/downloads/Forien/foundryvtt-forien-easy-polls/module.zip?style=for-the-badge&label=Downloads+total)    
-**[Compatibility]**: *FoundryVTT* 0.6.0+ (verified working on v11)  
-**[Systems]**: *any*  
-**[Languages]**: *English, Polish*  
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Forien/foundryvtt-forien-easy-polls?style=for-the-badge)
+![Foundry Core Compatible Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2FForien%2Ffoundryvtt-forien-easy-polls%2Fmaster%2Fdist%2Fmodule.json&label=Foundry%20Min%20Version&query=$.compatibility.minimum&colorB=orange&style=for-the-badge)
+![Foundry Core Compatible Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2FForien%2Ffoundryvtt-forien-easy-polls%2Fmaster%2Fdist%2Fmodule.json&label=Foundry%20Verified&query=$.compatibility.verified&colorB=orange&style=for-the-badge)  
+![License](https://img.shields.io/github/license/Forien/foundryvtt-forien-easy-polls?style=for-the-badge) ![GitHub Releases](https://img.shields.io/github/downloads/Forien/foundryvtt-forien-easy-polls/latest/module.zip?style=for-the-badge)
+![GitHub All Releases](https://img.shields.io/github/downloads/Forien/foundryvtt-forien-easy-polls/module.zip?style=for-the-badge&label=Downloads+total)  
+[![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white&link=https%3A%2F%2Fdiscord.gg%2FXkTFv8DRDc)](https://discord.gg/XkTFv8DRDc)
+[![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://www.patreon.com/foundryworkshop)
+[![Ko-Fi](https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/forien)
 
 This module aims to provide solution to create, manage, vote and see results of Polls in Chat Log during games played via Foundry Virtual Tabletop.
 
@@ -112,6 +114,6 @@ If you wish to support module development, please consider [becoming Patron](htt
 
 ## License
 
-Forien's Easy Polls is a module for Foundry VTT by Forien and is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
+Forien's Easy Polls is a module for Foundry VTT by Forien and is licensed under a MIT License.
 
 This work is licensed under Foundry Virtual Tabletop [EULA - Limited License for Package Development from March 2, 2023](https://foundryvtt.com/article/license/).
