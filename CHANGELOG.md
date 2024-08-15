@@ -1,6 +1,9 @@
 # Changelog
 
 ## v1.1.1
+* Added number of Answers to table on the Saved Polls App
+* Saved Polls App now updates when a Saved Poll is updated (created or deleted)
+* Clicking on `Create` in Poll Dialog no longer saves the Poll
 * Added French translation (thanks Mystery-Man-From-Ouperspace!)
 
 ## v1.1.0
