@@ -42,7 +42,7 @@ export default class PollDialog extends Dialog {
       create: {
         label: game.i18n.localize('Create'),
         icon: '<i class="fas fa-check"></i>',
-        callback: this.#createPollFromDialog
+        callback: (html) => this.#createPollFromDialog(html, false),
       },
       createAndSave: {
         label: game.i18n.localize('Forien.EasyPolls.CreateAndSave'),
