@@ -1,0 +1,116 @@
+{
+  "Forien": {
+    "EasyPolls": {
+      "CreateAndSave": "Créer et enregistrer",
+      "AnswerSent": "Réponse envoyée !",
+      "CountAnswered": "Total des réponses",
+      "ToggleResults": "Basculer affichage des résultats",
+
+      "ToggleSettingResults": {
+        "Enable": "Montrer résultats",
+        "Disable": "Masquer résultats"
+      },
+
+      "ToggleSettingSecret": {
+        "Enable": "Rendre secret",
+        "Disable": "Rendre public"
+      },
+
+      "Notifications":{
+        "NoGM": "Il n'y a pas de Meneur de jeu actif en ligne. La présence du Meneur de jeu est requise pour voter."
+      },
+
+      "PollDialog": {
+        "Title": "Mettre en place un sondage !",
+        "AddOption": "Ajouter une option",
+        "Option": "option"
+      },
+
+      "SavedPollsApp": {
+        "Title": "Sondages enregistrés",
+        "OrderingNumber": "N°",
+        "PollQuestion": "Question",
+        "CreateNew": "Créer un nouveau sondage",
+        "Controls": "Contrôles",
+
+        "Tooltips": {
+          "PollMode": "Mode du vote (multiple vs simple)",
+          "PollResults": "Les Joueurs peuvent-ils consulter les résultats",
+          "PollSecret": "Les Joueurs peuvent-ils voir qui a voté et pour quelle option",
+          "Multiple": "Vote multiple",
+          "Single": "Vote simple",
+          "Results": "Les Joueurs peuvent consulter les résultats",
+          "NoResults": "Les Joueurs ne peuvent pas consulter les résultats",
+          "Secret": "Le vote est secret",
+          "Public": "Le vote est public",
+          "Post": "Poster le sondage vers le Tchat",
+          "Edit": "Modifier le sondage avant de poster",
+          "Delete": "Supprimer le sondage"
+        }
+      },
+
+      "Settings": {
+        "PlayersCreate": {
+          "Enable": "Permettre aux joueurs de créer des sondages",
+          "EnableHint": "Lorsque cette option est cochée, les Joueurs auront la possibilité de créer des sondages en utilisant la commande /poll dans le Tchat."
+        },
+        "DefaultMode": {
+          "Enable": "Mode de vote par défaut",
+          "EnableHint": "Choisir quel mode de vote doit être le défaut quand vous créez de nouveaux sondages. Peut être remplacé par le drapeau --mode.",
+          "Multiple": "Vote multiple",
+          "Single": "Vote simple"
+        },
+        "DefaultDisplay": {
+          "Enable": "Permettre l'affichage des résultats",
+          "EnableHint": "Lorsque cette option est cochée, les Joueurs auront par défaut la possibilité de consulter les résultats du sondage. Peut être remplacé par le drapeau --results."
+        },
+        "DefaultSecret": {
+          "Enable": "Vote secret",
+          "EnableHint": "Lorsque cette option est cochée, les Joueurs n'auront pas la possibilité de voir qui a voté et pour quelles réponses spécifiques. Notez que les Joueurs n'auront pas la possibilité de voir qui a voté s'ils ne peuvent afficher les résultats. Peut être remplacé par le drapeau --secret."
+        },
+
+        "Keybindings": {
+          "OpenPollDialog": {
+            "Name": "Ouvrir le dialogue de sondage",
+            "Hint": "Ouvre un dialogue de sondage où le sondage peut être créé de façon visuelle."
+          },
+          "OpenSavedPollsDialog": {
+            "Name": "Ouvrir les sondages enregistrés",
+            "Hint": "Ouvre un dialogue des sondages enregistrés, où l'utilisateur peuten  sélectionner un parmi les sondages déjà enregistrés."
+          }
+        }
+      },
+
+      "ChatCommander": {
+        "CommandDescription": "Crée un sondage. La première ligne deviendra la question, les autres lignes deviendront les réponses. Utilisez {keybind} pour créer une nouvelle ligne.",
+
+        "SimpleYesNo": "Suggestion : <strong>Sondage rapide Oui/Non</strong>",
+        "QuickPCPoll": "Suggestion : <strong>Sondage rapide en ligne sur un PJ</strong>",
+
+        "ParameterMode": "Paramètre : <strong>Mode</strong> - Mode de vote du sondage",
+        "ParameterResults": "Paramètre : <strong>Results</strong> - les Joueurs peuvent-ils voir les résultats ?",
+        "ParameterSecret": "Paramètre : <strong>Secret</strong> - les Joueurs voient-ils qui a voté et pour quelle option ?",
+
+        "ModeSingle": "Mode : <strong>single choice</strong>",
+        "ModeMultiple": "Mode : <strong>multiple choice</strong>",
+
+        "ResultsTrue": "Results : <strong>yes</strong> - les Joueurs peuvent consulter les résultats du sondage",
+        "ResultsFalse": "Results : <strong>no</strong> - seul le MJ peut voir les résultats du sondage",
+
+        "SecretTrue": "Secret : <strong>yes</strong> - les Joueurs ne peuvent pas voir qui a voté",
+        "SecretFalse": "Secret : <strong>no</strong> - les Joueurs peuvent voir qui a voté",
+
+        "DialogHint": "Vous pouvez aussi utiliser {quickPollKey} pour ouvrir le dialogue de sondage rapide ou {savedPollsKey} pour ouvrir votre liste de sondages enregistrés"
+      },
+
+      "console": {
+        "__COMMENT__": "Les messages ci-dessous ne sont pas censés être vus par les Joueurs",
+        "errors": {
+          "undefined-event": "Erreur API : Wrong Socket Event Received: {event}.",
+          "noGM": "Pas de MJ actif, arrêt de l'exécution !",
+          "noPoll": "Le sondage avec l'ID {id} n'existe pas ou bien le message n'est pas un sondage."
+        }
+      }
+    }
+  }
+}
