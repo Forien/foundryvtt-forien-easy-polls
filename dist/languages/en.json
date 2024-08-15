@@ -45,7 +45,8 @@
           "Public": "Voting is public",
           "Post": "Post Poll to Chat",
           "Edit": "Edit Poll before Posting",
-          "Delete": "Delete Poll"
+          "Delete": "Delete Poll",
+          "Answers": "Amount of Answers in Poll"
         }
       },
 

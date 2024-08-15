@@ -111,7 +111,7 @@
 .forien-easy-polls.app.saved-polls-app table.forien-saved-polls td.ordering-number {
   min-width: 30px;
 }
-.forien-easy-polls.app.saved-polls-app table.forien-saved-polls td.mode, .forien-easy-polls.app.saved-polls-app table.forien-saved-polls td.results, .forien-easy-polls.app.saved-polls-app table.forien-saved-polls td.secret {
+.forien-easy-polls.app.saved-polls-app table.forien-saved-polls td.answers, .forien-easy-polls.app.saved-polls-app table.forien-saved-polls td.mode, .forien-easy-polls.app.saved-polls-app table.forien-saved-polls td.results, .forien-easy-polls.app.saved-polls-app table.forien-saved-polls td.secret {
   min-width: 30px;
 }
 .forien-easy-polls.app.saved-polls-app table.forien-saved-polls td.controls {

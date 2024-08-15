@@ -3,6 +3,7 @@
     <tr>
         <th>{{localize 'Forien.EasyPolls.SavedPollsApp.OrderingNumber'}}</th>
         <th>{{localize 'Forien.EasyPolls.SavedPollsApp.PollQuestion'}}</th>
+        <th data-tooltip="{{localize 'Forien.EasyPolls.SavedPollsApp.Tooltips.Answers'}}"><i class="fas fa-square-poll-horizontal"></i></th>
         <th data-tooltip="{{localize 'Forien.EasyPolls.SavedPollsApp.Tooltips.PollMode'}}"><i class="fas fa-square-check"></i></th>
         <th data-tooltip="{{localize 'Forien.EasyPolls.SavedPollsApp.Tooltips.PollResults'}}"><i class="fas fa-eye"></i></th>
         <th data-tooltip="{{localize 'Forien.EasyPolls.SavedPollsApp.Tooltips.PollSecret'}}"><i class="fas fa-user-secret"></i></th>
@@ -14,6 +15,7 @@
         <tr class="poll-entry" data-poll="{{this.id}}">
             <td class="ordering-number">{{this.index}}.</td>
             <td class="question">{{this.question}}</td>
+            <td class="answers">{{this.answers}}</td>
             <td class="mode">
                 {{#if this.isMultiple}}
                     <i class="fas fa-square-check" data-tooltip="{{localize 'Forien.EasyPolls.SavedPollsApp.Tooltips.Multiple'}}"></i>

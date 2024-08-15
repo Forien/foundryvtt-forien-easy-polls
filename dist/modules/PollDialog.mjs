@@ -82,8 +82,6 @@ export default class PollDialog extends Dialog {
       return {index: ++this.data.pollOptions, part: part}
     })
 
-
-    console.log(this.data);
     return this.data;
   }
 
@@ -112,7 +110,6 @@ export default class PollDialog extends Dialog {
   render(force = true, options = {}) {
     return renderTemplate(Utility.getTemplate('poll-dialog.hbs'), this.getData(options)).then((content) => {
       this.data.content = content;
-      console.log(this.data);
       return super.render(force, options);
     })
   }
@@ -147,7 +144,6 @@ export default class PollDialog extends Dialog {
   }
 
   #savePollData(question, parts, options, id = null) {
-    console.log({question, parts, options, id});
     game.modules.get(constants.moduleId).api.savedPolls.savePoll(question, parts, options, id);
   }
 

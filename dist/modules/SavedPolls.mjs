@@ -50,8 +50,7 @@ export default class SavedPolls {
   }
 
   async #save() {
-    console.log('JSON.stringify(this.polls)');
-    console.log(JSON.stringify(this.polls));
-    return game.user.setFlag(constants.moduleId, flags.savedPolls, this.polls);
+    await game.user.setFlag(constants.moduleId, flags.savedPolls, this.polls);
+    Hooks.call(`${constants.moduleId}:savedPollsUpdated`);
   }
 }

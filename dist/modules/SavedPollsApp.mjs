@@ -1,5 +1,4 @@
 import Utility from './utility/Utility.mjs';
-import Poll from './Poll.mjs';
 import {constants, settings} from "./constants.mjs";
 import WorkshopError from "./utility/Error.mjs";
 
@@ -22,6 +21,7 @@ export default class SavedPollsApp extends Application {
   constructor(options = {}) {
     super(options);
     this.#api = game.modules.get(constants.moduleId).api;
+    this.#registerHook();
   }
 
   /**
@@ -45,6 +45,7 @@ export default class SavedPollsApp extends Application {
       p.isMultiple = p.options.mode === 'multiple';
       p.showResults = p.options.results === true;
       p.isSecret = p.options.secret === true;
+      p.answers = p.parts.length;
 
       return p;
     });
@@ -52,6 +53,15 @@ export default class SavedPollsApp extends Application {
     return {
       polls: polls
     }
+  }
+
+  #registerHook() {
+    Hooks.on(`${constants.moduleId}:savedPollsUpdated`, this.#rerender.bind(this));
+  }
+
+  #rerender() {
+    if (this.rendered)
+      this.render();
   }
 
   //#endregion
