@@ -107,6 +107,7 @@ If you wish to contact me for any reason, reach me out on Discord using my tag: 
 * Thanks to flamewave000 for providing Dialog Macro that became part of the module (Set up a Poll! Dialog)
 * Thanks to doumoku for providing Japanese translations
 * Thanks to clemente for providing Brazilian Portuguese translations
+* Thanks to Mystery-Man-From-Ouperspace for providing French translations
 
 ## Support
 

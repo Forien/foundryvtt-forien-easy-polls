@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.1.1
+* Added French translation (thanks Mystery-Man-From-Ouperspace!)
+
 ## v1.1.0
 * Verified v12
 * Fixed wrongly showing who voted on an answer even when they unselected that answer
