@@ -27,6 +27,11 @@
       "path": "languages/en.json"
     },
     {
+      "lang": "fr",
+      "name": "Français",
+      "path": "languages/fr.json"
+    },
+    {
       "lang": "pl",
       "name": "Polski",
       "path": "languages/pl.json"
