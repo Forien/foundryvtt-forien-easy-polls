@@ -39,7 +39,7 @@ export default class Socket {
     game.socket.on(this.socket, data => {
       try {
         this["on" + capitalize(data.event)](data);
-      } catch (e) {
+      } catch {
         this.onundefined(data);
       }
     });

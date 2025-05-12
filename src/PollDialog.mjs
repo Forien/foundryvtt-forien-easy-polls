@@ -127,7 +127,7 @@ export default class PollDialog extends Dialog {
     const parts = [];
 
     html.find(".option-template").remove();
-    html.find(".poll-option").each(function () {
+    html.find(".poll-option").each(() => {
       parts.push($(this).val());
     });
 
@@ -189,21 +189,20 @@ export default class PollDialog extends Dialog {
 
     html.find(".add-option").click(this.#onAddOptionClick.bind(this));
     html.find(".delete-option").click(this.#onDeleteOptionClick.bind(this));
-    html.find(".poll-controls .forien-switch-checkbox[name=\"toggle-mode\"]").change(this.#onChangeModeCheckbox.bind(
-          this))
+    html.find(".poll-controls .forien-switch-checkbox[name=\"toggle-mode\"]")
+        .change(this.#onChangeModeCheckbox.bind(this))
         .trigger("change");
-    html.find(".poll-controls .forien-switch-checkbox[name=\"toggle-results\"]").change(this.#onChangeResultsCheckbox.bind(
-          this))
+    html.find(".poll-controls .forien-switch-checkbox[name=\"toggle-results\"]")
+        .change(this.#onChangeResultsCheckbox.bind(this))
         .trigger("change");
-    html.find(".poll-controls .forien-switch-checkbox[name=\"toggle-secret\"]").change(this.#onChangeSecretCheckbox.bind(
-          this))
+    html.find(".poll-controls .forien-switch-checkbox[name=\"toggle-secret\"]")
+        .change(this.#onChangeSecretCheckbox.bind(this))
         .trigger("change");
   }
 
   #changeCheckbox(event, label) {
-    const checked = event.currentTarget.checked;
-    event.currentTarget.closest(".forien-switch").getElementsByClassName("forien-switch-actual-label")[0].textContent =
-      label;
+    event.currentTarget.closest(".forien-switch")
+         .getElementsByClassName("forien-switch-actual-label")[0].textContent = label;
   }
 
   #onChangeModeCheckbox(event) {
