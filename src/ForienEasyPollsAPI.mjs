@@ -1,8 +1,8 @@
-import Poll          from "src/Poll.mjs";
-import PollCommand   from "src/PollCommand.mjs";
-import PollDialog    from "src/PollDialog.mjs";
-import SavedPolls    from "src/SavedPolls.mjs";
-import SavedPollsApp from "src/SavedPollsApp.mjs";
+import Poll          from "Poll.mjs";
+import PollCommand   from "PollCommand.mjs";
+import PollDialog    from "PollDialog.mjs";
+import SavedPolls    from "SavedPolls.mjs";
+import SavedPollsApp from "SavedPollsApp.mjs";
 
 export default class ForienEasyPollsAPI {
   // #region private

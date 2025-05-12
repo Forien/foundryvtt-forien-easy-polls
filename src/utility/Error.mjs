@@ -1,5 +1,5 @@
-import {constants} from "src/constants.mjs";
-import Utility     from "src/utility/Utility.mjs";
+import {constants} from "constants.mjs";
+import Utility     from "utility/Utility.mjs";
 
 export default class WorkshopError extends Error {
   constructor(error) {

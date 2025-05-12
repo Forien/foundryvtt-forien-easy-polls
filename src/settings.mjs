@@ -1,4 +1,4 @@
-import {constants, settings} from "src/constants.mjs";
+import {constants, settings} from "constants.mjs";
 
 export default function registerSettings() {
   game.keybindings.register(constants.moduleId, settings.keybindings.pollDialog, {

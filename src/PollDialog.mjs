@@ -1,6 +1,6 @@
-import {constants, settings} from "src/constants.mjs";
-import Poll                  from "src/Poll.mjs";
-import Utility               from "src/utility/Utility.mjs";
+import {constants, settings} from "constants.mjs";
+import Poll                  from "Poll.mjs";
+import Utility               from "utility/Utility.mjs";
 
 /**
  * Poll Dialog inspired by macro made by flamewave000 that they provided in Pull Request #3

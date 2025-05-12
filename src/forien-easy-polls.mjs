@@ -1,12 +1,12 @@
-import ChatCommands       from "src/compatibility/ChatCommands.mjs";
-import {constants}        from "src/constants.mjs";
-import ForienEasyPollsAPI from "src/ForienEasyPollsAPI.mjs";
-import Poll               from "src/Poll.mjs";
-import PollCommand        from "src/PollCommand.mjs";
-import PollDialog         from "src/PollDialog.mjs";
-import registerSettings   from "src/settings.mjs";
-import Socket             from "src/Socket.mjs";
-import Utility            from "src/utility/Utility.mjs";
+import ChatCommands       from "compatibility/ChatCommands.mjs";
+import {constants}        from "constants.mjs";
+import ForienEasyPollsAPI from "ForienEasyPollsAPI.mjs";
+import Poll               from "Poll.mjs";
+import PollCommand        from "PollCommand.mjs";
+import PollDialog         from "PollDialog.mjs";
+import registerSettings   from "settings.mjs";
+import Socket             from "Socket.mjs";
+import Utility            from "utility/Utility.mjs";
 
 Hooks.once("init", () => {
   registerSettings();
