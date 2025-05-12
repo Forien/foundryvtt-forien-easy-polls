@@ -5,7 +5,7 @@ import Utility       from "utility/Utility.mjs";
 /**
  * @author Forien
  */
-export default class SavedPollsApp extends Application {
+export default class SavedPollsApp extends foundry.appv1.api.Application {
   static #templates = [
     "saved-polls-app.hbs",
   ];
@@ -35,7 +35,7 @@ export default class SavedPollsApp extends Application {
     });
   }
 
-  getData(options = {}) {
+  getData(_options = {}) {
     let i = 1;
     let polls = game.modules.get(constants.moduleId).api.savedPolls.polls.map(p => {
       p.index = i++;

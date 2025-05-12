@@ -8,7 +8,7 @@ import Utility               from "utility/Utility.mjs";
  *
  * @author Forien
  */
-export default class PollDialog extends Dialog {
+export default class PollDialog extends foundry.appv1.api.Dialog {
   static #templates = [
     "poll-dialog.hbs",
     "partials/forien-switch.hbs",
@@ -109,7 +109,7 @@ export default class PollDialog extends Dialog {
    * @inheritDoc
    */
   render(force = true, options = {}) {
-    return renderTemplate(Utility.getTemplate("poll-dialog.hbs"), this.getData(options)).then(content => {
+    return foundry.applications.handlebars.renderTemplate(Utility.getTemplate("poll-dialog.hbs"), this.getData(options)).then(content => {
       this.data.content = content;
 
       return super.render(force, options);

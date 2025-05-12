@@ -29,7 +29,7 @@ export default class VersionCheck {
     let mV = this.get(mN);
     let oV = game.settings.get(mN, "version");
 
-    return isNewerVersion(mV, oV);
+    return foundry.utils.isNewerVersion(mV, oV);
   }
 
   static set(mN, v) {

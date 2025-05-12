@@ -27,7 +27,7 @@ export default class Poll extends ChatMessage {
       settings: pollSettings,
     };
 
-    let message = await renderTemplate(Utility.getTemplate(this.#template), data);
+    let message = await foundry.applications.handlebars.renderTemplate(Utility.getTemplate(this.#template), data);
 
     let messageData = {
       content: message,
@@ -48,7 +48,7 @@ export default class Poll extends ChatMessage {
     if (!data) return;
 
     let isDisplayingResults = game.user.getFlag(constants.moduleId, flags.pollResults) || [];
-    data = duplicate(data);
+    data = foundry.utils.duplicate(data);
     data.isGM = game.user.isGM;
     data.results = isDisplayingResults.includes(chatMessage._id) && (data.isGM || data.settings.results === true);
     data.poll = chatMessage._id;
@@ -61,7 +61,7 @@ export default class Poll extends ChatMessage {
     });
     data.settings = await chatMessage.getFlag(constants.moduleId, flags.pollSettings);
 
-    let newHtml = await renderTemplate(Utility.getTemplate(this.#template), data);
+    let newHtml = await foundry.applications.handlebars.renderTemplate(Utility.getTemplate(this.#template), data);
     $(html).find(".message-content")
            .html(newHtml);
 
@@ -108,7 +108,7 @@ export default class Poll extends ChatMessage {
   static async #onToggleResults(event, chatMessage, html) {
     let poll = event.currentTarget.dataset.poll;
     let isDisplayingResults = game.user.getFlag(constants.moduleId, flags.pollResults) || [];
-    isDisplayingResults = duplicate(isDisplayingResults);
+    isDisplayingResults = foundry.utils.duplicate(isDisplayingResults);
 
     if (isDisplayingResults.includes(poll)) {
       isDisplayingResults = isDisplayingResults.filter(p => p !== poll);
@@ -146,7 +146,7 @@ export default class Poll extends ChatMessage {
 
   static async recalculate(data) {
     // remove reference;
-    data = duplicate(data);
+    data = foundry.utils.duplicate(data);
 
     data.total = data.answers.filter(a => a.status).length;
     data.parts.forEach(p => {

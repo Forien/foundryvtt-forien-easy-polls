@@ -101,11 +101,11 @@ export default class ChatCommands {
 
   static humanizeBinding(binding) {
     const stringParts = binding.modifiers.reduce((parts, part) => {
-      if (KeyboardManager.MODIFIER_CODES[part]?.includes(binding.key)) return parts;
-      parts.unshift(KeyboardManager.getKeycodeDisplayString(part));
+      if (foundry.helpers.interaction.KeyboardManager.MODIFIER_CODES[part]?.includes(binding.key)) return parts;
+      parts.unshift(foundry.helpers.interaction.KeyboardManager.getKeycodeDisplayString(part));
 
       return parts;
-    }, [KeyboardManager.getKeycodeDisplayString(binding.key)]);
+    }, [foundry.helpers.interaction.KeyboardManager.getKeycodeDisplayString(binding.key)]);
 
     return stringParts.join(" + ");
   }

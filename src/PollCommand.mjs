@@ -93,7 +93,7 @@ export default class PollCommand {
    * @return {*}
    */
   static checkCommand(messageText) {
-    const poll = new RegExp("^(\\/p(?:oll)?[ \s\n])", "i");
+    const poll = new RegExp("^(/p(?:oll)? )", "i");
 
     return messageText.match(poll);
   }
