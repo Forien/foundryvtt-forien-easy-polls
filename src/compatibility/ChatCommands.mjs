@@ -17,7 +17,10 @@ export default class ChatCommands {
       name: "/poll",
       module: "forien-easy-polls",
       icon: "<i class='fas fa-square-poll-horizontal'></i>",
-      description: game.i18n.format("Forien.EasyPolls.ChatCommander.CommandDescription", {keybind: '<span class="parameter">Shift + Enter</span>'}),
+      description: game.i18n.format(
+        "Forien.EasyPolls.ChatCommander.CommandDescription",
+        {keybind: "<span class=\"parameter\">Shift + Enter</span>"},
+      ),
       closeOnComplete: false,
       autocompleteCallback: (menu, alias, parameters) => {
         const entries = [];
@@ -26,8 +29,14 @@ export default class ChatCommands {
         if (parameters === "") {
           const characterNames = ChatCommands.getPCNamesAsOptions();
           entries.push(...[
-            game.chatCommands.createCommandElement("/poll --mode single Question\nYes\nNo", game.i18n.localize("Forien.EasyPolls.ChatCommander.SimpleYesNo")),
-            game.chatCommands.createCommandElement(`/poll --mode single --secret true Question\n${characterNames}`, game.i18n.localize("Forien.EasyPolls.ChatCommander.QuickPCPoll")),
+            game.chatCommands.createCommandElement(
+              "/poll --mode single Question\nYes\nNo",
+              game.i18n.localize("Forien.EasyPolls.ChatCommander.SimpleYesNo"),
+            ),
+            game.chatCommands.createCommandElement(
+              `/poll --mode single --secret true Question\n${characterNames}`,
+              game.i18n.localize("Forien.EasyPolls.ChatCommander.QuickPCPoll"),
+            ),
             game.chatCommands.createSeparatorElement(),
           ]);
         } else {
@@ -39,35 +48,53 @@ export default class ChatCommands {
         if (!partial) {
           if (!ChatCommands.containsMode(parameters)) {
             entries.push(...[
-              game.chatCommands.createCommandElement(`${alias} ${parameters}--mode `, game.i18n.localize("Forien.EasyPolls.ChatCommander.ParameterMode"))
+              game.chatCommands.createCommandElement(
+                `${alias} ${parameters}--mode `,
+                game.i18n.localize("Forien.EasyPolls.ChatCommander.ParameterMode"),
+              ),
             ]);
           }
 
           if (!ChatCommands.containsResults(parameters)) {
             entries.push(...[
-              game.chatCommands.createCommandElement(`${alias} ${parameters}--results `, game.i18n.localize("Forien.EasyPolls.ChatCommander.ParameterResults"))
+              game.chatCommands.createCommandElement(
+                `${alias} ${parameters}--results `,
+                game.i18n.localize("Forien.EasyPolls.ChatCommander.ParameterResults"),
+              ),
             ]);
           }
 
           if (!ChatCommands.containsSecret(parameters)) {
             entries.push(...[
-              game.chatCommands.createCommandElement(`${alias} ${parameters}--secret `, game.i18n.localize("Forien.EasyPolls.ChatCommander.ParameterSecret"))
+              game.chatCommands.createCommandElement(
+                `${alias} ${parameters}--secret `,
+                game.i18n.localize("Forien.EasyPolls.ChatCommander.ParameterSecret"),
+              ),
             ]);
           }
         }
 
         const pollBinding = ChatCommands.humanizeBinding(game.keybindings.get("forien-easy-polls", "pollDialog")[0]);
-        const savedPollsBinding = ChatCommands.humanizeBinding(game.keybindings.get("forien-easy-polls", "savedPollsDialog")[0]);
+        const savedPollsBinding = ChatCommands.humanizeBinding(game.keybindings.get(
+          "forien-easy-polls",
+          "savedPollsDialog",
+        )[0]);
 
         entries.push(...[
           game.chatCommands.createSeparatorElement(),
-          game.chatCommands.createInfoElement(game.i18n.format("Forien.EasyPolls.ChatCommander.DialogHint", {quickPollKey: `<span class="parameter">${pollBinding}</span>`, savedPollsKey: `<span class="parameter">${savedPollsBinding}</span>`})),
+          game.chatCommands.createInfoElement(game.i18n.format(
+            "Forien.EasyPolls.ChatCommander.DialogHint",
+            {
+              quickPollKey: `<span class="parameter">${pollBinding}</span>`,
+              savedPollsKey: `<span class="parameter">${savedPollsBinding}</span>`,
+            },
+          )),
         ]);
 
         entries.length = Math.min(entries.length, menu.maxEntries);
 
         return entries;
-      }
+      },
     });
   }
 
@@ -86,8 +113,14 @@ export default class ChatCommands {
   static checkPartialParameters(parameters, entries, alias) {
     if (ChatCommands.containsPartialMode(parameters)) {
       entries.push(...[
-        game.chatCommands.createCommandElement(`${alias} ${parameters}single `, game.i18n.localize("Forien.EasyPolls.ChatCommander.ModeSingle")),
-        game.chatCommands.createCommandElement(`${alias} ${parameters}multi `, game.i18n.localize("Forien.EasyPolls.ChatCommander.ModeMultiple"))
+        game.chatCommands.createCommandElement(
+          `${alias} ${parameters}single `,
+          game.i18n.localize("Forien.EasyPolls.ChatCommander.ModeSingle"),
+        ),
+        game.chatCommands.createCommandElement(
+          `${alias} ${parameters}multi `,
+          game.i18n.localize("Forien.EasyPolls.ChatCommander.ModeMultiple"),
+        ),
       ]);
 
       return true;
@@ -95,8 +128,14 @@ export default class ChatCommands {
 
     if (ChatCommands.containsPartialResults(parameters)) {
       entries.push(...[
-        game.chatCommands.createCommandElement(`${alias} ${parameters}true `, game.i18n.localize("Forien.EasyPolls.ChatCommander.ResultsTrue")),
-        game.chatCommands.createCommandElement(`${alias} ${parameters}false `, game.i18n.localize("Forien.EasyPolls.ChatCommander.ResultsFalse"))
+        game.chatCommands.createCommandElement(
+          `${alias} ${parameters}true `,
+          game.i18n.localize("Forien.EasyPolls.ChatCommander.ResultsTrue"),
+        ),
+        game.chatCommands.createCommandElement(
+          `${alias} ${parameters}false `,
+          game.i18n.localize("Forien.EasyPolls.ChatCommander.ResultsFalse"),
+        ),
       ]);
 
       return true;
@@ -104,8 +143,14 @@ export default class ChatCommands {
 
     if (ChatCommands.containsPartialSecret(parameters)) {
       entries.push(...[
-        game.chatCommands.createCommandElement(`${alias} ${parameters}true `, game.i18n.localize("Forien.EasyPolls.ChatCommander.SecretTrue")),
-        game.chatCommands.createCommandElement(`${alias} ${parameters}false `, game.i18n.localize("Forien.EasyPolls.ChatCommander.SecretFalse"))
+        game.chatCommands.createCommandElement(
+          `${alias} ${parameters}true `,
+          game.i18n.localize("Forien.EasyPolls.ChatCommander.SecretTrue"),
+        ),
+        game.chatCommands.createCommandElement(
+          `${alias} ${parameters}false `,
+          game.i18n.localize("Forien.EasyPolls.ChatCommander.SecretFalse"),
+        ),
       ]);
 
       return true;

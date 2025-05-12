@@ -1,16 +1,17 @@
-import Utility               from "src/utility/Utility.mjs";
-import Poll                  from "src/Poll.mjs";
 import {constants, settings} from "src/constants.mjs";
+import Poll                  from "src/Poll.mjs";
+import Utility               from "src/utility/Utility.mjs";
 
 /**
- * Poll Dialog inspired by macro made by flamewave000 that they provided in Pull Request #3 <https://github.com/Forien/foundryvtt-forien-easy-polls/pull/3>
+ * Poll Dialog inspired by macro made by flamewave000 that they provided in Pull Request #3
+ * <https://github.com/Forien/foundryvtt-forien-easy-polls/pull/3>
  *
  * @author Forien
  */
 export default class PollDialog extends Dialog {
   static #templates = [
     "poll-dialog.hbs",
-    "partials/forien-switch.hbs"
+    "partials/forien-switch.hbs",
   ];
 
   static get templates() {
@@ -36,19 +37,19 @@ export default class PollDialog extends Dialog {
     data.buttons = {
       cancel: {
         label: game.i18n.localize("Cancel"),
-        icon: '<i class="fas fa-times"></i>',
-        callback: this.close
+        icon: "<i class=\"fas fa-times\"></i>",
+        callback: this.close,
       },
       create: {
         label: game.i18n.localize("Create"),
-        icon: '<i class="fas fa-check"></i>',
+        icon: "<i class=\"fas fa-check\"></i>",
         callback: html => this.#createPollFromDialog(html, false),
       },
       createAndSave: {
         label: game.i18n.localize("Forien.EasyPolls.CreateAndSave"),
-        icon: '<i class="fas fa-check"></i>',
+        icon: "<i class=\"fas fa-check\"></i>",
         callback: html => this.#createPollFromDialog(html, true),
-      }
+      },
     };
     data.default = "create";
 
@@ -62,7 +63,7 @@ export default class PollDialog extends Dialog {
       this.data.settings = {
         mode: this.#getBooleanForMode(this.data.poll.options.mode),
         results: this.data.poll.options.results,
-        secret: this.data.poll.options.secret
+        secret: this.data.poll.options.secret,
       };
     }
 
@@ -91,7 +92,7 @@ export default class PollDialog extends Dialog {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["dialog", "forien-easy-polls", "poll-dialog", game.system.id],
-      width: 500
+      width: 500,
     });
   }
 
@@ -126,14 +127,14 @@ export default class PollDialog extends Dialog {
     const parts = [];
 
     html.find(".option-template").remove();
-    html.find(".poll-option").each(function() {
+    html.find(".poll-option").each(function () {
       parts.push($(this).val());
     });
 
     const options = {
       mode: this.#getModeFromCheckbox(html.find(".poll-controls input[type=checkbox][name=toggle-mode]").is(":checked")),
       results: html.find(".poll-controls input[type=checkbox][name=toggle-results]").is(":checked"),
-      secret: html.find(".poll-controls input[type=checkbox][name=toggle-secret]").is(":checked")
+      secret: html.find(".poll-controls input[type=checkbox][name=toggle-secret]").is(":checked"),
     };
 
     if (save) {
@@ -188,17 +189,21 @@ export default class PollDialog extends Dialog {
 
     html.find(".add-option").click(this.#onAddOptionClick.bind(this));
     html.find(".delete-option").click(this.#onDeleteOptionClick.bind(this));
-    html.find('.poll-controls .forien-switch-checkbox[name="toggle-mode"]').change(this.#onChangeModeCheckbox.bind(this))
-.trigger("change");
-    html.find('.poll-controls .forien-switch-checkbox[name="toggle-results"]').change(this.#onChangeResultsCheckbox.bind(this))
-.trigger("change");
-    html.find('.poll-controls .forien-switch-checkbox[name="toggle-secret"]').change(this.#onChangeSecretCheckbox.bind(this))
-.trigger("change");
+    html.find(".poll-controls .forien-switch-checkbox[name=\"toggle-mode\"]").change(this.#onChangeModeCheckbox.bind(
+          this))
+        .trigger("change");
+    html.find(".poll-controls .forien-switch-checkbox[name=\"toggle-results\"]").change(this.#onChangeResultsCheckbox.bind(
+          this))
+        .trigger("change");
+    html.find(".poll-controls .forien-switch-checkbox[name=\"toggle-secret\"]").change(this.#onChangeSecretCheckbox.bind(
+          this))
+        .trigger("change");
   }
 
   #changeCheckbox(event, label) {
     const checked = event.currentTarget.checked;
-    event.currentTarget.closest(".forien-switch").getElementsByClassName("forien-switch-actual-label")[0].textContent = label;
+    event.currentTarget.closest(".forien-switch").getElementsByClassName("forien-switch-actual-label")[0].textContent =
+      label;
   }
 
   #onChangeModeCheckbox(event) {

@@ -1,7 +1,7 @@
 const constants = {
   modulePath: "modules/forien-easy-polls",
   moduleId: "forien-easy-polls",
-  moduleLabel: "Forien's Easy Polls"
+  moduleLabel: "Forien's Easy Polls",
 };
 
 const defaults = {};
@@ -11,7 +11,7 @@ const flags = {
   pollData: "pollData",
   pollSettings: "pollSettings",
   pollResults: "pollResults",
-  savedPolls: "savedPolls"
+  savedPolls: "savedPolls",
 };
 
 const settings = {
@@ -21,8 +21,8 @@ const settings = {
   defaultSecret: "defaultSecret",
   keybindings: {
     pollDialog: "pollDialog",
-    savedPollsDialog: "savedPollsDialog"
-  }
+    savedPollsDialog: "savedPollsDialog",
+  },
 };
 
 export {constants, defaults, flags, settings};

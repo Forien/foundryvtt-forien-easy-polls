@@ -31,7 +31,7 @@ export default function registerSettings() {
     scope: "world",
     config: true,
     default: true,
-    type: Boolean
+    type: Boolean,
   });
 
   game.settings.register(constants.moduleId, settings.defaultMode, {
@@ -43,8 +43,8 @@ export default function registerSettings() {
     type: String,
     choices: {
       multiple: "Forien.EasyPolls.Settings.DefaultMode.Multiple",
-      single: "Forien.EasyPolls.Settings.DefaultMode.Single"
-    }
+      single: "Forien.EasyPolls.Settings.DefaultMode.Single",
+    },
   });
 
   game.settings.register(constants.moduleId, settings.defaultDisplay, {
@@ -53,7 +53,7 @@ export default function registerSettings() {
     scope: "world",
     config: true,
     default: true,
-    type: Boolean
+    type: Boolean,
   });
 
   game.settings.register(constants.moduleId, settings.defaultSecret, {
@@ -62,6 +62,6 @@ export default function registerSettings() {
     scope: "world",
     config: true,
     default: false,
-    type: Boolean
+    type: Boolean,
   });
 }

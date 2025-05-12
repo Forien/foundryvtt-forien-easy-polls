@@ -1,27 +1,27 @@
-import Poll                         from "src/Poll.mjs";
 import {constants, flags, settings} from "src/constants.mjs";
+import Poll                         from "src/Poll.mjs";
 import Utility                      from "src/utility/Utility.mjs";
 
 export default class PollCommand {
   static #flags = {
     mode: ["--mode", "--m"],
     results: ["--results", "--r"],
-    secret: ["--secret", "--s"]
+    secret: ["--secret", "--s"],
   };
 
   static #flagOptions = {
     mode: {
       multiple: ["m", "multi", "multiple"],
-      single: ["s", "single"]
+      single: ["s", "single"],
     },
     results: {
       true: ["t", "true"],
-      false: ["f", "false"]
+      false: ["f", "false"],
     },
     secret: {
       true: ["t", "true"],
-      false: ["f", "false"]
-    }
+      false: ["f", "false"],
+    },
   };
 
   static registerCommand() {

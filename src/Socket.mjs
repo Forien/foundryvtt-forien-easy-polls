@@ -1,6 +1,6 @@
 import {constants}   from "src/constants.mjs";
-import WorkshopError from "src/utility/Error.mjs";
 import Poll          from "src/Poll.mjs";
+import WorkshopError from "src/utility/Error.mjs";
 import Utility       from "src/utility/Utility.mjs";
 
 const capitalize = s => {
@@ -30,7 +30,7 @@ export default class Socket {
       answer: answer,
       status: status,
       multiple: multiple,
-      user: game.user._id
+      user: game.user._id,
     });
     Utility.notify(game.i18n.localize("Forien.EasyPolls.AnswerSent"));
   }

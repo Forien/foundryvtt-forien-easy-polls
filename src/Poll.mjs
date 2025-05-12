@@ -14,7 +14,7 @@ export default class Poll extends ChatMessage {
     const pollSettings = {
       mode: options.mode,
       results: options.results,
-      secret: options.secret
+      secret: options.secret,
     };
 
     data = {
@@ -24,13 +24,13 @@ export default class Poll extends ChatMessage {
         return {label: p, percent: 0, count: 0};
       }),
       answers: [],
-      settings: pollSettings
+      settings: pollSettings,
     };
 
     let message = await renderTemplate(Utility.getTemplate(this.#template), data);
 
     let messageData = {
-      content: message
+      content: message,
     };
 
     let messageEntity = await super.create(messageData, options);
@@ -56,13 +56,14 @@ export default class Poll extends ChatMessage {
       let answer = data.answers.find(a => a.user === game.user._id && a.label === p.label);
       p.checked = answer ? answer.status : false;
       p.voters = [];
-      data.answers.filter(a => a.label === p.label && a.status).forEach(a => p.voters.push(game.users.get(a.user)?.name));
+      data.answers.filter(a => a.label === p.label
+                               && a.status).forEach(a => p.voters.push(game.users.get(a.user)?.name));
     });
     data.settings = await chatMessage.getFlag(constants.moduleId, flags.pollSettings);
 
     let newHtml = await renderTemplate(Utility.getTemplate(this.#template), data);
     $(html).find(".message-content")
-.html(newHtml);
+           .html(newHtml);
 
     if (!listeners) return;
 
@@ -160,7 +161,7 @@ export default class Poll extends ChatMessage {
     return {
       label: answer,
       status: status,
-      user: user
+      user: user,
     };
   }
 }

@@ -1,13 +1,13 @@
-import Utility               from "src/utility/Utility.mjs";
-import {constants, settings} from "src/constants.mjs";
-import WorkshopError         from "src/utility/Error.mjs";
+import {constants}   from "src/constants.mjs";
+import WorkshopError from "src/utility/Error.mjs";
+import Utility       from "src/utility/Utility.mjs";
 
 /**
  * @author Forien
  */
 export default class SavedPollsApp extends Application {
   static #templates = [
-    "saved-polls-app.hbs"
+    "saved-polls-app.hbs",
   ];
 
   static get templates() {
@@ -31,7 +31,7 @@ export default class SavedPollsApp extends Application {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["forien-easy-polls", "saved-polls-app", game.system.id],
       template: Utility.getTemplate("saved-polls-app.hbs"),
-      title: game.i18n.localize("Forien.EasyPolls.SavedPollsApp.Title")
+      title: game.i18n.localize("Forien.EasyPolls.SavedPollsApp.Title"),
     });
   }
 
@@ -51,7 +51,7 @@ export default class SavedPollsApp extends Application {
     });
 
     return {
-      polls: polls
+      polls: polls,
     };
   }
 
@@ -102,5 +102,5 @@ export default class SavedPollsApp extends Application {
     return this.#api.renderPollDialog();
   }
 
-// #endregion
+  // #endregion
 }
