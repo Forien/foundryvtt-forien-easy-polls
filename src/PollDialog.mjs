@@ -1,6 +1,6 @@
-import Utility from './utility/Utility.mjs';
-import Poll from './Poll.mjs';
-import {constants, settings} from "./constants.mjs";
+import Utility               from 'src/utility/Utility.mjs';
+import Poll                  from 'src/Poll.mjs';
+import {constants, settings} from "src/constants.mjs";
 
 /**
  * Poll Dialog inspired by macro made by flamewave000 that they provided in Pull Request #3 <https://github.com/Forien/foundryvtt-forien-easy-polls/pull/3>

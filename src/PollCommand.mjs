@@ -1,6 +1,6 @@
-import Poll from './Poll.mjs';
-import {constants, flags, settings} from './constants.mjs';
-import Utility from "./utility/Utility.mjs";
+import Poll                         from 'src/Poll.mjs';
+import {constants, flags, settings} from 'src/constants.mjs';
+import Utility                      from "src/utility/Utility.mjs";
 
 export default class PollCommand {
   static #flags = {

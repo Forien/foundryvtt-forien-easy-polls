@@ -1,4 +1,4 @@
-import Utility from "../utility/Utility.mjs";
+import Utility from "src/utility/Utility.mjs";
 
 export default class ChatCommands {
   static register() {

@@ -1,7 +1,7 @@
-import {constants} from './constants.mjs';
-import WorkshopError from './utility/Error.mjs';
-import Poll from './Poll.mjs';
-import Utility from './utility/Utility.mjs';
+import {constants}   from 'src/constants.mjs';
+import WorkshopError from 'src/utility/Error.mjs';
+import Poll          from 'src/Poll.mjs';
+import Utility       from 'src/utility/Utility.mjs';
 
 const capitalize = (s) => {
   if (typeof s !== 'string') return undefined;

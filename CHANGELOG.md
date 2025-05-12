@@ -1,5 +1,13 @@
 # Changelog
 
+## v2.0.0
+- Restructured the entire project, introduced rollup and eslint
+  - Moved source files from `dist` to `src`
+  - Moved sass stylesheets from `src/styles` to `styles`
+  - Moved static files from `dist` and `src` to `static`
+  - The entire codebase is now compiled into a single `forien-easy-polls.mjs` file, which should lower amount of files
+    browsers need to load, and also help narrowing down if an error comes from this module
+
 ## v1.1.1
 * Added number of Answers to table on the Saved Polls App
 * Saved Polls App now updates when a Saved Poll is updated (created or deleted)

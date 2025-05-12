@@ -1,8 +1,7 @@
 .idea/
+styles/.sass-cache/
 devtool/
 node_modules/
-src/styles/.sass-cache/
-dist/languages/untranslated.json
-changelog.html
-foundry.js
-package.json
+_oldStuff
+dist/*
+.env

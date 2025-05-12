@@ -1,4 +1,4 @@
-import {constants, flags} from "./constants.mjs";
+import {constants, flags} from "src/constants.mjs";
 
 export default class SavedPolls {
   static #instance;

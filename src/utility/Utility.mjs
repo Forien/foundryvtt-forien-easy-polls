@@ -1,4 +1,4 @@
-import {constants, settings} from '../constants.mjs';
+import {constants, settings} from 'src/constants.mjs';
 
 export default class Utility {
   static notify(notification, {type = 'info', permanent = false, consoleOnly = false} = {}) {
@@ -32,7 +32,7 @@ export default class Utility {
     Utility.notify("Preloading Templates.", {consoleOnly: true})
 
     templates = templates.map(Utility.getTemplate);
-    loadTemplates(templates).then(() => {
+    foundry.applications.handlebars.loadTemplates(templates).then(() => {
       Utility.notify("Templates preloaded.", {consoleOnly: true})
     });
   }

@@ -1,6 +1,6 @@
-import Utility from './utility/Utility.mjs';
-import {constants, settings} from "./constants.mjs";
-import WorkshopError from "./utility/Error.mjs";
+import Utility               from 'src/utility/Utility.mjs';
+import {constants, settings} from "src/constants.mjs";
+import WorkshopError         from "src/utility/Error.mjs";
 
 /**
  * @author Forien

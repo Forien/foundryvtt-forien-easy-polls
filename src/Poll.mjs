@@ -1,7 +1,7 @@
-import {constants, flags} from './constants.mjs';
-import Socket from './Socket.mjs';
-import WorkshopError from './utility/Error.mjs';
-import Utility from './utility/Utility.mjs';
+import {constants, flags} from 'src/constants.mjs';
+import Socket             from 'src/Socket.mjs';
+import WorkshopError      from 'src/utility/Error.mjs';
+import Utility            from 'src/utility/Utility.mjs';
 
 export default class Poll extends ChatMessage {
   static #template = 'poll.hbs';
