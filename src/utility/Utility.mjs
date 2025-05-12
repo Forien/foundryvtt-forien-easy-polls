@@ -1,24 +1,24 @@
-import {constants, settings} from 'src/constants.mjs';
+import {constants, settings} from "src/constants.mjs";
 
 export default class Utility {
-  static notify(notification, {type = 'info', permanent = false, consoleOnly = false} = {}) {
+  static notify(notification, {type = "info", permanent = false, consoleOnly = false} = {}) {
     // brand colour: '#3e1395' is too dark for dark mode console;
-    const purple = 'purple';
+    const purple = "purple";
     let colour;
 
     switch (type) {
-      case 'error':
-        colour = '#aa2222';
+      case "error":
+        colour = "#aa2222";
         break;
-      case 'warning':
-        colour = '#aaaa22';
+      case "warning":
+        colour = "#aaaa22";
         break;
-      case 'info':
+      case "info":
       default:
-        colour = '#22aa22';
+        colour = "#22aa22";
     }
 
-    console.log(`🦊 %c${constants.moduleLabel}: %c${notification}`, 'color: purple', `color: ${colour}`);
+    console.log(`🦊 %c${constants.moduleLabel}: %c${notification}`, "color: purple", `color: ${colour}`);
 
     if (!consoleOnly)
       ui?.notifications?.notify(notification, type, {permanent: permanent, console: false});
@@ -29,11 +29,11 @@ export default class Utility {
   }
 
   static async preloadTemplates(templates = []) {
-    Utility.notify("Preloading Templates.", {consoleOnly: true})
+    Utility.notify("Preloading Templates.", {consoleOnly: true});
 
     templates = templates.map(Utility.getTemplate);
     foundry.applications.handlebars.loadTemplates(templates).then(() => {
-      Utility.notify("Templates preloaded.", {consoleOnly: true})
+      Utility.notify("Templates preloaded.", {consoleOnly: true});
     });
   }
 

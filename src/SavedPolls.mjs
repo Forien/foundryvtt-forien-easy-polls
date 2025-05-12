@@ -2,6 +2,7 @@ import {constants, flags} from "src/constants.mjs";
 
 export default class SavedPolls {
   static #instance;
+
   /**
    * @type {Map<string, Module>}
    */
@@ -15,12 +16,13 @@ export default class SavedPolls {
     if (!(SavedPolls.#instance instanceof SavedPolls))
       SavedPolls.#instance = new SavedPolls();
 
-    return SavedPolls.#instance
+    return SavedPolls.#instance;
   }
 
   savePoll(question, parts, options, id = null) {
     if (id === null) id = foundry.utils.randomID();
     this.polls.set(id, {question, parts, options, id});
+
     return this.#save();
   }
 
@@ -31,7 +33,7 @@ export default class SavedPolls {
     if (polls)
       polls.forEach(p => {
         loaded.push([p.id, p]);
-      })
+      });
 
     return loaded;
   }
@@ -41,11 +43,12 @@ export default class SavedPolls {
    * @param {string} key
    */
   get(key) {
-    return this.polls.get(key)
+    return this.polls.get(key);
   }
 
   delete(key) {
-    this.polls.delete(key)
+    this.polls.delete(key);
+
     return this.#save();
   }
 

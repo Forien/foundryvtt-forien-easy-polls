@@ -1,5 +1,5 @@
-import Utility               from 'src/utility/Utility.mjs';
-import Poll                  from 'src/Poll.mjs';
+import Utility               from "src/utility/Utility.mjs";
+import Poll                  from "src/Poll.mjs";
 import {constants, settings} from "src/constants.mjs";
 
 /**
@@ -9,15 +9,15 @@ import {constants, settings} from "src/constants.mjs";
  */
 export default class PollDialog extends Dialog {
   static #templates = [
-    'poll-dialog.hbs',
-    'partials/forien-switch.hbs'
+    "poll-dialog.hbs",
+    "partials/forien-switch.hbs"
   ];
 
   static get templates() {
     return this.#templates;
   }
 
-  //#region Setup
+  // #region Setup
 
   /**
    * @inheritDoc
@@ -35,22 +35,22 @@ export default class PollDialog extends Dialog {
     data.pollOptions = 0;
     data.buttons = {
       cancel: {
-        label: game.i18n.localize('Cancel'),
+        label: game.i18n.localize("Cancel"),
         icon: '<i class="fas fa-times"></i>',
         callback: this.close
       },
       create: {
-        label: game.i18n.localize('Create'),
+        label: game.i18n.localize("Create"),
         icon: '<i class="fas fa-check"></i>',
-        callback: (html) => this.#createPollFromDialog(html, false),
+        callback: html => this.#createPollFromDialog(html, false),
       },
       createAndSave: {
-        label: game.i18n.localize('Forien.EasyPolls.CreateAndSave'),
+        label: game.i18n.localize("Forien.EasyPolls.CreateAndSave"),
         icon: '<i class="fas fa-check"></i>',
-        callback: (html) => this.#createPollFromDialog(html, true),
+        callback: html => this.#createPollFromDialog(html, true),
       }
-    }
-    data.default = 'create';
+    };
+    data.default = "create";
 
     return data;
   }
@@ -63,24 +63,24 @@ export default class PollDialog extends Dialog {
         mode: this.#getBooleanForMode(this.data.poll.options.mode),
         results: this.data.poll.options.results,
         secret: this.data.poll.options.secret
-      }
+      };
     }
 
     if (!this.data.poll) {
       this.data.poll = {
-        parts: ['', ''],
+        parts: ["", ""],
       };
 
       this.data.settings = {
         mode: this.#getBooleanForMode(game.settings.get(constants.moduleId, settings.defaultMode)),
         results: game.settings.get(constants.moduleId, settings.defaultDisplay),
         secret: game.settings.get(constants.moduleId, settings.defaultSecret),
-      }
+      };
     }
 
     this.data.poll.indexedParts = this.data.poll.parts.map(part => {
-      return {index: ++this.data.pollOptions, part: part}
-    })
+      return {index: ++this.data.pollOptions, part: part};
+    });
 
     return this.data;
   }
@@ -90,7 +90,7 @@ export default class PollDialog extends Dialog {
    */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ['dialog', 'forien-easy-polls', 'poll-dialog', game.system.id],
+      classes: ["dialog", "forien-easy-polls", "poll-dialog", game.system.id],
       width: 500
     });
   }
@@ -99,19 +99,20 @@ export default class PollDialog extends Dialog {
    * @inheritDoc
    */
   get title() {
-    return game.i18n.localize('Forien.EasyPolls.PollDialog.Title');
+    return game.i18n.localize("Forien.EasyPolls.PollDialog.Title");
   }
 
-  //#endregion
+  // #endregion
 
   /**
    * @inheritDoc
    */
   render(force = true, options = {}) {
-    return renderTemplate(Utility.getTemplate('poll-dialog.hbs'), this.getData(options)).then((content) => {
+    return renderTemplate(Utility.getTemplate("poll-dialog.hbs"), this.getData(options)).then(content => {
       this.data.content = content;
+
       return super.render(force, options);
-    })
+    });
   }
 
   /**
@@ -121,26 +122,26 @@ export default class PollDialog extends Dialog {
    * @return {Promise<abstract.Document>}
    */
   #createPollFromDialog(html, save = false) {
-    const question = html.find('.poll-title').val();
+    const question = html.find(".poll-title").val();
     const parts = [];
 
-    html.find('.option-template').remove();
-    html.find('.poll-option').each(function () {
-      parts.push($(this).val())
+    html.find(".option-template").remove();
+    html.find(".poll-option").each(function() {
+      parts.push($(this).val());
     });
 
     const options = {
-      mode: this.#getModeFromCheckbox(html.find('.poll-controls input[type=checkbox][name=toggle-mode]').is(':checked')),
-      results: html.find('.poll-controls input[type=checkbox][name=toggle-results]').is(':checked'),
-      secret: html.find('.poll-controls input[type=checkbox][name=toggle-secret]').is(':checked')
-    }
+      mode: this.#getModeFromCheckbox(html.find(".poll-controls input[type=checkbox][name=toggle-mode]").is(":checked")),
+      results: html.find(".poll-controls input[type=checkbox][name=toggle-results]").is(":checked"),
+      secret: html.find(".poll-controls input[type=checkbox][name=toggle-secret]").is(":checked")
+    };
 
     if (save) {
       let id = this.data.poll.id || null;
       this.#savePollData(question, parts, options, id);
     }
 
-    return Poll.create({question, parts}, options)
+    return Poll.create({question, parts}, options);
   }
 
   #savePollData(question, parts, options, id = null) {
@@ -153,7 +154,7 @@ export default class PollDialog extends Dialog {
    * @return {string}
    */
   #getModeFromCheckbox(value) {
-    return value ? 'multiple' : 'single';
+    return value ? "multiple" : "single";
   }
 
   /**
@@ -162,20 +163,22 @@ export default class PollDialog extends Dialog {
    * @return {boolean}
    */
   #getBooleanForMode(mode) {
-    return mode === 'multiple';
+    return mode === "multiple";
   }
 
   #getModeLabel(value) {
-    return game.i18n.localize('Forien.EasyPolls.Settings.DefaultMode.' + (value === true ? 'Multiple' : 'Single'));
-  }
-  #getResultsLabel(value) {
-    return game.i18n.localize('Forien.EasyPolls.ToggleSettingResults.' + (value === true ? 'Enable' : 'Disable'));
-  }
-  #getSecretLabel(value) {
-    return game.i18n.localize('Forien.EasyPolls.ToggleSettingSecret.' + (value === true ? 'Enable' : 'Disable'));
+    return game.i18n.localize("Forien.EasyPolls.Settings.DefaultMode." + (value === true ? "Multiple" : "Single"));
   }
 
-  //#region Listeners
+  #getResultsLabel(value) {
+    return game.i18n.localize("Forien.EasyPolls.ToggleSettingResults." + (value === true ? "Enable" : "Disable"));
+  }
+
+  #getSecretLabel(value) {
+    return game.i18n.localize("Forien.EasyPolls.ToggleSettingSecret." + (value === true ? "Enable" : "Disable"));
+  }
+
+  // #region Listeners
 
   /**
    * @inheritDoc
@@ -183,16 +186,19 @@ export default class PollDialog extends Dialog {
   activateListeners(html) {
     super.activateListeners(html);
 
-    html.find('.add-option').click(this.#onAddOptionClick.bind(this));
-    html.find('.delete-option').click(this.#onDeleteOptionClick.bind(this));
-    html.find('.poll-controls .forien-switch-checkbox[name="toggle-mode"]').change(this.#onChangeModeCheckbox.bind(this)).trigger('change');
-    html.find('.poll-controls .forien-switch-checkbox[name="toggle-results"]').change(this.#onChangeResultsCheckbox.bind(this)).trigger('change');
-    html.find('.poll-controls .forien-switch-checkbox[name="toggle-secret"]').change(this.#onChangeSecretCheckbox.bind(this)).trigger('change');
+    html.find(".add-option").click(this.#onAddOptionClick.bind(this));
+    html.find(".delete-option").click(this.#onDeleteOptionClick.bind(this));
+    html.find('.poll-controls .forien-switch-checkbox[name="toggle-mode"]').change(this.#onChangeModeCheckbox.bind(this))
+.trigger("change");
+    html.find('.poll-controls .forien-switch-checkbox[name="toggle-results"]').change(this.#onChangeResultsCheckbox.bind(this))
+.trigger("change");
+    html.find('.poll-controls .forien-switch-checkbox[name="toggle-secret"]').change(this.#onChangeSecretCheckbox.bind(this))
+.trigger("change");
   }
 
   #changeCheckbox(event, label) {
     const checked = event.currentTarget.checked;
-    event.currentTarget.closest('.forien-switch').getElementsByClassName('forien-switch-actual-label')[0].textContent = label;
+    event.currentTarget.closest(".forien-switch").getElementsByClassName("forien-switch-actual-label")[0].textContent = label;
   }
 
   #onChangeModeCheckbox(event) {
@@ -200,11 +206,13 @@ export default class PollDialog extends Dialog {
     let label = this.#getModeLabel(checked);
     this.#changeCheckbox(event, label);
   }
+
   #onChangeResultsCheckbox(event) {
     const checked = event.currentTarget.checked;
     let label = this.#getResultsLabel(checked);
     this.#changeCheckbox(event, label);
   }
+
   #onChangeSecretCheckbox(event) {
     const checked = event.currentTarget.checked;
     let label = this.#getSecretLabel(checked);
@@ -218,19 +226,19 @@ export default class PollDialog extends Dialog {
   #onAddOptionClick(event) {
     this.data.pollOptions++;
 
-    const table = event.currentTarget.closest('#poll-dialog-table');
-    const template = table.getElementsByClassName('option-template')[0];
+    const table = event.currentTarget.closest("#poll-dialog-table");
+    const template = table.getElementsByClassName("option-template")[0];
 
     let entry = template.cloneNode(true);
-    entry.classList.remove('option-template', 'hidden');
+    entry.classList.remove("option-template", "hidden");
 
-    let input = entry.getElementsByClassName('poll-option')[0];
-    input.setAttribute('placeholder', input.getAttribute('placeholder').replace('{PON}', this.data.pollOptions));
+    let input = entry.getElementsByClassName("poll-option")[0];
+    input.setAttribute("placeholder", input.getAttribute("placeholder").replace("{PON}", this.data.pollOptions));
 
-    let number = entry.getElementsByClassName('ordering-number')[0];
+    let number = entry.getElementsByClassName("ordering-number")[0];
     number.textContent = `${this.data.pollOptions}.`;
 
-    table.getElementsByClassName('poll-options')[0].append(entry);
+    table.getElementsByClassName("poll-options")[0].append(entry);
     const style = getComputedStyle(entry);
     const height = parseInt(style.height);
     this.setPosition({height: this.position.height + height});
@@ -245,7 +253,7 @@ export default class PollDialog extends Dialog {
    */
   #onDeleteOptionClick(event) {
     this.data.pollOptions--;
-    const row = event.currentTarget.closest('tr');
+    const row = event.currentTarget.closest("tr");
     const style = getComputedStyle(row);
     const height = parseInt(style.height);
     this.setPosition({height: this.position.height - height});

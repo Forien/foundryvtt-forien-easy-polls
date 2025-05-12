@@ -1,10 +1,10 @@
-import {constants, flags} from 'src/constants.mjs';
-import Socket             from 'src/Socket.mjs';
-import WorkshopError      from 'src/utility/Error.mjs';
-import Utility            from 'src/utility/Utility.mjs';
+import {constants, flags} from "src/constants.mjs";
+import Socket             from "src/Socket.mjs";
+import WorkshopError      from "src/utility/Error.mjs";
+import Utility            from "src/utility/Utility.mjs";
 
 export default class Poll extends ChatMessage {
-  static #template = 'poll.hbs';
+  static #template = "poll.hbs";
 
   static get templates() {
     return [this.#template];
@@ -15,13 +15,13 @@ export default class Poll extends ChatMessage {
       mode: options.mode,
       results: options.results,
       secret: options.secret
-    }
+    };
 
     data = {
       total: 0,
       question: data.question,
       parts: data.parts.map(p => {
-        return {label: p, percent: 0, count: 0}
+        return {label: p, percent: 0, count: 0};
       }),
       answers: [],
       settings: pollSettings
@@ -42,7 +42,7 @@ export default class Poll extends ChatMessage {
   }
 
   static async renderPoll(chatMessage, html, listeners = true) {
-    $(html).addClass('forien-poll');
+    $(html).addClass("forien-poll");
     $(html).addClass(game.system.name);
     let data = await chatMessage.getFlag(constants.moduleId, flags.pollData);
     if (!data) return;
@@ -50,10 +50,10 @@ export default class Poll extends ChatMessage {
     let isDisplayingResults = game.user.getFlag(constants.moduleId, flags.pollResults) || [];
     data = duplicate(data);
     data.isGM = game.user.isGM;
-    data.results = (isDisplayingResults.includes(chatMessage._id) && (data.isGM || data.settings.results === true));
+    data.results = isDisplayingResults.includes(chatMessage._id) && (data.isGM || data.settings.results === true);
     data.poll = chatMessage._id;
     data.parts.forEach(p => {
-      let answer = data.answers.find(a => a.user === game.user._id && a.label === p.label)
+      let answer = data.answers.find(a => a.user === game.user._id && a.label === p.label);
       p.checked = answer ? answer.status : false;
       p.voters = [];
       data.answers.filter(a => a.label === p.label && a.status).forEach(a => p.voters.push(game.users.get(a.user)?.name));
@@ -61,36 +61,37 @@ export default class Poll extends ChatMessage {
     data.settings = await chatMessage.getFlag(constants.moduleId, flags.pollSettings);
 
     let newHtml = await renderTemplate(Utility.getTemplate(this.#template), data);
-    $(html).find('.message-content').html(newHtml);
+    $(html).find(".message-content")
+.html(newHtml);
 
     if (!listeners) return;
 
 
-    html.on('click', 'input.poll-answer', (event) => {
+    html.on("click", "input.poll-answer", event => {
       let answer = event.currentTarget.dataset.answer;
       let poll = event.currentTarget.dataset.poll;
       let checked = event.currentTarget.checked;
       let type = event.currentTarget.type;
-      Socket.sendAnswer(poll, answer, checked, type === 'checkbox');
+      Socket.sendAnswer(poll, answer, checked, type === "checkbox");
     });
 
-    html.on('click', 'button.toggle-results', (event) => {
-      Poll.#onToggleResults(event, chatMessage, html)
+    html.on("click", "button.toggle-results", event => {
+      Poll.#onToggleResults(event, chatMessage, html);
     });
 
     if (!game.user.isGM)
       return;
 
-    html.on('click', 'button.toggle-setting-mode', () => {
-      Poll.#onToggleSetting('mode', chatMessage, html)
+    html.on("click", "button.toggle-setting-mode", () => {
+      Poll.#onToggleSetting("mode", chatMessage, html);
     });
 
-    html.on('click', 'button.toggle-setting-results', () => {
-      Poll.#onToggleSetting('results', chatMessage, html)
+    html.on("click", "button.toggle-setting-results", () => {
+      Poll.#onToggleSetting("results", chatMessage, html);
     });
 
-    html.on('click', 'button.toggle-setting-secret', () => {
-      Poll.#onToggleSetting('secret', chatMessage, html)
+    html.on("click", "button.toggle-setting-secret", () => {
+      Poll.#onToggleSetting("secret", chatMessage, html);
     });
   }
 
@@ -109,12 +110,12 @@ export default class Poll extends ChatMessage {
     isDisplayingResults = duplicate(isDisplayingResults);
 
     if (isDisplayingResults.includes(poll)) {
-      isDisplayingResults = isDisplayingResults.filter(p => p !== poll)
+      isDisplayingResults = isDisplayingResults.filter(p => p !== poll);
     } else {
       isDisplayingResults.push(poll);
     }
 
-    await game.user.setFlag(constants.moduleId, flags.pollResults, isDisplayingResults)
+    await game.user.setFlag(constants.moduleId, flags.pollResults, isDisplayingResults);
     await this.renderPoll(chatMessage, html, false);
   }
 
@@ -135,10 +136,11 @@ export default class Poll extends ChatMessage {
         data = await this.recalculate(data);
 
         await poll.setFlag(constants.moduleId, flags.pollData, data);
+
         return;
       }
     }
-    throw new WorkshopError(game.i18n.format('Forien.EasyPolls.console.errors.noPoll'));
+    throw new WorkshopError(game.i18n.format("Forien.EasyPolls.console.errors.noPoll"));
   }
 
   static async recalculate(data) {
@@ -147,7 +149,7 @@ export default class Poll extends ChatMessage {
 
     data.total = data.answers.filter(a => a.status).length;
     data.parts.forEach(p => {
-      p.count = data.answers.filter(a => (p.label === a.label && a.status === true)).length;
+      p.count = data.answers.filter(a => p.label === a.label && a.status === true).length;
       p.percent = Math.round(p.count / data.total * 100);
     });
 
@@ -159,6 +161,6 @@ export default class Poll extends ChatMessage {
       label: answer,
       status: status,
       user: user
-    }
+    };
   }
 }

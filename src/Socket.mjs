@@ -1,11 +1,12 @@
-import {constants}   from 'src/constants.mjs';
-import WorkshopError from 'src/utility/Error.mjs';
-import Poll          from 'src/Poll.mjs';
-import Utility       from 'src/utility/Utility.mjs';
+import {constants}   from "src/constants.mjs";
+import WorkshopError from "src/utility/Error.mjs";
+import Poll          from "src/Poll.mjs";
+import Utility       from "src/utility/Utility.mjs";
 
-const capitalize = (s) => {
-  if (typeof s !== 'string') return undefined;
-  return s.charAt(0).toUpperCase() + s.slice(1)
+const capitalize = s => {
+  if (typeof s !== "string") return undefined;
+
+  return s.charAt(0).toUpperCase() + s.slice(1);
 };
 
 export default class Socket {
@@ -14,7 +15,7 @@ export default class Socket {
   static needsGM() {
     let GMs = game.users.filter(u => u.isGM && u.active);
     if (GMs.length === 0) {
-      throw new WorkshopError(game.i18n.localize('Forien.EasyPolls.Notifications.NoGM'));
+      throw new WorkshopError(game.i18n.localize("Forien.EasyPolls.Notifications.NoGM"));
     }
   }
 
@@ -24,20 +25,20 @@ export default class Socket {
 
     this.needsGM();
     game.socket.emit(this.socket, {
-      event: 'sendAnswer',
+      event: "sendAnswer",
       poll: poll,
       answer: answer,
       status: status,
       multiple: multiple,
       user: game.user._id
-    })
-    Utility.notify(game.i18n.localize('Forien.EasyPolls.AnswerSent'));
+    });
+    Utility.notify(game.i18n.localize("Forien.EasyPolls.AnswerSent"));
   }
 
   static listen() {
-    game.socket.on(this.socket, (data) => {
+    game.socket.on(this.socket, data => {
       try {
-        this['on' + capitalize(data.event)](data);
+        this["on" + capitalize(data.event)](data);
       } catch (e) {
         this.onundefined(data);
       }
@@ -50,7 +51,7 @@ export default class Socket {
   }
 
   static onundefined(data) {
-    let msg = game.i18n.format('Forien.EasyPolls.console.errors.undefined-event', {event: data.event});
+    let msg = game.i18n.format("Forien.EasyPolls.console.errors.undefined-event", {event: data.event});
     throw new WorkshopError(msg);
   }
 }

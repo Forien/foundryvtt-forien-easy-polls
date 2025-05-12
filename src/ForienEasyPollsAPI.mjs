@@ -1,11 +1,11 @@
-import Poll          from 'src/Poll.mjs';
-import PollCommand   from 'src/PollCommand.mjs';
-import PollDialog    from 'src/PollDialog.mjs';
+import Poll          from "src/Poll.mjs";
+import PollCommand   from "src/PollCommand.mjs";
+import PollDialog    from "src/PollDialog.mjs";
 import SavedPolls    from "src/SavedPolls.mjs";
 import SavedPollsApp from "src/SavedPollsApp.mjs";
 
 export default class ForienEasyPollsAPI {
-  //#region private
+  // #region private
 
   constructor() {
   }
@@ -26,7 +26,7 @@ export default class ForienEasyPollsAPI {
     return PollCommand;
   }
 
-  //#endregion
+  // #endregion
 
   /**
    * Returns a SavedPollsApp Class
@@ -56,7 +56,7 @@ export default class ForienEasyPollsAPI {
    * @return {Promise<*>}
    */
   async renderPollDialog(force = true, options = {}) {
-    return await (new this.pollDialog()).render(force, options);
+    return await new this.pollDialog().render(force, options);
   }
 
   /**
@@ -67,7 +67,7 @@ export default class ForienEasyPollsAPI {
    * @return {Promise<*>}
    */
   async renderSavedPollsApp(force = true, options = {}) {
-    return (new this.savedPollsApp()).render(force, options);
+    return new this.savedPollsApp().render(force, options);
   }
 
   /**
@@ -78,7 +78,7 @@ export default class ForienEasyPollsAPI {
    * @return {Promise<abstract.Document>}
    */
   async createPollFromMultiline(content) {
-    return await this.#pollCommandClass.createPoll(content)
+    return await this.#pollCommandClass.createPoll(content);
   }
 
   /**
@@ -89,8 +89,8 @@ export default class ForienEasyPollsAPI {
    * @param {{}} options
    * @return {Promise<abstract.Document>}
    */
-  async createPoll(question, parts, options){
-    return await this.#pollClass.create({question, parts}, options)
+  async createPoll(question, parts, options) {
+    return await this.#pollClass.create({question, parts}, options);
   }
 
   /**

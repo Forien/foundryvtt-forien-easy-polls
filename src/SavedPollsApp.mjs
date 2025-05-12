@@ -1,4 +1,4 @@
-import Utility               from 'src/utility/Utility.mjs';
+import Utility               from "src/utility/Utility.mjs";
 import {constants, settings} from "src/constants.mjs";
 import WorkshopError         from "src/utility/Error.mjs";
 
@@ -7,7 +7,7 @@ import WorkshopError         from "src/utility/Error.mjs";
  */
 export default class SavedPollsApp extends Application {
   static #templates = [
-    'saved-polls-app.hbs'
+    "saved-polls-app.hbs"
   ];
 
   static get templates() {
@@ -16,7 +16,7 @@ export default class SavedPollsApp extends Application {
 
   #api;
 
-  //#region Setup
+  // #region Setup
 
   constructor(options = {}) {
     super(options);
@@ -29,9 +29,9 @@ export default class SavedPollsApp extends Application {
    */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ['forien-easy-polls', 'saved-polls-app', game.system.id],
-      template: Utility.getTemplate('saved-polls-app.hbs'),
-      title: game.i18n.localize('Forien.EasyPolls.SavedPollsApp.Title')
+      classes: ["forien-easy-polls", "saved-polls-app", game.system.id],
+      template: Utility.getTemplate("saved-polls-app.hbs"),
+      title: game.i18n.localize("Forien.EasyPolls.SavedPollsApp.Title")
     });
   }
 
@@ -40,9 +40,9 @@ export default class SavedPollsApp extends Application {
     let polls = game.modules.get(constants.moduleId).api.savedPolls.polls.map(p => {
       p.index = i++;
       if (p.question.length > 50) {
-        p.question = p.question.substring(0, 50) + '…';
+        p.question = p.question.substring(0, 50) + "…";
       }
-      p.isMultiple = p.options.mode === 'multiple';
+      p.isMultiple = p.options.mode === "multiple";
       p.showResults = p.options.results === true;
       p.isSecret = p.options.secret === true;
       p.answers = p.parts.length;
@@ -52,7 +52,7 @@ export default class SavedPollsApp extends Application {
 
     return {
       polls: polls
-    }
+    };
   }
 
   #registerHook() {
@@ -64,42 +64,43 @@ export default class SavedPollsApp extends Application {
       this.render();
   }
 
-  //#endregion
+  // #endregion
 
-  //#region Listeners
+  // #region Listeners
 
   activateListeners(html) {
     super.activateListeners(html);
 
-    html.find('.post-poll').click((ev) => this.#onClickPollControl(ev, 'post'));
-    html.find('.edit-poll').click((ev) => this.#onClickPollControl(ev, 'edit'));
-    html.find('.delete-poll').click((ev) => this.#onClickPollControl(ev, 'delete'));
-    html.find('.create-poll').click(this.#onClickCreateNewPoll.bind(this));
+    html.find(".post-poll").click(ev => this.#onClickPollControl(ev, "post"));
+    html.find(".edit-poll").click(ev => this.#onClickPollControl(ev, "edit"));
+    html.find(".delete-poll").click(ev => this.#onClickPollControl(ev, "delete"));
+    html.find(".create-poll").click(this.#onClickCreateNewPoll.bind(this));
   }
 
   #onClickPollControl(event, action) {
-    const pollId = event.currentTarget.closest('.poll-entry').dataset.poll;
+    const pollId = event.currentTarget.closest(".poll-entry").dataset.poll;
     let poll = this.#api.savedPolls.get(pollId);
 
     switch (action) {
-      case 'delete':
+      case "delete":
         this.#api.savedPolls.delete(pollId).then(() => this.render());
         break;
-      case 'post':
+      case "post":
         this.#api.createPoll(poll.question, poll.parts, poll.options);
         break;
-      case 'edit':
+      case "edit":
         this.#api.renderPollDialog(true, {poll: poll});
         break;
       default:
-        throw new WorkshopError('Unknown Action provided for SavedPollsApp.#onClickPollControl method');
+        throw new WorkshopError("Unknown Action provided for SavedPollsApp.#onClickPollControl method");
     }
   }
 
   #onClickCreateNewPoll() {
     this.close();
+
     return this.#api.renderPollDialog();
   }
 
-//#endregion
+// #endregion
 }

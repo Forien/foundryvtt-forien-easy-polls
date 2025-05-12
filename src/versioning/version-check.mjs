@@ -13,11 +13,11 @@ export default class VersionCheck {
   static _reg(mN) {
     if (this._r) return;
 
-    game.settings.register(mN, 'version', {
+    game.settings.register(mN, "version", {
       name: `${mN} Version`,
-      default: '0.0.0',
+      default: "0.0.0",
       type: String,
-      scope: 'client',
+      scope: "client",
     });
 
     this._r = true;
@@ -27,15 +27,15 @@ export default class VersionCheck {
     if (!this._r) this._reg(mN);
 
     let mV = this.get(mN);
-    let oV = game.settings.get(mN, 'version');
+    let oV = game.settings.get(mN, "version");
 
     return isNewerVersion(mV, oV);
-  };
+  }
 
   static set(mN, v) {
     if (!this._r) this._reg(mN);
 
-    game.settings.set(mN, 'version', v);
+    game.settings.set(mN, "version", v);
   }
 
   static get(mN) {
