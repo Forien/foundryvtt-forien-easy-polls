@@ -45,16 +45,26 @@
   }
 
   // Dedicated Styles for WFRP4e
-  &.wfrp4e {
+  .system-wfrp4e & {
     .window-content {
-      background: url(/ui/parchment.jpg);
+      background: url(/systems/wfrp4e/ui/backgrounds/parchment-texture.webp) repeat;
       color: #222222;
 
-      table {
-        color: #222222;
+      table#poll-dialog-table {
+        margin: 0;
+        padding: 0;
 
-        input {
+        tr {
+          padding: 4px 8px;
+        }
+
+        td, th {
+          padding: 4px;
+        }
+
+        input[type=text] {
           color: #222222;
+          background: rgba(0, 0, 0, 0.1);
 
           &::placeholder {
             color: #444444;

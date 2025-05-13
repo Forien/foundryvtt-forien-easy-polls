@@ -39,6 +39,11 @@
     </tfoot>
 </table>
 <div class="poll-controls">
+    {{#if poll}}
+        <div class="hidden">
+            <input type="text" name="pollId" value="{{poll.id}}"/>
+        </div>
+    {{/if}}
     {{> modules/forien-easy-polls/templates/partials/forien-switch.hbs name="toggle-mode" label="Mode" checked=settings.mode}}
     {{> modules/forien-easy-polls/templates/partials/forien-switch.hbs name="toggle-results" label="Results" checked=settings.results}}
     {{> modules/forien-easy-polls/templates/partials/forien-switch.hbs name="toggle-secret" label="Secret" checked=settings.secret}}

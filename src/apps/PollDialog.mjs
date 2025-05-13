@@ -1,4 +1,5 @@
 import {constants, settings} from "constants.mjs";
+import PollHandler           from "helpers/PollHandler.mjs";
 import Poll                  from "helpers/PollHandler.mjs";
 import Utility               from "utility/Utility.mjs";
 
@@ -8,83 +9,80 @@ import Utility               from "utility/Utility.mjs";
  *
  * @author Forien
  */
-export default class PollDialog extends foundry.appv1.api.Dialog {
+export default class PollDialog extends foundry.applications.api.DialogV2 {
+  pollOptions = 0;
+
   // #region Setup
-
-  /**
-   * @inheritDoc
-   */
-  constructor(data = {}, options = {}) {
-    super(data, options);
-    this.#defaultSetup(data);
-  }
-
-  /**
-   * Sets up some default settings such as buttons and content
-   * @param data
-   */
-  #defaultSetup(data) {
-    data.pollOptions = 0;
-    data.buttons = {
-      cancel: {
-        label: game.i18n.localize("Cancel"),
+  /** @inheritDoc */
+  static DEFAULT_OPTIONS = {
+    id: "poll-dialog-{id}",
+    classes: ["dialog", "forien-easy-polls", "poll-dialog", "themed"],
+    tag: "dialog",
+    form: {
+      closeOnSubmit: true,
+    },
+    buttons: [
+      {
+        action: "cancel",
+        label: "Cancel",
         icon: "<i class=\"fas fa-times\"></i>",
         callback: this.close,
       },
-      create: {
-        label: game.i18n.localize("Create"),
+      {
+        action: "create",
+        label: "Create",
         icon: "<i class=\"fas fa-check\"></i>",
-        callback: html => this.#createPollFromDialog(html, false),
+        default: true,
+        callback: (event, button, dialog) => PollDialog.#createPollFromDialog(event, button, dialog, false),
       },
-      createAndSave: {
-        label: game.i18n.localize("Forien.EasyPolls.CreateAndSave"),
+      {
+        action: "createAndSave",
+        label: "Forien.EasyPolls.CreateAndSave",
         icon: "<i class=\"fas fa-check\"></i>",
-        callback: html => this.#createPollFromDialog(html, true),
+        callback: (event, button, dialog) => PollDialog.#createPollFromDialog(event, button, dialog, true),
       },
-    };
-    data.default = "create";
+    ],
+    window: {
+      frame: true,
+      positioned: true,
+      minimizable: false,
+    },
+    position: {
+      width: 500,
+    },
+  };
 
-    return data;
-  }
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options);
 
-  getData(options = {}) {
-    this.data.pollOptions = 0;
+    this.pollOptions = 0;
+
     if (options.poll) {
-      this.data.poll = options.poll;
-      this.data.settings = {
-        mode: this.#getBooleanForMode(this.data.poll.options.mode),
-        results: this.data.poll.options.results,
-        secret: this.data.poll.options.secret,
+      context.poll = options.poll;
+      context.settings = {
+        mode: this.#getBooleanForMode(context.poll.options.mode),
+        results: context.poll.options.results,
+        secret: context.poll.options.secret,
       };
     }
 
-    if (!this.data.poll) {
-      this.data.poll = {
+    if (!context.poll) {
+      context.poll = {
         parts: ["", ""],
       };
 
-      this.data.settings = {
+      context.settings = {
         mode: this.#getBooleanForMode(game.settings.get(constants.moduleId, settings.defaultMode)),
         results: game.settings.get(constants.moduleId, settings.defaultDisplay),
         secret: game.settings.get(constants.moduleId, settings.defaultSecret),
       };
     }
 
-    this.data.poll.indexedParts = this.data.poll.parts.map(part => {
-      return {index: ++this.data.pollOptions, part: part};
+    context.poll.indexedParts = context.poll.parts.map(part => {
+      return {index: ++this.pollOptions, part: part};
     });
 
-    return this.data;
-  }
-
-  /**
-   * @inheritDoc
-   */
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["dialog", "forien-easy-polls", "poll-dialog", game.system.id],
-      width: 500,
-    });
+    return context;
   }
 
   /**
@@ -96,47 +94,58 @@ export default class PollDialog extends foundry.appv1.api.Dialog {
 
   // #endregion
 
-  /**
-   * @inheritDoc
-   */
-  render(force = true, options = {}) {
-    return foundry.applications.handlebars.renderTemplate(Utility.getTemplate("poll-dialog.hbs"), this.getData(options)).then(content => {
-      this.data.content = content;
+  /** @override */
+  async _renderHTML(context, options) {
+    const form = document.createElement("form");
+    form.className = "dialog-form standard-form";
+    form.autocomplete = "off";
+    form.innerHTML = await foundry.applications.handlebars.renderTemplate(
+      Utility.getTemplate("poll-dialog.hbs"),
+      await this._prepareContext(options),
+    );
+    form.innerHTML += `<footer class="form-footer">${this._renderButtons()}</footer>`;
+    form.addEventListener("submit", event => this._onSubmit(event.submitter, event));
 
-      return super.render(force, options);
-    });
+    return form;
   }
 
   /**
-   * Creates Poll with data from Dialog
-   * @param {*} html
-   * @param {boolean} save
-   * @return {Promise<abstract.Document>}
+   * Creates a poll based on input collected from a dialog form.
+   *
+   * @param {Event} event
+   * @param {HTMLButtonElement} button
+   * @param {PollDialog} dialog
+   * @param {boolean} [save=false]
+   *
+   * @return {Poll}
    */
-  #createPollFromDialog(html, save = false) {
-    const question = html.find(".poll-title").val();
+  static #createPollFromDialog(event, button, dialog, save = false) {
+    const form = button.form;
+    const elements = form.elements;
+
+    const question = form.querySelector("input.poll-title").value;
     const parts = [];
 
-    html.find(".option-template").remove();
-    html.find(".poll-option").each(() => {
-      parts.push($(this).val());
+    form.querySelectorAll("input.poll-option").forEach(input => {
+      if (input.value)
+        parts.push(input.value);
     });
 
     const options = {
-      mode: this.#getModeFromCheckbox(html.find(".poll-controls input[type=checkbox][name=toggle-mode]").is(":checked")),
-      results: html.find(".poll-controls input[type=checkbox][name=toggle-results]").is(":checked"),
-      secret: html.find(".poll-controls input[type=checkbox][name=toggle-secret]").is(":checked"),
+      mode: PollDialog.#getModeFromCheckbox(elements["toggle-mode"].checked),
+      results: elements["toggle-results"].checked,
+      secret: elements["toggle-secret"].checked,
     };
 
     if (save) {
-      let id = this.data.poll.id || null;
-      this.#savePollData(question, parts, options, id);
+      const id = elements["pollId"]?.value || null;
+      PollDialog.#savePollData(question, parts, options, id);
     }
 
-    return Poll.create({question, parts}, options);
+    return PollHandler.create({question, parts}, options);
   }
 
-  #savePollData(question, parts, options, id = null) {
+  static #savePollData(question, parts, options, id = null) {
     game.modules.get(constants.moduleId).api.savedPolls.savePoll(question, parts, options, id);
   }
 
@@ -145,7 +154,7 @@ export default class PollDialog extends foundry.appv1.api.Dialog {
    * @param {boolean} value
    * @return {string}
    */
-  #getModeFromCheckbox(value) {
+  static #getModeFromCheckbox(value) {
     return value ? "multiple" : "single";
   }
 
@@ -175,20 +184,36 @@ export default class PollDialog extends foundry.appv1.api.Dialog {
   /**
    * @inheritDoc
    */
-  activateListeners(html) {
-    super.activateListeners(html);
+  async _onRender(context, options) {
+    await super._onRender(context, options);
+    this.activateListeners(this.element, true);
+  }
 
-    html.find(".add-option").click(this.#onAddOptionClick.bind(this));
-    html.find(".delete-option").click(this.#onDeleteOptionClick.bind(this));
-    html.find(".poll-controls .forien-switch-checkbox[name=\"toggle-mode\"]")
-        .change(this.#onChangeModeCheckbox.bind(this))
-        .trigger("change");
-    html.find(".poll-controls .forien-switch-checkbox[name=\"toggle-results\"]")
-        .change(this.#onChangeResultsCheckbox.bind(this))
-        .trigger("change");
-    html.find(".poll-controls .forien-switch-checkbox[name=\"toggle-secret\"]")
-        .change(this.#onChangeSecretCheckbox.bind(this))
-        .trigger("change");
+  activateListeners(element, checkboxes = false) {
+    element.querySelector(".add-option")?.addEventListener("click", this.#onAddOptionClick.bind(this));
+    element.querySelectorAll(".delete-option").forEach(el =>
+      el.addEventListener("click", this.#onDeleteOptionClick.bind(this)),
+    );
+
+    if (!checkboxes) return;
+
+    const changeEvent = new Event("change", {bubbles: true})
+
+    const mode = element.querySelector(".poll-controls .forien-switch-checkbox[name=\"toggle-mode\"]");
+    if (mode) {
+      mode.addEventListener("change", this.#onChangeModeCheckbox.bind(this));
+      mode.dispatchEvent(changeEvent);
+    }
+    const results = element.querySelector(".poll-controls .forien-switch-checkbox[name=\"toggle-results\"]");
+    if (results) {
+      results.addEventListener("change", this.#onChangeResultsCheckbox.bind(this));
+      results.dispatchEvent(changeEvent);
+    }
+    const secret = element.querySelector(".poll-controls .forien-switch-checkbox[name=\"toggle-secret\"]");
+    if (secret) {
+      secret.addEventListener("change", this.#onChangeSecretCheckbox.bind(this));
+      secret.dispatchEvent(changeEvent);
+    }
   }
 
   #changeCheckbox(event, label) {
@@ -209,6 +234,8 @@ export default class PollDialog extends foundry.appv1.api.Dialog {
   }
 
   #onChangeSecretCheckbox(event) {
+    event.preventDefault();
+    event.stopPropagation();
     const checked = event.currentTarget.checked;
     let label = this.#getSecretLabel(checked);
     this.#changeCheckbox(event, label);
@@ -219,7 +246,9 @@ export default class PollDialog extends foundry.appv1.api.Dialog {
    * @param event
    */
   #onAddOptionClick(event) {
-    this.data.pollOptions++;
+    event.preventDefault();
+    event.stopPropagation();
+    this.pollOptions++;
 
     const table = event.currentTarget.closest("#poll-dialog-table");
     const template = table.getElementsByClassName("option-template")[0];
@@ -228,10 +257,10 @@ export default class PollDialog extends foundry.appv1.api.Dialog {
     entry.classList.remove("option-template", "hidden");
 
     let input = entry.getElementsByClassName("poll-option")[0];
-    input.setAttribute("placeholder", input.getAttribute("placeholder").replace("{PON}", this.data.pollOptions));
+    input.setAttribute("placeholder", input.getAttribute("placeholder").replace("{PON}", this.pollOptions));
 
     let number = entry.getElementsByClassName("ordering-number")[0];
-    number.textContent = `${this.data.pollOptions}.`;
+    number.textContent = `${this.pollOptions}.`;
 
     table.getElementsByClassName("poll-options")[0].append(entry);
     const style = getComputedStyle(entry);
@@ -239,7 +268,7 @@ export default class PollDialog extends foundry.appv1.api.Dialog {
     this.setPosition({height: this.position.height + height});
 
     // activate listeners on new row
-    this.activateListeners($(entry));
+    this.activateListeners(entry);
   }
 
   /**
@@ -247,7 +276,9 @@ export default class PollDialog extends foundry.appv1.api.Dialog {
    * @param event
    */
   #onDeleteOptionClick(event) {
-    this.data.pollOptions--;
+    event.preventDefault();
+    event.stopPropagation();
+    this.pollOptions--;
     const row = event.currentTarget.closest("tr");
     const style = getComputedStyle(row);
     const height = parseInt(style.height);
