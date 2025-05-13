@@ -17,7 +17,6 @@ Hooks.once("init", () => {
 
   game.modules.get(constants.moduleId).api = new ForienEasyPollsAPI();
 
-
   Object.assign(CONFIG.ChatMessage.dataModels, {
     [`${constants.moduleId}.poll`]: PollModel
   });
@@ -42,9 +41,4 @@ Hooks.once("ready", () => {
 
   Hooks.callAll(`${constants.moduleId}:afterReady`);
   Utility.notify(`${constants.moduleLabel} ready`, {consoleOnly: true});
-});
-
-
-Hooks.once("ready", () => {
-  game.wfrp4e.config.hitLocationTables.yourCustomKey = "Your Custom Label";
 });
