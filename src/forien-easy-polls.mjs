@@ -1,10 +1,13 @@
+import "../styles/forien-easy-polls.scss";
+
 import ChatCommands       from "compatibility/ChatCommands.mjs";
 import {constants}        from "constants.mjs";
-import ForienEasyPollsAPI from "ForienEasyPollsAPI.mjs";
-import Poll               from "Poll.mjs";
-import PollCommand        from "PollCommand.mjs";
-import PollDialog         from "PollDialog.mjs";
-import registerSettings   from "settings.mjs";
+import PollModel          from "data/PollModel";
+import ForienEasyPollsAPI from "api.mjs";
+import PollHandler        from "helpers/PollHandler.mjs";
+import PollCommand        from "helpers/PollCommand.mjs";
+import PollDialog         from "apps/PollDialog.mjs";
+import registerSettings from "settings.mjs";
 import Socket             from "Socket.mjs";
 import Utility            from "utility/Utility.mjs";
 
@@ -15,7 +18,12 @@ Hooks.once("init", () => {
 
   game.modules.get(constants.moduleId).api = new ForienEasyPollsAPI();
 
-  Utility.preloadTemplates([...Poll.templates, ...PollDialog.templates]);
+
+  Object.assign(CONFIG.ChatMessage.dataModels, {
+    [`${constants.moduleId}.poll`]: PollModel
+  });
+
+  Utility.preloadTemplates([...PollDialog.templates, ...PollModel.templates]);
 
   Hooks.callAll(`${constants.moduleId}:afterInit`);
   Utility.notify(`${constants.moduleLabel} initialized`, {consoleOnly: true});
@@ -26,6 +34,8 @@ Hooks.once("setup", () => {
 });
 
 Hooks.once("ready", () => {
+  PollHandler.socketListeners();
+  PollHandler.chatLogListeners();
   Socket.listen();
   ChatCommands.register();
 
@@ -33,3 +43,7 @@ Hooks.once("ready", () => {
   Utility.notify(`${constants.moduleLabel} ready`, {consoleOnly: true});
 });
 
+
+Hooks.once("ready", () => {
+  game.wfrp4e.config.hitLocationTables.yourCustomKey = "Your Custom Label";
+});

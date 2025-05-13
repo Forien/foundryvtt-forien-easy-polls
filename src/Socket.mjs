@@ -1,16 +1,11 @@
 import {constants}   from "constants.mjs";
-import Poll          from "Poll.mjs";
 import WorkshopError from "utility/Error.mjs";
 import Utility       from "utility/Utility.mjs";
 
-const capitalize = s => {
-  if (typeof s !== "string") return undefined;
-
-  return s.charAt(0).toUpperCase() + s.slice(1);
-};
-
 export default class Socket {
-  static socket = `module.${constants.moduleId}`;
+  static #socket = `module.${constants.moduleId}`;
+
+  static #listeners = {};
 
   static needsGM() {
     let GMs = game.users.filter(u => u.isGM && u.active);
@@ -20,11 +15,8 @@ export default class Socket {
   }
 
   static sendAnswer(poll, answer, status = true, multiple = false) {
-    if (game.user.isGM)
-      return Poll.answer(poll, answer, status, game.user._id, multiple);
-
     this.needsGM();
-    game.socket.emit(this.socket, {
+    game.socket.emit(this.#socket, {
       event: "sendAnswer",
       poll: poll,
       answer: answer,
@@ -35,19 +27,20 @@ export default class Socket {
     Utility.notify(game.i18n.localize("Forien.EasyPolls.AnswerSent"));
   }
 
+  static register(event, handler) {
+    this.#listeners[event] = handler;
+  }
+
   static listen() {
-    game.socket.on(this.socket, data => {
+    game.socket.on(this.#socket, data => {
       try {
-        this["on" + capitalize(data.event)](data);
+        const handler = Socket.#listeners[data.event] ?? this["on" + data.event.capitalize()];
+
+        handler(data);
       } catch {
         this.onundefined(data);
       }
     });
-  }
-
-  static onSendAnswer(data) {
-    if (!game.user.isGM) return;
-    Poll.answer(data.poll, data.answer, data.status, data.user, data.multiple);
   }
 
   static onundefined(data) {

@@ -1,0 +1,60 @@
+.forien-easy-polls {
+  &.app.saved-polls-app {
+    width: 650px;
+
+    table.forien-saved-polls {
+      td {
+        text-align: center;
+
+        &.question {
+          width: 90%;
+          text-align: left;
+        }
+
+        &.ordering-number {
+          min-width: 30px;
+        }
+
+        &.answers, &.mode, &.results, &.secret {
+          min-width: 30px;
+        }
+
+        &.controls {
+          min-width: 130px;
+          text-align: right;
+
+          button {
+            width: 40px;
+            margin: 0;
+            border-radius: 5px;
+            padding: 2px 0 0 0;
+
+            i {
+              margin: 0;
+              padding: 0;
+            }
+
+            &.delete-poll {
+              background-color: #811;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+
+    .buttons {
+      margin: 0 2px 10px 10px;
+      display: flex;
+      flex-direction: row-reverse;
+
+      button {
+        border-radius: 5px;
+        padding: 2px 8px;
+        flex: 0 1 fit-content;
+        background-color: #272;
+        color: white;
+      }
+    }
+  }
+}

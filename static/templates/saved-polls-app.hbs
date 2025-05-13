@@ -11,6 +11,9 @@
     </tr>
     </thead>
     <tbody>
+    {{log enrichedDescription}}
+    {{log this}}
+    {{log @root}}
     {{#each polls}}
         <tr class="poll-entry" data-poll="{{this.id}}">
             <td class="ordering-number">{{this.index}}.</td>

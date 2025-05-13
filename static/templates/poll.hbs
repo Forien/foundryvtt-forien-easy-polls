@@ -1,40 +1,74 @@
-<h2>{{question}}:</h2>
-<div class="answers">
-    {{#if results}}
-    {{#each parts}}
-    <div class="answer">
-        <div class="bar-container">
-            <div class="bar" style="width: {{this.percent}}%"></div>
-            <div class="answer-data" {{#if (or (not ../settings.secret) ../isGM)}}data-tooltip="{{this.voters}}"{{/if}}>
-                <span class="label">{{this.label}}</span>
-                <span class="count">{{this.count}}</span>
-            </div>
+<li class="chat-message message flexcol forien-poll" data-message-id="{{message._id}}">
+    <header class="message-header flexrow">
+        <span class="flavor-text">{{poll.flavor}}</span>
+        <span class="message-metadata">
+            <time class="message-timestamp">{{timeSince message.timestamp}}</time>
+            {{#if canDelete}}
+                <a aria-label="{{localize 'Delete'}}" class="message-delete" data-action="deleteMessage">
+                <i class="fa-solid fa-trash" inert></i>
+            </a>
+            {{/if}}
+            {{#if canClose}}
+                <a aria-label="{{ localize "CHAT.Dismiss" }}" class="message-dismiss" data-action="dismissMessage">
+                <i class="fa-solid fa-xmark" inert></i>
+            </a>
+            {{/if}}
+        </span>
+    </header>
+    <div class="message-content">
+        <h2>{{poll.question}}:</h2>
+        <div class="answers">
+            {{#if poll.results}}
+                {{#each poll.options}}
+                    <div class="answer">
+                        <div class="bar-container">
+                            <div class="bar" style="width: {{this.percent}}%"></div>
+                            <div class="answer-data"
+                                 {{#if (or (not @root.poll.settings.secret) @root.isGM)}}data-tooltip="{{this.votersTooltip}}"{{/if}}>
+                                <span class="label">{{this.label}}</span>
+                                <span class="count">{{this.count}}</span>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            {{else}}
+                {{#each poll.options}}
+                    <label>
+                        <input type="{{#if @root.poll.multiple}}checkbox{{else}}radio{{/if}}"
+                               name="poll-{{@root.id}}-answer"
+                               class="poll-answer"
+                               data-answer="{{this.label}}"
+                               data-poll="{{@root.id}}" {{checked checked}}/>
+                        {{this.label}}
+                    </label>
+                {{/each}}
+            {{/if}}
+        </div>
+        <div class="poll-control-buttons">
+            {{#if (or poll.settings.results isGM)}}
+                <button class="toggle-results">
+                    <i class="fas fa-chart-simple"></i> {{localize "Forien.EasyPolls.ToggleResults"}}
+                </button>
+            {{/if}}
+            {{#if isGM}}
+                <button class="toggle-setting" data-setting="results">
+                    {{#if poll.settings.results}}
+                        <i class="fas fa-eye-slash"></i> {{localize "Forien.EasyPolls.ToggleSettingResults.Disable"}}
+                    {{else}}
+                        <i class="fas fa-eye"></i> {{localize "Forien.EasyPolls.ToggleSettingResults.Enable"}}
+                    {{/if}}
+                </button>
+                <button class="toggle-setting" data-setting="secret">
+                    {{#if poll.settings.secret}}
+                        <i class="fas fa-users"></i> {{localize "Forien.EasyPolls.ToggleSettingSecret.Disable"}}
+                    {{else}}
+                        <i class="fas fa-user-secret"></i> {{localize "Forien.EasyPolls.ToggleSettingSecret.Enable"}}
+                    {{/if}}
+                </button>
+            {{/if}}
+        </div>
+        <div class="stats">
+            <span>{{localize "Forien.EasyPolls.CountAnswered"}}: <i class="count-answered">{{poll.total}}</i></span>
         </div>
     </div>
-    {{/each}}
-    {{else}}
-    {{#each parts}}
-        <label><input type={{#if (eq ../settings.mode 'multiple')}}"checkbox"{{else}}"radio"{{/if}} name="poll-{{../poll}}-answer" class="poll-answer" data-answer="{{this.label}}" data-poll="{{../poll}}" {{checked checked}}/> {{this.label}}</label>
-    {{/each}}
-    {{/if}}
-</div>
-<div class="poll-control-buttons">
-    {{#if (or settings.results isGM)}}
-        <button class="toggle-results" data-poll="{{poll}}"><i class="fas fa-chart-simple"></i> {{localize "Forien.EasyPolls.ToggleResults"}}</button>
-    {{/if}}
-    {{#if isGM}}
-        {{#if settings.results}}
-            <button class="toggle-setting-results" data-poll="{{poll}}"><i class="fas fa-eye-slash"></i> {{localize "Forien.EasyPolls.ToggleSettingResults.Disable"}}</button>
-        {{else}}
-            <button class="toggle-setting-results" data-poll="{{poll}}"><i class="fas fa-eye"></i> {{localize "Forien.EasyPolls.ToggleSettingResults.Enable"}}</button>
-        {{/if}}
-        {{#if settings.secret}}
-            <button class="toggle-setting-secret" data-poll="{{poll}}"><i class="fas fa-users"></i> {{localize "Forien.EasyPolls.ToggleSettingSecret.Disable"}}</button>
-        {{else}}
-            <button class="toggle-setting-secret" data-poll="{{poll}}"><i class="fas fa-user-secret"></i> {{localize "Forien.EasyPolls.ToggleSettingSecret.Enable"}}</button>
-        {{/if}}
-    {{/if}}
-</div>
-<div class="stats">
-    <span>{{localize "Forien.EasyPolls.CountAnswered"}}: <i class="count-answered">{{total}}</i></span>
-</div>
+</li>

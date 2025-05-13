@@ -1,5 +1,5 @@
 import {constants, flags, settings} from "constants.mjs";
-import Poll                         from "Poll.mjs";
+import Poll                         from "helpers/PollHandler.mjs";
 import Utility                      from "utility/Utility.mjs";
 
 export default class PollCommand {
@@ -26,7 +26,7 @@ export default class PollCommand {
 
   static registerCommand() {
     Hooks.on("chatMessage", (chatLog, messageText, _chatData) => {
-      if (!Utility.getPlayersCreateSetting() && !game.user.isGM)
+      if (!game.settings.get(constants.moduleId, settings.playersCreate) && !game.user.isGM)
         return true;
 
       let match = this.checkCommand(messageText);
@@ -49,16 +49,6 @@ export default class PollCommand {
         }
 
         this.createPoll(content, options);
-
-        return false;
-      }
-    });
-
-    Hooks.on("renderChatMessage", (chatMessage, html, _messageData) => {
-      let isPoll = chatMessage.getFlag(constants.moduleId, flags.isPoll);
-
-      if (isPoll) {
-        Poll.renderPoll(chatMessage, html);
 
         return false;
       }

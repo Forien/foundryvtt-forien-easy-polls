@@ -121,4 +121,8 @@ export default class Utility {
 
     return element.content.firstChild;
   }
+
+  static get activeGM() {
+    return game.user.isGM && game.user === game.users.activeGM;
+  }
 }

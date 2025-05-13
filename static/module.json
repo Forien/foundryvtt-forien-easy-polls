@@ -2,10 +2,10 @@
   "id": "forien-easy-polls",
   "title": "Forien's Easy Polls",
   "description": "Create polls through the chat and let your players vote.",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "compatibility": {
-    "minimum": "9",
-    "verified": "12.330"
+    "minimum": "13",
+    "verified": "13.342"
   },
   "authors": [
     {
@@ -48,11 +48,16 @@
     }
   ],
   "esmodules": [
-    "./modules/forien-easy-polls.mjs"
+    "./forien-easy-polls.mjs"
   ],
   "styles": [
     "./styles/forien-easy-polls.css"
   ],
+  "documentTypes": {
+    "ChatMessage": {
+      "poll": {}
+    }
+  },
   "flags": {
     "hotReload": {
       "extensions": [

@@ -1,0 +1,125 @@
+.forien-easy-polls {
+  /*
+          Poll Dialog
+   */
+  &.poll-dialog {
+    .window-content {
+      table {
+        background: none;
+        border: none;
+
+        thead, tfoot {
+          background: none;
+          border: none;
+        }
+
+        td {
+          &.option {
+            width: 88%;
+          }
+
+          &.ordering-number {
+            width: 40px;
+          }
+        }
+      }
+    }
+
+    button.delete-option {
+      display: grid;
+      align-items: center;
+      height: 30px;
+      width: 30px;
+      border-radius: 10px;
+
+      i {
+        margin: 0 0 0 1px;
+      }
+    }
+  }
+
+  .poll-controls {
+    display: flex;
+    gap: 4px;
+    margin: 0 0 4px;
+  }
+
+  // Dedicated Styles for WFRP4e
+  &.wfrp4e {
+    .window-content {
+      background: url(/ui/parchment.jpg);
+      color: #222222;
+
+      table {
+        color: #222222;
+
+        input {
+          color: #222222;
+
+          &::placeholder {
+            color: #444444;
+          }
+        }
+      }
+    }
+  }
+
+
+  /*
+          Forien-Switch
+   */
+  .forien-switch {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 2px auto;
+
+    .forien-switch-actual-label {
+      color: #222222;
+    }
+
+    .forien-switch-checkbox {
+      position: absolute;
+      height: 0;
+      width: 0;
+      visibility: hidden;
+
+      &:checked + .forien-switch-label {
+        background: #468129;
+
+        &::after {
+          left: calc(100% - 5px);
+          transform: translateX(-100%);
+        }
+      }
+    }
+
+    .forien-switch-label {
+      cursor: pointer;
+      width: 40px;
+      height: 20px;
+      background: #3e1395;
+      display: block;
+      border-radius: 10px;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 14px;
+        height: 14px;
+        background: #fff;
+        border-radius: 7px;
+        transition: 0.3s;
+      }
+
+      &:active::after {
+        width: 24px;
+      }
+    }
+  }
+
+}

@@ -1,9 +1,9 @@
-import Utility from "utility/Utility.mjs";
+import {constants, settings} from "constants";
 
 export default class ChatCommands {
   static register() {
     if (ChatCommands.installed) {
-      if (game.user.isGM || Utility.getPlayersCreateSetting())
+      if (game.user.isGM || game.settings.get(constants.moduleId, settings.playersCreate))
         ChatCommands.registerCommand();
     }
   }

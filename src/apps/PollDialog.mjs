@@ -1,5 +1,5 @@
 import {constants, settings} from "constants.mjs";
-import Poll                  from "Poll.mjs";
+import Poll                  from "helpers/PollHandler.mjs";
 import Utility               from "utility/Utility.mjs";
 
 /**

@@ -7,6 +7,10 @@
   - Moved static files from `dist` and `src` to `static`
   - The entire codebase is now compiled into a single `forien-easy-polls.mjs` file, which should lower amount of files
     browsers need to load, and also help narrowing down if an error comes from this module
+- Refactored Poll class
+  - Split into PollHandler, PollModel, PollOptionModel and PollAnswerModel
+  - PollHandler handles API calls, sockets interaction, EventListeners etc.
+  - PollModel along the nested Models handles data preparation, updates, validation and rendering
 
 ## v1.1.1
 * Added number of Answers to table on the Saved Polls App
