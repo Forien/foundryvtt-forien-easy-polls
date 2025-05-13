@@ -86,7 +86,8 @@ In configuration you can set several handy options like:
 
 ## Future plans
 
-* _none currently_
+* Refactor PollDialog and SavedPollsApp away from Dialogs and fully into ApplicationV2
+* Explore moving SavedPolls away from GM user's flag and onto either World Setting or Persistent Storage
 
 You can **always** check current and up-to-date [planned and requested features here](https://github.com/Forien/foundryvtt-forien-easy-polls/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement)
 
