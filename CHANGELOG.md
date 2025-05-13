@@ -12,7 +12,9 @@
   - PollHandler handles API calls, sockets interaction, EventListeners etc.
   - PollModel along the nested Models handles data preparation, updates, validation and rendering
 - Moved where users data for "display results" is stored from `user.flags` to `sessionStorage`
-- Updated PollDialog from Dialog to DialogV2 
+- Updated PollDialog from Dialog to DialogV2
+- Limited length of option that is displayed when displaying results
+  - Full option is now displayed as tooltip, with voters only displayed when certain conditions are met
 
 ## v1.1.1
 * Added number of Answers to table on the Saved Polls App

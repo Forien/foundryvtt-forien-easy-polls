@@ -16,16 +16,15 @@
         </span>
     </header>
     <div class="message-content">
-        <h2>{{poll.question}}:</h2>
+        <h3>{{poll.question}}:</h3>
         <div class="answers">
             {{#if poll.results}}
                 {{#each poll.options}}
                     <div class="answer">
                         <div class="bar-container">
                             <div class="bar" style="width: {{this.percent}}%"></div>
-                            <div class="answer-data"
-                                 {{#if (or (not @root.poll.settings.secret) @root.isGM)}}data-tooltip="{{this.votersTooltip}}"{{/if}}>
-                                <span class="label">{{this.label}}</span>
+                            <div class="answer-data" data-tooltip="{{this.tooltip}}">
+                                <span class="label">{{this.labelLimited}}</span>
                                 <span class="count">{{this.count}}</span>
                             </div>
                         </div>

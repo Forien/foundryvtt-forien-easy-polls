@@ -1,6 +1,5 @@
 import {constants, settings} from "constants.mjs";
 import PollHandler           from "helpers/PollHandler.mjs";
-import Poll                  from "helpers/PollHandler.mjs";
 import Utility               from "utility/Utility.mjs";
 
 /**
@@ -191,13 +190,11 @@ export default class PollDialog extends foundry.applications.api.DialogV2 {
 
   activateListeners(element, checkboxes = false) {
     element.querySelector(".add-option")?.addEventListener("click", this.#onAddOptionClick.bind(this));
-    element.querySelectorAll(".delete-option").forEach(el =>
-      el.addEventListener("click", this.#onDeleteOptionClick.bind(this)),
-    );
+    element.querySelectorAll(".delete-option").forEach(el => el.addEventListener("click", this.#onDeleteOptionClick.bind(this)));
 
     if (!checkboxes) return;
 
-    const changeEvent = new Event("change", {bubbles: true})
+    const changeEvent = new Event("change", {bubbles: true});
 
     const mode = element.querySelector(".poll-controls .forien-switch-checkbox[name=\"toggle-mode\"]");
     if (mode) {
