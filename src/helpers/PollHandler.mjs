@@ -39,8 +39,8 @@ export default class PollHandler {
 
     if (!poll || poll.type !== `${constants.moduleId}.poll`) return;
 
-    const html = poll.renderHTML();
-    poll.element.replaceWith(html);
+    const html = await poll.renderHTML();
+    ui.chat.element.querySelector(`[data-message-id="${poll.id}"]`)?.replaceWith(html);
   }
 
   static chatLogListeners() {
@@ -79,13 +79,15 @@ export default class PollHandler {
       system: {
         settings: {
           [setting]: !poll.system.settings[setting],
-        }
-      }
+        },
+      },
     });
   }
 
   static async #onToggleResults(event, poll) {
-    let isDisplayingResults = game.user.getFlag(constants.moduleId, flags.pollResults) || [];
+    let isDisplayingResults = JSON.parse(localStorage.getItem(`${constants.moduleId}.${flags.pollResults}`))
+                              || game.user.getFlag(constants.moduleId, flags.pollResults)
+                              || [];
     isDisplayingResults = foundry.utils.duplicate(isDisplayingResults);
 
     if (isDisplayingResults.includes(poll.id)) {
@@ -94,8 +96,8 @@ export default class PollHandler {
       isDisplayingResults.push(poll.id);
     }
 
-    await game.user.setFlag(constants.moduleId, flags.pollResults, isDisplayingResults);
-    await PollHandler.#renderPoll(poll);
+    await localStorage.setItem(`${constants.moduleId}.${flags.pollResults}`, JSON.stringify(isDisplayingResults));
+    await PollHandler.#renderPoll({poll});
   }
 
   static async answer(id, answer, status, user) {

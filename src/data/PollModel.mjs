@@ -1,5 +1,5 @@
-import {constants}     from "constants";
-import PollAnswerModel from "data/PollAnswerModel";
+import {constants, flags} from "constants";
+import PollAnswerModel    from "data/PollAnswerModel";
 import PollOptionModel from "data/PollOptionModel";
 import Utility         from "utility/Utility";
 
@@ -28,6 +28,14 @@ export default class PollModel extends foundry.abstract.TypeDataModel {
     return this.multiple
       ? game.i18n.localize("Forien.EasyPolls.Settings.DefaultMode.Multiple")
       : game.i18n.localize("Forien.EasyPolls.Settings.DefaultMode.Single");
+  }
+
+  get results() {
+    const results = JSON.parse(localStorage.getItem(`${constants.moduleId}.${flags.pollResults}`))
+    || game.user.getFlag(constants.moduleId, flags.pollResults)
+    || [];
+
+    return results.includes(this.parent.id);
   }
 
   prepareBaseData() {
