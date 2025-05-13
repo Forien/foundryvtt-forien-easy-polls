@@ -6,8 +6,7 @@ import PollModel          from "data/PollModel";
 import ForienEasyPollsAPI from "api.mjs";
 import PollHandler        from "helpers/PollHandler.mjs";
 import PollCommand        from "helpers/PollCommand.mjs";
-import PollDialog         from "apps/PollDialog.mjs";
-import registerSettings from "settings.mjs";
+import registerSettings   from "settings.mjs";
 import Socket             from "Socket.mjs";
 import Utility            from "utility/Utility.mjs";
 

@@ -165,7 +165,7 @@ export default [
       "space-infix-ops": ["error", {int32Hint: false}],
       "space-unary-ops": ["error", {words: true, nonwords: false}],
 
-      "spaced-comment": ["warn", "always", {markers: ["/"]}],
+      "spaced-comment": ["warn", "always", {markers: ["/", "#region", "#endregion"]}],
 
       "switch-colon-spacing": ["error", {after: true, before: false}],
 

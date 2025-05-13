@@ -107,7 +107,7 @@ export default class PollHandler {
   }
 
   static socketListeners() {
-    Socket.register("sendAnswer", (data) => {
+    Socket.register("sendAnswer", data => {
       PollHandler.answer(data.poll, data.answer, data.status, data.user, data.multiple);
     });
   }

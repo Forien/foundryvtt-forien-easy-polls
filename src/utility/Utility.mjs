@@ -89,8 +89,8 @@ export default class Utility {
 
     foundry.applications.handlebars.loadTemplates(templates)
            .then(() => {
-      Utility.notify("Templates preloaded.", {consoleOnly: true});
-    });
+             Utility.notify("Templates preloaded.", {consoleOnly: true});
+           });
   }
 
   /**

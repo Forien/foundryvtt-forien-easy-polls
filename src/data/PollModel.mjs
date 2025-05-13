@@ -86,7 +86,8 @@ export default class PollModel extends foundry.abstract.TypeDataModel {
   async renderHTML({canDelete, canClose = false, ...rest} = {}) {
     const messageData = {
       ...rest,
-      canDelete, canClose,
+      canDelete,
+      canClose,
       message: this.parent,
       id: this.parent._id,
       isGM: game.user.isGM,
