@@ -6,8 +6,6 @@ import Utility         from "utility/Utility";
 const {StringField, NumberField, SchemaField, ArrayField, BooleanField, EmbeddedDataField} = foundry.data.fields;
 
 export default class PollModel extends foundry.abstract.TypeDataModel {
-  static #template = "poll.hbs";
-
   static defineSchema() {
     return {
       total: new NumberField(),
@@ -20,10 +18,6 @@ export default class PollModel extends foundry.abstract.TypeDataModel {
         secret: new BooleanField({required: true, initial: false}),
       }),
     };
-  }
-
-  static get templates() {
-    return [this.#template];
   }
 
   get multiple() {
@@ -100,7 +94,7 @@ export default class PollModel extends foundry.abstract.TypeDataModel {
     };
 
     let html = await foundry.applications.handlebars.renderTemplate(
-      Utility.getTemplate(PollModel.#template),
+      Utility.getTemplate("poll.hbs"),
       messageData,
     );
     html = foundry.utils.parseHTML(html);

@@ -23,7 +23,9 @@ Hooks.once("init", () => {
     [`${constants.moduleId}.poll`]: PollModel
   });
 
-  Utility.preloadTemplates([...PollDialog.templates, ...PollModel.templates]);
+  Utility.preloadTemplates([
+    Utility.getTemplate("partials/forien-switch.hbs")
+  ]);
 
   Hooks.callAll(`${constants.moduleId}:afterInit`);
   Utility.notify(`${constants.moduleLabel} initialized`, {consoleOnly: true});

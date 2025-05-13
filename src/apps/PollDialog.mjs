@@ -9,15 +9,6 @@ import Utility               from "utility/Utility.mjs";
  * @author Forien
  */
 export default class PollDialog extends foundry.appv1.api.Dialog {
-  static #templates = [
-    "poll-dialog.hbs",
-    "partials/forien-switch.hbs",
-  ];
-
-  static get templates() {
-    return this.#templates;
-  }
-
   // #region Setup
 
   /**

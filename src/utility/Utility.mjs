@@ -82,18 +82,13 @@ export default class Utility {
   /**
    * Preloads provided templates
    *
-   * @param {{}} templates
+   * @param {[]} templates
    */
-  static preloadTemplates(templates = {}) {
+  static preloadTemplates(templates = []) {
     Utility.notify("Preloading Templates.", {consoleOnly: true});
-    templates = foundry.utils.flattenObject(templates);
 
-    for (let [key, template] of Object.entries(templates)) {
-      templates[key] = Utility.getTemplate(template);
-      if (templates[key] === undefined) delete templates[key];
-    }
-
-    foundry.applications.handlebars.loadTemplates(templates).then(() => {
+    foundry.applications.handlebars.loadTemplates(templates)
+           .then(() => {
       Utility.notify("Templates preloaded.", {consoleOnly: true});
     });
   }
