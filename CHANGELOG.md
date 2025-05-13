@@ -1,6 +1,7 @@
 # Changelog
 
 ## v2.0.0
+- Verified for v13.342
 - Restructured the entire project, introduced rollup and eslint
   - Moved source files from `dist` to `src`
   - Moved sass stylesheets from `src/styles` to `styles`
