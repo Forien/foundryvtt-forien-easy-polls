@@ -41,10 +41,12 @@ export default class PollHandler {
 
     const html = await poll.renderHTML();
     ui.chat.element.querySelector(`[data-message-id="${poll.id}"]`)?.replaceWith(html);
+    document.querySelector(`#chat-notifications [data-message-id="${poll.id}"]`)?.replaceWith(html);
   }
 
   static chatLogListeners() {
     ui.chat.element?.addEventListener("click", PollHandler.#handleClick);
+    document.querySelector("#chat-notifications")?.addEventListener("click", PollHandler.#handleClick);
   }
 
   static async #handleClick(event) {
