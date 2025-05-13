@@ -65,11 +65,11 @@ export default class PollHandler {
       return Socket.sendAnswer(poll.id, answer, checked);
     }
 
-    if (!Utility.activeGM)
-      return;
-
     if (event.target.closest(".forien-poll button.toggle-results"))
       return PollHandler.#onToggleResults(event, poll);
+
+    if (!Utility.activeGM)
+      return;
 
     const settingsToggle = event.target.closest(".forien-poll button.toggle-setting");
     if (settingsToggle)
@@ -103,6 +103,8 @@ export default class PollHandler {
   }
 
   static async answer(id, answer, status, user) {
+    if (!Utility.activeGM) return;
+
     let poll = game.messages.get(id);
     if (poll)
       return poll.system.answer(answer, user, status);

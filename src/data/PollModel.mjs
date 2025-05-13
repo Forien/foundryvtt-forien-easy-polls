@@ -35,7 +35,7 @@ export default class PollModel extends foundry.abstract.TypeDataModel {
     || game.user.getFlag(constants.moduleId, flags.pollResults)
     || [];
 
-    return results.includes(this.parent.id);
+    return results.includes(this.parent.id) && this.settings.results;
   }
 
   prepareBaseData() {
@@ -56,14 +56,16 @@ export default class PollModel extends foundry.abstract.TypeDataModel {
   }
 
   #cleanAnswers(label, user) {
-    let answers = this.answers;
+    let answers = foundry.utils.duplicate(this.answers);
+
+    const existed = answers.some(a => a.label === label && a.user === user);
 
     if (!this.multiple)
       answers = answers.filter(a => a.user !== user);
     else
       answers = answers.filter(a => !(a.user === user && a.label === label));
 
-    return answers;
+    return {answers, existed};
   }
 
   /**
@@ -75,14 +77,10 @@ export default class PollModel extends foundry.abstract.TypeDataModel {
    * @return {Promise<void>}
    */
   async answer(label, user, status = true) {
-    const answers = this.#cleanAnswers(label, user);
+    const {answers, existed} = this.#cleanAnswers(label, user);
 
-    if (status === true) {
+    if (status === true && !existed)
       answers.push(new PollAnswerModel({label, user}));
-    } else {
-      const index = answers.findIndex(a => a.label === label && a.user === user);
-      answers.splice(index, 1);
-    }
 
     await this.save({answers});
   }
